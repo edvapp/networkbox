@@ -1,0 +1,10 @@
+﻿Network requirements:
+
+Router:
+We assume you "own" a "network" with a working rooter, which provides ip - addresses and DNS-forwarding.
+A normal wlan-box, with 2 Kat-5 networkports will be enough to build a testnetwork.
+Pay attention, you have to turn of the dhcp-server, which provides ip – addresses, on your rooter later!
+If you do not own a router, we recommend to use pfsense (https://www.pfsense.org/), an easy to install and use firewall running on every PC.
+
+Installation “networkbox”
+Install a fresh ubuntu-server 14.04 (http://www.ubuntu.com/server). You should get all network-settings from your router.
