@@ -10,7 +10,7 @@ restoreOriginal /etc/network/interfaces
 
 restoreOriginal /etc/hostname
 # set hostname for running system
-hostname $(hostname)
+hostname $(cat /etc/hostname)
 
 restoreOriginal /etc/hosts
 

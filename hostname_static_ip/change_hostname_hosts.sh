@@ -29,6 +29,9 @@ sed -e "{
 	/$OLD_HOSTNAME/ s/$OLD_HOSTNAME/$HOSTNAME/
 }" -i $file
 
+# manipulated file
+file=/etc/hosts
+
 # save /etc/hosts
 saveOriginal $file
 
