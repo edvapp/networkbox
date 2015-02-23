@@ -6,11 +6,13 @@
 # source configuration
 . ../OPTIONS.conf
 
-# manipulated file
-file=/etc/network/interfaces
+restoreOriginal /etc/network/interfaces
 
-# reset original.conf.options
-restoreOriginal $file
+restoreOriginal /etc/hostname
+# set hostname for running system
+hostname $(hostname)
+
+restoreOriginal /etc/hosts
 
 # restart network interface
 ifdown eth0

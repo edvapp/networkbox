@@ -7,4 +7,12 @@ Pay attention, you have to turn of the dhcp-server, which provides ip – addres
 If you do not own a router, we recommend to use pfsense (https://www.pfsense.org/), an easy to install and use firewall running on every PC.
 
 Installation “networkbox”
-Install a fresh ubuntu-server 14.04 (http://www.ubuntu.com/server). You should get all network-settings from your router.
+1. Install Ubuntu 14.04 server
+Install a fresh ubuntu-server 14.04 (http://www.ubuntu.com/server). 
+You should get all network-settings from your router.
+Install all updates:
+>> sudo apt-get update
+>> sudo apt-get dist-upgrade
+
+2. Install git:
+>> sudo apt-get install git

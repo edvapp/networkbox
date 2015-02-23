@@ -17,7 +17,7 @@ then
 	exit
 fi
 
-# save original.conf.options
+# save /etc/network/interfaces
 saveOriginal $file
 
 # comment original iface eth0 out
