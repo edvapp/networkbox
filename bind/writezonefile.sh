@@ -28,7 +28,7 @@ echo "                         604800 )       ; Negative Cache TTL" 	>> $file
 echo ";"								>> $file
 echo "		IN		NS        "$NAME_DNS			>> $file
 echo ""									>> $file
-echo $NAME_DNS"		IN	A	"$IP				>> $file
+echo $NAME_DNS"		IN	A	"$IP_DNS			>> $file
 echo "dhcp01		IN	CNAME	"$NAME_DNS			>> $file
 echo ""									>> $file
 echo "nfs01		IN	CNAME	"$NAME_DNS			>> $file

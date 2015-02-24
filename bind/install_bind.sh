@@ -12,5 +12,9 @@
 /bin/bash change_named.conf.options.sh
 # add zone files to /etc/bind/named.conf.local
 /bin/bash change_named.conf.local.sh
+# write zone - files
+/bin/bash writereversezonefile.sh
+# write reverse - zone - files
+/bin/bash writereversezonefile.sh
 
 
