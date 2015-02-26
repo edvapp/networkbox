@@ -8,14 +8,14 @@
 
 # manipulated file
 #file=/etc/network/interfaces
-file=interfaces
+file=/etc/network/interfaces
 
 # save original.conf.options
 saveOriginal $file
 
 # add own ip to dns-nameservers in /etc/network/interfaces
 sed -e "{
-	/dns-nameservers/ s/dns-nameservers/dns-nameservers $IP/
+	/dns-nameservers/ s/dns-nameservers/dns-nameservers $STATIC_IP/
 }" -i $file
 
 # restart network interface

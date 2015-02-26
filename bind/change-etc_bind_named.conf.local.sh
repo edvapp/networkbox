@@ -7,16 +7,16 @@
 . ../OPTIONS.conf
 
 # manipulated file
-file=named.conf.local
+file=/etc/bind/named.conf.local
 
 # save original.conf.options
 saveOriginal $file
 
 # write zone files to /etc/bind/named.conf.local
 echo ""							>> $file
-echo "zone \"${DOMAIN_NAME}\" {"			>> $file
+echo "zone \"${DNS_DOMAIN_NAME}\" {"			>> $file
 echo "     type master;"				>> $file
-echo "     file \"/etc/bind/db.${DOMAIN_NAME}\";"	>> $file
+echo "     file \"/etc/bind/db.${DNS_DOMAIN_NAME}\";"	>> $file
 echo "};"						>> $file
 
 # source code for $REVERSE

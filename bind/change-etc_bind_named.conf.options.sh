@@ -7,7 +7,7 @@
 . ../OPTIONS.conf
 
 # manipulated file
-file=named.conf.options
+file=/etc/bind/named.conf.options
 
 # save original.conf.options
 saveOriginal $file
@@ -20,7 +20,7 @@ sed -e "{
 }" -e "{
 	/\/\/ };/ s/\/\/ //
 }" -e "{
-	/0.0.0.0/ s/0.0.0.0;/${DNS_1};\n\t\t${DNS_2};\n\t\t${DNS_3};/
+	/0.0.0.0/ s/0.0.0.0;/${DNS_FORWARD_DNS_1};\n\t\t${DNS_FORWARD_DNS_2};\n\t\t${DNS_FORWARD_DNS_3};/
 }" -i $file
 
 
