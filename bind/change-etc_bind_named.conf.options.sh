@@ -18,7 +18,7 @@ sed -e "{
 }" -e "{
 	/0.0.0.0/ s/\/\///
 }" -e "{
-	/\/\/ };/ s/\/\/ //
+	/};/ s/\/\/ //
 }" -e "{
 	/0.0.0.0/ s/0.0.0.0;/${DNS_FORWARD_DNS_1};\n\t\t${DNS_FORWARD_DNS_2};\n\t\t${DNS_FORWARD_DNS_3};/
 }" -i $file
