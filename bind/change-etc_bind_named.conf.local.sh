@@ -18,7 +18,7 @@ echo "zone \"${DNS_DOMAIN_NAME}\" {"			>> $file
 echo "     type master;"				>> $file
 echo "     file \"/etc/bind/db.${DNS_DOMAIN_NAME}\";"	>> $file
 echo "};"						>> $file
-
+echo ""							>> $file
 # source code for $REVERSE
 . ./calculateReverse.sh
 echo "zone \"${REVERSE}.in-addr.arpa\" {"		>> $file

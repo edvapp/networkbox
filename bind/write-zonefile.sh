@@ -7,7 +7,7 @@
 . ../OPTIONS.conf
 
 # file /etc/bind/db.DOMAIN_NAME
-file=/etc/bind/db.$DOMAIN_NAME
+file=/etc/bind/db.$DNS_DOMAIN_NAME
 
 if [ -f $file ];
 then
