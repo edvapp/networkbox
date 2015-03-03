@@ -6,7 +6,7 @@
 apt-get update
 apt-get install bind9
 
-initctl stop bind9
+service bind9 stop
 
 # add own ip to dns_nameservers in /etc/network/interfaces
 /bin/bash change-etc_network_interfaces.sh
@@ -19,4 +19,4 @@ initctl stop bind9
 # write reverse - zone - files
 /bin/bash write-reversezonefile.sh
 
-initctl stop bind9
+service bind9 start

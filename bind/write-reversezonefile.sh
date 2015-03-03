@@ -10,7 +10,7 @@
 . ./calculateReverse.sh
 
 # file /etc/bind/db.DOMAIN_NAME
-file=/etc/bind/db.$REVERSE".in-addr.arpa"
+file=/etc/bind/db.$REVERSE
 
 if [ -f $file ];
 then
