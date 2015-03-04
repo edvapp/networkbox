@@ -2,7 +2,7 @@
 
 # save file with "filename" to "filename.original"
 
-saveOriginal()
+function saveOriginal()
 {
 	cp $1 $1.history.$(date +%Y%m%d-%N)
 	if ! [ -f $1.original ];
@@ -11,7 +11,7 @@ saveOriginal()
 	fi
 }
 
-restoreOriginal()
+function restoreOriginal()
 {
 	if  [ -f $1.original ];
 	then
