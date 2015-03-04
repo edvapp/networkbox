@@ -7,8 +7,9 @@
 . ../OPTIONS.conf
 
 # source code for $REVERSE
-. ./calculateReverse.sh
+#. ./calculateReverse.sh
 
+getReverseNETAndIP $DNS_IP $DNS_NETMASK
 # file /etc/bind/db.DOMAIN_NAME
 file=/etc/bind/db.$REVERSE_NET
 
@@ -32,6 +33,8 @@ echo ";"									>> $file
 echo "			IN	NS        "$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 
 echo ""										>> $file
-
+getReverseNETAndIP $DNS_IP $DNS_NETMASK
 echo $REVERSE_IP"	IN	PTR	"$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 echo ""										>> $file
+getReverseNETAndIP $DNS_GATEWAY $DNS_NETMASK
+echo $REVERSE_IP"	IN	PTR	"$DNS_GATEWAY"."$DNS_DOMAIN_NAME"."	>> $file

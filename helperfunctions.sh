@@ -20,3 +20,23 @@ restoreOriginal()
 	fi
 }
 
+function getReverseNETAndIP()
+{
+	IP=$1
+	NETMASK=$2
+	if [ $NETMASK = "255.255.255.0" ];
+	then
+		REVERSE_NET=$(echo $IP | awk 'BEGIN { FS = "." } { print $3"."$2"."$1 }')
+		REVERSE_IP=$(echo $IP | awk 'BEGIN { FS = "." } { print $4 }')
+	elif [ $NETMASK = "255.255.0.0" ];
+	then
+		REVERSE_NET=$(echo $IP | awk 'BEGIN { FS = "." } { print $2"."$1 }')
+		REVERSE_IP=$(echo $IP | awk 'BEGIN { FS = "." } { print $4"."$3 }')
+	elif [ $NETMASK = "255.0.0.0" ];
+	then
+		REVERSE_NET=$(echo $IP | awk 'BEGIN { FS = "." } { print $1 }')
+		REVERSE_IP=$(echo $IP | awk 'BEGIN { FS = "." } { print $4"."$3"."$2 }')
+	fi
+}
+
+
