@@ -3,8 +3,8 @@
 # install bind9 DNS dns_nameservers
 
 # install bind9 dpkg - package
-apt-get update
-apt-get install bind9
+apt-get -y update
+apt-get -y install bind9
 
 service bind9 stop
 

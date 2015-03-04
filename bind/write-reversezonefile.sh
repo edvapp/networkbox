@@ -33,5 +33,5 @@ echo "			IN	NS        "$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 
 echo ""										>> $file
 
-echo $REVERSE"		IN	A	"$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
+echo $REVERSE"		IN	PTR	"$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 echo ""										>> $file
