@@ -10,7 +10,7 @@
 . ./calculateReverse.sh
 
 # file /etc/bind/db.DOMAIN_NAME
-file=/etc/bind/db.$REVERSE
+file=/etc/bind/db.$REVERSE_NET
 
 if [ -f $file ];
 then
@@ -33,5 +33,5 @@ echo "			IN	NS        "$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 
 echo ""										>> $file
 
-echo $REVERSE"		IN	PTR	"$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
+echo $REVERSE_IP"	IN	PTR	"$DNS_HOSTNAME"."$DNS_DOMAIN_NAME"."	>> $file
 echo ""										>> $file

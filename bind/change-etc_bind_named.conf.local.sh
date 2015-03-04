@@ -21,7 +21,7 @@ echo "};"						>> $file
 echo ""							>> $file
 # source code for $REVERSE
 . ./calculateReverse.sh
-echo "zone \"${REVERSE}.in-addr.arpa\" {"		>> $file
+echo "zone \"${REVERSE_NET}.in-addr.arpa\" {"		>> $file
 echo "        type master;"				>> $file
-echo "        file \"/etc/bind/db.${REVERSE}\";"	>> $file
+echo "        file \"/etc/bind/db.${REVERSE_NET}\";"	>> $file
 echo "};"						>> $file
