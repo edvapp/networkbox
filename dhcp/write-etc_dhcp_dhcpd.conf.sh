@@ -7,12 +7,14 @@
 . ../OPTIONS.conf
 
 # manipulated file
-file=dhcpd.cnf
+file=/etc/dhcp/dhcpd.conf
 
 # save original.conf.options
 saveOriginal $file
 
-# write /etc/dhcp/dhcpd.conf
+rm $file
+
+# write /etc/dhcp/dhcpd.conf new
 
 echo "
 # Sample configuration file for ISC dhcpd for Debian
@@ -21,14 +23,13 @@ echo "
 # configuration file instead of this file.\n
 #
 #
-exit
 ddns-update-style none;
 
 # option definitions common to all supported networks...
-option domain-name "app.tsn";
-option domain-name-servers 10.0.0.1;
-option netbios-name-servers smb01;
-option ntp-servers ntp01;
+option domain-name \"$DHCP_DNS_DOMAIN_NAME\";
+option domain-name-servers $DHCP_DNS_IP;
+#option netbios-name-servers smb01;
+#option ntp-servers ntp01;
 
 # Windows client resolve-order: wins broadcast <- default
 # option netbios-node-type 8;
@@ -46,24 +47,46 @@ log-facility local7;
 
 use-host-decl-names on;
 
-# volles Netz
-subnet 10.0.0.0 netmask 255.248.0.0 {
+# full network
+subnet $DHCP_NETWORK netmask $DHCP_NETMASK {
 
-	option broadcast-address 10.7.255.255;
-	option routers 10.0.0.254;
+	option broadcast-address $DHCP_BROADCAST;
+	option routers $DHCP_GATEWAY;
 
-	range 10.5.0.1 10.5.0.245;
+	range $DHCP_MIN_RANGE $DHCP_MIN_RANGE;
 
-	use-host-decl-names on;
-
-	next-server fog01;
-	#next-server tftp01;
-
-	#option root-path "/opt/ltsp/i386";
+	next-server tftp01;
 
 	if substring( option vendor-class-identifier, 0, 9 ) = "PXEClient" 
-	{ filename "pxelinux.0"; } 
+	{
+		filename "pxelinux.0"; 
+	} 
 	else 
-	{ filename "/ltsp/i386/nbi.img"; }
+	{ 
+		filename "/ltsp/i386/nbi.img"; 
+	}
 }
-"
+
+### room 001 room 001 room 001 room 001 room 001
+
+	group {
+		#next-server tftp01;
+
+		host $DHCP_HOST_1_HOSTNAME { hardware ethernet $DHCP_HOST_1_MAC; fixed-address $DHCP_HOST_1_IP; }
+		# host r001pc02 and so on
+	}
+
+### room 001 room 001 room 001 room 001 room 001
+
+	
+### room 002 room 002 room 002 room 002 room 002
+
+	group {
+		next-server tftp01;
+
+		host $DHCP_HOST_2_HOSTNAME { hardware ethernet $DHCP_HOST_2_MAC; fixed-address $DHCP_HOST_2_IP; }
+	}
+
+### room 002 room 002 room 002 room 002 room 002
+
+" >> $file
