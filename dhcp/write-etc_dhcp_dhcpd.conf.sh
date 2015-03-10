@@ -57,13 +57,13 @@ subnet $DHCP_NETWORK netmask $DHCP_NETMASK {
 
 	next-server tftp01;
 
-	if substring( option vendor-class-identifier, 0, 9 ) = "PXEClient" 
+	if substring( option vendor-class-identifier, 0, 9 ) = \"PXEClient\" 
 	{
-		filename "pxelinux.0"; 
+		filename \"pxelinux.0\"; 
 	} 
 	else 
 	{ 
-		filename "/ltsp/i386/nbi.img"; 
+		filename \"/ltsp/i386/nbi.img\"; 
 	}
 }
 
