@@ -53,7 +53,7 @@ subnet $DHCP_NETWORK netmask $DHCP_NETMASK {
 	option broadcast-address $DHCP_BROADCAST;
 	option routers $DHCP_GATEWAY;
 
-	range $DHCP_MIN_RANGE $DHCP_MIN_RANGE;
+	range $DHCP_MIN_RANGE $DHCP_MAX_RANGE;
 
 	next-server tftp01;
 
