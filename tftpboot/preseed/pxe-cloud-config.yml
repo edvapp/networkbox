@@ -1,0 +1,9 @@
+#cloud-config
+coreos:
+  units:
+    - name: etcd.service
+      command: start
+    - name: fleet.service
+      command: start
+ssh_authorized_keys:
+  - ssh-rsa  AAAAB3NzaC1yc2EAAAADAQABAAABAQCsqEEmCLP3Zw6nm8+PnLZmS83OgqtwLp1GWQOu4PgPPZTzpms0FPcaQwm35wxoYqZMBH67ZaNNaBm+pfgCtQq0uMABOfPitOAm9e1MAkaFUr+Tvc4dpjOGgyClEkWXl0wyZCvWowUnN3MniDHvq/hGd/Moof95YOxDmaO/PW5jFPQ6laRMdDMyDVDv7rGZregqUe8nUsLAneaeTQf6vM9JuIYYhyrwUOA71x99wBowUS8L6HMu5LNHYx4as86ipwZNHcgWaDpYfFDpw3+LoEwPLAGAeMIgEyN7k9iXR6JSkO3P8x7fESRxIS0tyt7pqzo8WDkEhZdeehd3gpg/rDIv
