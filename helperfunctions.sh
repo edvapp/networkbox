@@ -39,4 +39,19 @@ function getReverseNETAndIP()
 	fi
 }
 
+function getCIDRsubnetmask()
+{
+	NETMASK=$1
+	if [ $NETMASK = "255.255.255.0" ];
+	then
+		CIDR_NETMASK=24
+	elif [ $NETMASK = "255.255.0.0" ];
+	then
+		CIDR_NETMASK=16
+	elif [ $NETMASK = "255.0.0.0" ];
+	then
+		CIDR_NETMASK=8
+	fi
+}
+
 
