@@ -9,7 +9,7 @@
 
 # check in /etc/exports,
 # if filesystem is already exported
-if [ "$(grep -e $NFS_EXPORT_DIR /etc/exports)"=="$NFS_EXPORT_DIR" ];
+if [ -f /etc/exports -a "$(grep -e $NFS_EXPORT_DIR /etc/exports)"=="$NFS_EXPORT_DIR" ];
 then
 	echo "filesystem already exported"
 	exit
