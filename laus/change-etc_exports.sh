@@ -14,7 +14,7 @@ saveOriginal $file
 
 echo "
 
-/export       		$LAUS_NETWORK/24(rw,fsid=0,insecure,no_subtree_check,async)
-/export/autoinstall	$LAUS_NETWORK/24(rw,nohide,insecure,no_subtree_check,async)
+$NFS_EXPORT_DIR/autoinstall	$LAUS_NETWORK/$CIDR_NETMASK(rw,nohide,insecure,no_subtree_check,async)
 
-" >> $file
+" 
+#>> $file

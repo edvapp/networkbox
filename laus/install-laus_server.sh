@@ -4,12 +4,6 @@
 cd /opt
 git clone http://github.com/edvapp/autoinstall.git
 
-# create NFS4 export
-# install NFS - Server
-# from https://help.ubuntu.com/community/SettingUpNFSHowTo
-apt-get -y update
-apt-get -y install nfs-kernel-server
-
 # create export directory
 mkdir -p /export/autoinstall
 
