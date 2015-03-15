@@ -9,8 +9,9 @@
 
 # check in /etc/exports,
 # if filesystem is already exported
-if [ $(grep -c -e "fsid=0" install-nfs_server.sh) == "1" ];
+if [ "$(grep -e $NFS_EXPORT_DIR /etc/exports)"=="$NFS_EXPORT_DIR" ];
 then
+	echo "filesystem already exported"
 	exit
 fi
 

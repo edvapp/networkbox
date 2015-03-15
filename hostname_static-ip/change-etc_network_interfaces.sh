@@ -34,8 +34,7 @@ iface eth0 inet static
     broadcast $STATIC_BROADCAST
     gateway $STATIC_GATEWAY
     dns-nameservers $STATIC_DNS_1 $STATIC_DNS_2 $STATIC_DNS_3
-"
->> $file
+" >> $file
 
 # restart network interface
 ifdown eth0

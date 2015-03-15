@@ -16,9 +16,8 @@ file=/etc/exports
 # save original
 saveOriginal $file
 
-getCIDRsubnetmask $NFS_NETWORK
+getCIDRsubnetmask $NFS_NETMASK
 
 echo "
 $NFS_EXPORT_DIR      	$NFS_NETWORK/$CIDR_SUBNETMASK(rw,fsid=0,insecure,no_subtree_check,async)
-" 
->> $file
+" >> $file
