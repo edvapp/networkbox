@@ -26,13 +26,16 @@ sed -e "{
 }" -i $file
 
 # append new interface configuration
-echo "iface eth0 inet static" 						>> $file
-echo "    address" $STATIC_IP 						>> $file
-echo "    netmask" $STATIC_NETMASK 					>> $file
-echo "    network" $STATIC_NETWORK 					>> $file
-echo "    broadcast" $STATIC_BROADCAST 					>> $file
-echo "    gateway" $STATIC_GATEWAY 					>> $file
-echo "    dns-nameservers" $STATIC_DNS_1 $STATIC_DNS_2 $STATIC_DNS_3 	>> $file
+echo "
+iface eth0 inet static
+    address $STATIC_IP
+    netmask $STATIC_NETMASK
+    network $STATIC_NETWORK
+    broadcast $STATIC_BROADCAST
+    gateway $STATIC_GATEWAY
+    dns-nameservers $STATIC_DNS_1 $STATIC_DNS_2 $STATIC_DNS_3
+"
+>> $file
 
 # restart network interface
 ifdown eth0
