@@ -14,6 +14,6 @@ saveOriginal $file
 
 echo "
 #
-/opt/autoinstall   /export/autoinstall   none    bind  0  0
+/opt/autoinstall   $NFS_EXPORT_DIR/autoinstall   none    bind  0  0
 #
 " >> $file
