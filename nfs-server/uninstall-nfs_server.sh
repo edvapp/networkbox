@@ -7,6 +7,8 @@
 . ../OPTIONS.conf
 
 # install NFS - Server
+restoreOriginal /etc/exports
+
 apt-get -y purge nfs-kernel-server
 
-restoreOriginal /etc/exports
+
