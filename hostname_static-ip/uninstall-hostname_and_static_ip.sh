@@ -17,8 +17,3 @@ restoreOriginal /etc/hosts
 # restart network interface
 ifdown eth0
 ifup eth0
-
-
-
-
-

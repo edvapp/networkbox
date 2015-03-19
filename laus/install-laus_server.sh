@@ -1,4 +1,4 @@
-#!
+#!/bin/bash
 
 # source helper functions
 . ../helperfunctions.sh
@@ -12,7 +12,6 @@ CURRENTRIR=$(pwd)
 cd /opt
 git clone http://github.com/edvapp/autoinstall.git
 cd ${CURRENTRIR};
-
 # create export directory
 mkdir -p $NFS_EXPORT_DIR/autoinstall
 
