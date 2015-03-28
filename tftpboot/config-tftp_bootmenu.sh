@@ -6,7 +6,8 @@
 # source configuration
 . ../OPTIONS.conf
 
-for file in $(ls /var/lib/tftpboot/ubuntu-installer/menus/boot-screens);
+cd /var/lib/tftpboot/ubuntu-installer/menus/boot-screens
+for file in $(ls);
 do
 	# set password for tftp boot screen
 	sed -e "{

@@ -9,7 +9,8 @@
 # generate MD5 - hash from clear text password with "salt" mUxl
 PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $PRESEED_ADMIN_ACCOUNT_PASSWORD)
 
-for file in $(ls /var/lib/tftpboot/preseed);
+cd /var/lib/tftpboot/preseed
+for file in $(ls);
 do
 	# set admin user: fullname
 	sed -e "{
