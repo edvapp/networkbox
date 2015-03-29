@@ -1,15 +1,10 @@
 #!/bin/bash
 
-# source helper functions
-. ../helperfunctions.sh
-
-# source configuration
-. ../OPTIONS.conf
 
 CURRENT_DIR=$(pwd)
 cd hostname_static-ip
 /bin/bash uninstall-hostname_and_static_ip.sh
-$CURRENT_DIR
+cd $CURRENT_DIR
 
 cd bind
 /bin/bash uninstall-bind.sh
