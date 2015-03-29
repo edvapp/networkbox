@@ -15,6 +15,8 @@ cd ${CURRENTRIR};
 # create export directory
 mkdir -p $NFS_EXPORT_DIR/autoinstall
 
+mount --bind /opt/autoinstall $NFS_EXPORT_DIR/autoinstall
+
 # mount /opt/autoinstall to export directory /export/autoinstall
 /bin/bash change-etc_fstab.sh
 

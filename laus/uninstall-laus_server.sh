@@ -26,4 +26,6 @@ sed -e "{
 /autoinstall/d
 }" -i $file
 
+rmdir $NFS_EXPORT_DIR/autoinstall
+
 service nfs-kernel-server start
