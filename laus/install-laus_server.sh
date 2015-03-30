@@ -23,6 +23,12 @@ mount --bind /opt/autoinstall $NFS_EXPORT_DIR/autoinstall
 # add /export/autoinstall to exports
 /bin/bash change-etc_exports.sh
 
+# add hostsToClasses to /opt/autoinstall/laus
+/bin/bash create-opt_autoinstall_laus_hostsToClasses.sh
+
+# create class NEWWORKBOX for startup
+/bin/bash create-classNETWORKBOX.sh
+
 service nfs-kernel-server restart
 
 
