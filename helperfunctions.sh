@@ -45,13 +45,13 @@ function getCIDRsubnetmask()
 	_NETMASK=$1
 	if [ $_NETMASK = "255.255.255.0" ];
 	then
-		CIDR_SUB_NETMASK=24
+		CIDR_SUBNETMASK=24
 	elif [ $_NETMASK = "255.255.0.0" ];
 	then
-		CIDR_SUB_NETMASK=16
+		CIDR_SUBNETMASK=16
 	elif [ $_NETMASK = "255.0.0.0" ];
 	then
-		CIDR_SUB_NETMASK=8
+		CIDR_SUBNETMASK=8
 	fi
 }
 
