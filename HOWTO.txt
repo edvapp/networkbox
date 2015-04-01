@@ -1,18 +1,123 @@
 ﻿Network requirements:
 
-Router:
-We assume you "own" a "network" with a working rooter, which provides ip - addresses and DNS-forwarding.
-A normal wlan-box, with 2 Kat-5 networkports will be enough to build a testnetwork.
-Pay attention, you have to turn of the dhcp-server, which provides ip – addresses, on your rooter later!
-If you do not own a router, we recommend to use pfsense (https://www.pfsense.org/), an easy to install and use firewall running on every PC.
+###############################################################################
+##  ROUTER:
+###############################################################################
+
+We assume you "own a network" with a working rooter, 
+which provides ip - addresses and DNS- forwarding.
+
+A normal wlan - box, with two Kat-5 network -  ports 
+will be enough, to build a test-network.
+
+Pay ATTENTION, you have to turn of the dhcp - server, 
+which provides ip – addresses, on your rooter later!
+
+If you do not own a router, we recommend to use pfsense 
+(https://www.pfsense.org/), 
+an easy to install and use firewall running on every PC.
+
+
+###############################################################################
+## NETWORKBOX:
+###############################################################################
 
 Installation “networkbox”
-1. Install Ubuntu 14.04 server
+
+1. Install Ubuntu 14.04 server:
 Install a fresh ubuntu-server 14.04 (http://www.ubuntu.com/server). 
-You should get all network-settings from your router.
+You should get all network - settings from your router.
 Install all updates:
 >> sudo apt-get update
 >> sudo apt-get dist-upgrade
 
-2. Install git:
+2. Install git, mc (easy filemanager in console):
 >> sudo apt-get install git
+>> sudo apt-get install mc
+
+3. Install minimal graphic for firefox to switch off dhcp via http on router:
+# minimal window - manager
+>> sudo apt-get install openbox
+# minimal X
+>> sudo apt-get install xinit
+# browser
+>> sudo apt-get install firefox
+
+4. Get networkbox repository from git
+>> git clone http://github.com/edvapp/neworkbox.github
+
+5. Configure your network.
+>> cd networkbox
+>> mc
+Open OPTIONS.conf with F4 (mcedit) is a good choice for your editor
+
+6. Install networkbox:
+>> sudo install.sh
+Wait and drink coffee :-)
+
+7. Stop a second dhcp - server, if one exists:
+>> startx
+Start a browser with right mouse - button and 
+open your routers webinterface.
+
+###############################################################################
+## CLIENT:
+###############################################################################
+
+1. Make your client PXE - bootable:
+
+2. Get your clients MAC - address:
+Replace with it r001pc01 MAC (=00:00:00:00:00:01)
+and restart the dhcp - server
+>> sudo service isc-dhcp-server restart
+
+3. Boot your client into PXE menu:
+
+4. Select Unattended Ubuntu 14.04:
+
+5. Authenticate with password you set in OPTIONS.conf (TFTP_MENU_PASSWD=)
+
+6. Select installation you want:
+amd64 2 Part 1 & 2 format	means	64 Bit 2 Partitions 1 & 2 formated
+		
+amd64 2 Part 1 format		means:	64 Bit 2 Partitions only first formated
+	
+i386 2 Part 1 & 2 format	means	32 Bit 2 Partitions 1 & 2 formated
+
+i386 2 Part 1 format		means:	32 Bit 2 Partitions only first formated
+
+i386 1 Part 1 format		means	32 Bit 1 Partitions 1 formated
+
+the fist partition:
+is 40G big and 
+mounted to /
+
+the second partition:
+gets the rest of the disk and is 
+mounted to /opt
+(you can change this behavior in the preseed files in /var/lib/tftpboot)
+
+Wait and drink coffee and beer :-) and you should get a German Ubuntu desktop.
+(
+for another language change language in 
+/opt/autoinstall/laus/scriptsForClasses/NETWORKBOX/020-installUbuntuDesktop.sh and 
+/opt/autoinstall/laus/scriptsForClasses/NETWORKBOX/030-installLibreOffice.sh
+)
+
+
+###############################################################################
+## LAUS:
+###############################################################################
+
+1. Use laus:
+your machine is build with scripts located in
+/opt/autoinstall/laus/scriptsForClasses/NETWORKBOX
+on the server.
+
+Have a look in the other directories to find more scripts.
+(their names should tell you what they do :-)
+if you copy a script to NETWORKBOX and reboot your client,
+this script will be executed on your client.
+
+2. Program laus:
+write your own scripts
