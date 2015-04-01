@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# execute apt-get -y update just once
+FULLINSTALL=true
+
+apt-get -y update
 
 CURRENT_DIR=$(pwd)
 cd hostname_static-ip

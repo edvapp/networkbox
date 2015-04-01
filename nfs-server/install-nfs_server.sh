@@ -17,7 +17,11 @@ fi
 
 # install NFS - Server
 # HOWTO from https://help.ubuntu.com/community/SettingUpNFSHowTo
-apt-get -y update
+if [ ! "$FULLINSTALL" = "true" ];
+then
+	echo "FULLINSTALL=false"
+	apt-get -y update
+fi
 apt-get -y install nfs-kernel-server
 
 # create export directory

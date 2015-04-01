@@ -3,7 +3,11 @@
 # install bind9 DNS dns_nameservers
 
 # install bind9 dpkg - package
-apt-get -y update
+if [ ! "$FULLINSTALL" = "true" ];
+then
+	echo "FULLINSTALL=false"
+	apt-get -y update
+fi
 apt-get -y install bind9
 
 service bind9 stop

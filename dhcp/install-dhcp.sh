@@ -1,7 +1,11 @@
 #!/bin/bash
 
 # install isc-dhcp-server
-apt-get -y update
+if [ ! "$FULLINSTALL" = "true" ];
+then
+	echo "FULLINSTALL=false"
+	apt-get -y update
+fi
 apt-get -y install isc-dhcp-server
 
 service isc-dhcp-server stop
