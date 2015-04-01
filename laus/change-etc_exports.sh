@@ -12,10 +12,10 @@ file=/etc/exports
 # save original
 saveOriginal $file
 
-getCIDRsubnetmask $NFS_NETMASK
+getCIDRsubnetmask $NETMASK
 
 echo "
 
-$NFS_EXPORT_DIR/autoinstall	$NFS_NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
+$NFS_EXPORT_DIR/autoinstall	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
 
 " >> $file

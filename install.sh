@@ -2,6 +2,7 @@
 
 # execute apt-get -y update just once
 FULLINSTALL=true
+export FULLINSTALL
 
 apt-get -y update
 
