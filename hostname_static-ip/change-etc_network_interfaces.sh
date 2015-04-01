@@ -29,11 +29,12 @@ sed -e "{
 echo "
 iface eth0 inet static
     address $STATIC_IP
-    netmask $STATIC_NETMASK
-    network $STATIC_NETWORK
-    broadcast $STATIC_BROADCAST
-    gateway $STATIC_GATEWAY
-    dns-nameservers $STATIC_DNS_1 $STATIC_DNS_2 $STATIC_DNS_3
+    netmask $NETMASK
+    network $NETWORK
+    broadcast $BROADCAST
+    gateway $GATEWAY
+    dns-nameservers $DNS_IP_LOCAL_NETWORK $DNS_IP_PROVIDER $DNS_IP_WWW
+    dns-search $DOMAIN_NAME
 " >> $file
 
 # restart network interface

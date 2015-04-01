@@ -13,11 +13,11 @@ file=/etc/bind/named.conf.local
 saveOriginal $file
 
 # write zone files to /etc/bind/named.conf.local
-getReverseNETAndIP $DNS_IP $DNS_NETMASK
+getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 echo "
-zone \"${DNS_DOMAIN_NAME}\" {
+zone \"${DOMAIN_NAME}\" {
      type master;
-     file \"/etc/bind/db.${DNS_DOMAIN_NAME}\";
+     file \"/etc/bind/db.${DOMAIN_NAME}\";
 };
 
 

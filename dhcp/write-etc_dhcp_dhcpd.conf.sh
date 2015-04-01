@@ -26,8 +26,8 @@ echo "
 ddns-update-style none;
 
 # option definitions common to all supported networks...
-option domain-name \"$DHCP_DNS_DOMAIN_NAME\";
-option domain-name-servers $DHCP_DNS_IP;
+option domain-name \"$DOMAIN_NAME\";
+option domain-name-servers $DNS_IP_LOCAL_NETWORK;
 #option netbios-name-servers smb01;
 #option ntp-servers ntp01;
 
@@ -48,10 +48,10 @@ log-facility local7;
 use-host-decl-names on;
 
 # full network
-subnet $DHCP_NETWORK netmask $DHCP_NETMASK {
+subnet $NETWORK netmask $NETMASK {
 
-	option broadcast-address $DHCP_BROADCAST;
-	option routers $DHCP_GATEWAY;
+	option broadcast-address $BROADCAST;
+	option routers $GATEWAY;
 
 	range $DHCP_MIN_RANGE $DHCP_MAX_RANGE;
 

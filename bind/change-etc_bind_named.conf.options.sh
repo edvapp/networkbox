@@ -20,7 +20,7 @@ sed -e "{
 }" -e "{
 	/\/\/ \};/ s/\/\/ \};/\};/
 }" -e "{
-	/0.0.0.0/ s/0.0.0.0;/${DNS_FORWARD_DNS_1};\n\t\t${DNS_FORWARD_DNS_2};\n\t\t${DNS_FORWARD_DNS_3};/
+	/0.0.0.0/ s/0.0.0.0;/${DNS_IP_PROVIDER};\n\t\t${DNS_IP_WWW};/
 }" -i $file
 
 

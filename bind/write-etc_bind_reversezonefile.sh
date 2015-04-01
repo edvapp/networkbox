@@ -9,7 +9,7 @@
 # source code for $REVERSE
 #. ./calculateReverse.sh
 
-getReverseNETAndIP $DNS_IP $DNS_NETMASK
+getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 # file /etc/bind/db.reversenet
 file=/etc/bind/db.$REVERSE_NET
 
@@ -20,23 +20,23 @@ then
 fi
 
 echo ";
-; BIND reverse data file for domain $DNS_DOMAIN_NAME
+; BIND reverse data file for domain $DOMAIN_NAME
 ;
 \$TTL    604800
-@   IN SOA   $DNS_HOSTNAME.$DNS_DOMAIN_NAME.    root  (
+@   IN SOA   $HOSTNAME.$DOMAIN_NAME.    root  (
                               1         ; Serial
                          604800         ; Refresh
                           86400         ; Retry
                         2419200         ; Expire
                          604800 )       ; Negative Cache TTL
 ;
-			IN	NS        $DNS_HOSTNAME.$DNS_DOMAIN_NAME.
+			IN	NS        $HOSTNAME.$DOMAIN_NAME.
 
 
-$REVERSE_IP	IN	PTR	$DNS_HOSTNAME.$DNS_DOMAIN_NAME.
+$REVERSE_IP	IN	PTR	$HOSTNAME.$DOMAIN_NAME.
 " >> $file
 # add ip address of gateway 
-getReverseNETAndIP $DNS_GATEWAY $DNS_NETMASK
+getReverseNETAndIP $GATEWAY $NETMASK
 echo "
-$REVERSE_IP	IN	PTR	gateway.$DNS_DOMAIN_NAME.
+$REVERSE_IP	IN	PTR	gateway.$DOMAIN_NAME.
 " >> $file
