@@ -5,4 +5,8 @@
 # uninstall bind9 dpkg - package
 apt-get -y purge bind9
 
-rm -R /etc/bind
+echo "remove bind directories"
+
+rm -R -v /etc/bind
+
+rm -R -v /var/cache/bind

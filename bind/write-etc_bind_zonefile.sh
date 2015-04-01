@@ -7,7 +7,7 @@
 . ../OPTIONS.conf
 
 # file /etc/bind/db.DOMAIN_NAME
-file=/etc/bind/db.$DNS_DOMAIN_NAME
+file=/etc/bind/db.$DOMAIN_NAME
 
 if [ -f $file ];
 then
@@ -16,7 +16,7 @@ then
 fi
 
 echo ";
-; BIND data file for domain $DNS_DOMAIN_NAME
+; BIND data file for domain $DOMAIN_NAME
 ;
 \$TTL    604800
 @   IN SOA    $HOSTNAME   root  (
@@ -28,7 +28,7 @@ echo ";
 ;
 		IN		NS        $HOSTNAME
 
-$HOSTNAME	IN	A	$DNS_IP
+$HOSTNAME	IN	A	$DNS_IP_LOCAL_NETWORK
 dhcp01		IN	CNAME	$HOSTNAME
 
 nfs01		IN	CNAME	$HOSTNAME
@@ -43,5 +43,5 @@ laus01		IN	CNAME	$HOSTNAME
 apca01		IN	CNAME	$HOSTNAME
 tftp01		IN	CNAME	$HOSTNAME
 
-gateway		IN	A	$DNS_GATEWAY
+gateway		IN	A	$GATEWAY
 " >> $file
