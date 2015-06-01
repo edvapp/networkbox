@@ -6,8 +6,6 @@
 # source configuration
 . ../OPTIONS.conf
 
-PRESEED_ADMIN_ACCOUNT_PASSWORD=Zeitsparen
-
 # generate MD5 - hash from clear text password with "salt" mUxl
 # save special characters / with \ => \/
 # from http://www.grymoire.com/Unix/Sed.html
