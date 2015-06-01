@@ -6,8 +6,13 @@
 # source configuration
 . ../OPTIONS.conf
 
+PRESEED_ADMIN_ACCOUNT_PASSWORD=Zeitsparen
+
 # generate MD5 - hash from clear text password with "salt" mUxl
-PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $PRESEED_ADMIN_ACCOUNT_PASSWORD)
+# save special characters / with \ => \/
+# from http://www.grymoire.com/Unix/Sed.html
+# original: arg=`echo "$1" | sed 's:[]\[\^\$\.\*\/]:\\\\&:g'` quotes more than one character
+PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $PRESEED_ADMIN_ACCOUNT_PASSWORD | sed 's:[\/]:\\&:g')
 
 cd /var/lib/tftpboot/preseed/upstart
 for file in $(ls);
