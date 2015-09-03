@@ -9,25 +9,40 @@
 # manipulated file
 file=/etc/network/interfaces
 
-# check if interface eth0 does not have static ip
-if  grep 'iface eth0 inet static' $file;
+# check if any interface does a have static ip
+if  grep 'inet static' $file;
 then
 	echo "host" $(hostname) "already has static ip -"$(grep address $file)
-	echo "did not change anything"
+	echo "did not change ip address"
 	exit
 fi
 
 # save /etc/network/interfaces
 saveOriginal $file
 
-# comment original iface eth0 out
+# get interface name of active network interfaces
+FIRST=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
+LIST=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
+
+if [ "$FIRST" != "$LIST" ];
+then
+	echo "You have more than one active networkinterface:"
+	echo $LIST
+	echo "Please type in the name, which shall become the static interface"
+	read INTERFACE
+else
+	INTERFACE=$FIRST
+fi
+
+
+# comment original iface $INTERFACE out
 sed -e "{
-	/iface eth0/ s/iface eth0/#iface eth0/
+	/iface $INTERFACE/ s/iface $INTERFACE/#iface $INTERFACE/
 }" -i $file
 
 # append new interface configuration
 echo "
-iface eth0 inet static
+iface $INTERFACE inet static
     address $STATIC_IP
     netmask $NETMASK
     network $NETWORK
@@ -38,8 +53,8 @@ iface eth0 inet static
 " >> $file
 
 # restart network interface
-ifdown eth0
-ifup eth0
+ifdown $INTERFACE
+ifup $INTERFACE
 
 
 
