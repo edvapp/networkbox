@@ -21,17 +21,17 @@ fi
 saveOriginal $file
 
 # get interface name of active network interfaces
-FIRST=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
-LIST=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
+FIRST_ACTIVE_INTERFACE=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
+ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
 
-if [ "$FIRST" != "$LIST" ];
+if [ "$FIRST_ACTIVE_INTERFACE" != "$ACTIVE_INTERFACES" ];
 then
-	echo "You have more than one active networkinterface:"
+	echo "You have more than one active network interface:"
 	echo $LIST
 	echo "Please type in the name, which shall become the static interface"
 	read INTERFACE
 else
-	INTERFACE=$FIRST
+	INTERFACE=$FIRST_ACTIVE_INTERFACE
 fi
 
 # write new static configuration to /etc/network/interfaces
