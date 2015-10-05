@@ -12,7 +12,12 @@
 # original: arg=`echo "$1" | sed 's:[]\[\^\$\.\*\/]:\\\\&:g'` quotes more than one character
 PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $PRESEED_ADMIN_ACCOUNT_PASSWORD | sed 's:[\/]:\\&:g')
 
-cd /var/lib/tftpboot/preseed/upstart
+# source /etc/default/
+. /etc/default/tftpd-hpa
+# to get variable $TFTP_DIRECTORY
+# configured in /etc/default/tftpd-hpa
+
+cd $TFTP_DIRECTORY/preseed/upstart
 for file in $(ls);
 do
 	# set admin user: fullname
@@ -29,7 +34,7 @@ do
 	}" -i $file
 done
 
-cd /var/lib/tftpboot/preseed/systemd
+cd $TFTP_DIRECTORY/preseed/systemd
 for file in $(ls);
 do
 	# set admin user: fullname

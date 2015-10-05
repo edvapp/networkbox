@@ -9,10 +9,13 @@ fi
 apt-get -y install tftpd-hpa
 
 ## Configuration tftp -server
-# copy files to /var/lib/tftpboot
-cp -R pxelinux.cfg	/var/lib/tftpboot/
-cp -R ubuntu-installer	/var/lib/tftpboot/
-cp -R preseed		/var/lib/tftpboot/
+# source /etc/default/
+. /etc/default/tftpd-hpa
+# to get variable $TFTP_DIRECTORY
+# configured in /etc/default/tftpd-hpa
+cp -R pxelinux.cfg	$TFTP_DIRECTORY
+cp -R ubuntu-installer	$TFTP_DIRECTORY
+cp -R preseed		$TFTP_DIRECTORY
 
 # set password for tftp boot screen
 /bin/bash config-tftp_bootmenu.sh

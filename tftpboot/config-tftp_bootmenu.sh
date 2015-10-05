@@ -6,7 +6,12 @@
 # source configuration
 . ../OPTIONS.conf
 
-cd /var/lib/tftpboot/ubuntu-installer/menus/boot-screens
+# source /etc/default/
+. /etc/default/tftpd-hpa
+# to get variable $TFTP_DIRECTORY
+# configured in /etc/default/tftpd-hpa
+
+cd $TFTP_DIRECTORY/ubuntu-installer/menus/boot-screens
 for file in $(ls);
 do
 	# set password for tftp boot screen

@@ -16,7 +16,7 @@ function restoreOriginal()
 	if  [ -f $1.original ];
 	then
 		rm $1
-		rm $.history.*
+		rm $1.history.*
 		cp $1.original $1
 	fi
 }
