@@ -17,9 +17,6 @@ then
 	exit
 fi
 
-# save /etc/network/interfaces
-saveOriginal $file
-
 # get interface name of active network interfaces
 FIRST_ACTIVE_INTERFACE=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
 ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
@@ -33,6 +30,9 @@ then
 else
 	INTERFACE=$FIRST_ACTIVE_INTERFACE
 fi
+
+# save /etc/network/interfaces
+saveOriginal $file
 
 # write new static configuration to /etc/network/interfaces
 if   grep "auto $INTERFACE" $file ;
