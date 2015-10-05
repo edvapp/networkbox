@@ -34,15 +34,24 @@ else
 	INTERFACE=$FIRST
 fi
 
-
-# comment original iface $INTERFACE out
-sed -e "{
-	/iface $INTERFACE/ s/iface $INTERFACE/#iface $INTERFACE/
-}" -i $file
+# write new static configuration to /etc/network/interfaces
+if   grep "auto $INTERFACE" $file ;
+then
+	echo "comment out dhcp: iface $INTERFACE inet dhcp"
+	echo "# interface $INTERFACE changed by networkbox" >> $file
+	sed -e "{
+		/iface $INTERFACE/ s/iface $INTERFACE/#iface $INTERFACE/
+	}" -i $file
+else
+	echo write: auto $INTERFACE
+	echo "" >> $file
+	echo "# interface $INTERFACE added by networkbox" >> $file
+	echo "auto $INTERFACE" >> $file
+fi
 
 # append new interface configuration
-echo "
-iface $INTERFACE inet static
+echo "write interface configuration"
+echo "iface $INTERFACE inet static
     address $STATIC_IP
     netmask $NETMASK
     network $NETWORK
@@ -50,6 +59,7 @@ iface $INTERFACE inet static
     gateway $GATEWAY
     dns-nameservers $DNS_IP_LOCAL_NETWORK $DNS_IP_PROVIDER $DNS_IP_WWW
     dns-search $DOMAIN_NAME
+    
 " >> $file
 
 # restart network interface
