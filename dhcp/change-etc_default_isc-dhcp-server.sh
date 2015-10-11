@@ -6,6 +6,10 @@
 # source configuration
 . ../OPTIONS.conf
 
+# get interface name of active network interfaces
+FIRST_ACTIVE_INTERFACE=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
+ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
+
 if [ "$FIRST_ACTIVE_INTERFACE" != "$ACTIVE_INTERFACES" ];
 then
 	echo "You have more than one active network interface:"
