@@ -36,7 +36,7 @@ function getReverseNETAndIP()
 	elif [ $_NETMASK = "255.0.0.0" ];
 	then
 		REVERSE_NET=$(echo $_IP | awk 'BEGIN { FS = "." } { print $1 }')
-		REVERSE_IP=$(echo $I_P | awk 'BEGIN { FS = "." } { print $4"."$3"."$2 }')
+		REVERSE_IP=$(echo $_IP | awk 'BEGIN { FS = "." } { print $4"."$3"."$2 }')
 	fi
 }
 
