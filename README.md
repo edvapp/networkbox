@@ -55,3 +55,8 @@ On your physical server you will find following server-services:
 	- progammes:	for programmes just working out of the box with copy and paste
 	- material:	read only stuff, like learning material
 	- changebox:	read and write for everyone
+	
+8.	owncloud server
+	- serving data in your own cloud
+	
+
