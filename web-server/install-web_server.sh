@@ -20,8 +20,11 @@ apt-get -q -y install apache2
 # from: https://doc.owncloud.org/server/8.2/admin_manual/installation/source_installation.html#example-installation-on-ubuntu-14-04-lts-server
 # Apache installed under Ubuntu comes already set-up with a simple self-signed certificate. 
 # All you have to do is to enable the ssl module and the default site. Open a terminal and run:
+# enable module ssl
 a2enmod ssl
+# enable site default-ssl in /etc/apache2/site-available/default-sll.conf
 a2ensite default-ssl
+# restart apache2
 service apache2 reload
 
 
