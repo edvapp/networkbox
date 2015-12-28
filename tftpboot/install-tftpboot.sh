@@ -6,25 +6,33 @@ then
 	echo "FULLINSTALL=false"
 	apt-get -y update
 fi
+
+printAndLogStartMessage "START: INSTALLATION OF TFTP - SERVER"
+
+printAndLogMessage "apt-get -y install tftpd-hpa"
 apt-get -y install tftpd-hpa
 
-## Configuration tftp -server
+printAndLogMessage "CONFIGURATION OF TFTP - SERVER"
 # source /etc/default/
 . /etc/default/tftpd-hpa
 # to get variable $TFTP_DIRECTORY
 # configured in /etc/default/tftpd-hpa
-cp -R pxelinux.cfg	$TFTP_DIRECTORY
+printAndLogMessage "cp -R pxelinux.cfg $TFTP_DIRECTORY"
+printAndLogMessage "cp -R ubuntu-installer $TFTP_DIRECTORY"
+printAndLogMessage "cp -R preseed $TFTP_DIRECTORY"
+cp -R pxelinux.cfg 	$TFTP_DIRECTORY
 cp -R ubuntu-installer	$TFTP_DIRECTORY
 cp -R preseed		$TFTP_DIRECTORY
 
-# set password for tftp boot screen
+printAndLogMessage "SET PASSWORD FOR TFTP-BOOT-SCREEN"
 /bin/bash config-tftp_bootmenu.sh
 
-# config pressed - file
+printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS IN PRESEED - FILES"
 /bin/bash config-preseed.sh
 
-# download ubuntu - kernel - images 
+printAndLogMessage "DOWNLOAD UBUNTU - KERNEL IMAGES"
 /bin/bash wget-Ubuntu.sh
 
+printAndLogEndMessage "FINISH: INSTALLATION OF TFTP - SERVER"
 
  

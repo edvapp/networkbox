@@ -1,42 +1,45 @@
 #!/bin/bash
 
+printAndLogStartMessage "START: INSTALLATION OF OWNCLOUD"
+
 # install owncloud 
 # install owncloud dpkg - package
 
-CURRENT_DIR=$(pwd)
+CURRENT_SUB_DIR=$(pwd)
 
-# silent install of mysql-server
+printAndLogMessage "SILENT INSTALLATION OF MYSQL - SERVER"
 cd ../sql-server
 /bin/bash install-sql_server.sh
-cd $CURRENT_DIR
+cd $CURRENT_SUB_DIR
 
-# create database & database-admin for owncloud_database
-echo "Setup mysql database for owncloud" 
-echo "from http://raspberry.tips/server-2/owncloud-8-1-auf-dem-raspberry-pi-2-mit-apache/"
+printAndLogMessage "CREATE DATABASE & DATABASE-ADMIN FOR OWNCLOUD-DATABASE"
+printAndLogMessage "Setup mysql database for owncloud" 
+printAndLogMessage "from http://raspberry.tips/server-2/owncloud-8-1-auf-dem-raspberry-pi-2-mit-apache/"
 cd ../sql-database
 /bin/bash install-database.sh
-cd $CURRENT_DIR
+cd $CURRENT_SUB_DIR
 
-# install apache with https
-echo "Install web-server with https"
+printAndLogMessage "INSTALL WEB - SERVER WITH HTTPS"
 cd ../web-server
 /bin/bash install-web_server.sh
-cd $CURRENT_DIR
+cd $CURRENT_SUB_DIR
 
-echo "Install OWNCLOUD"
-echo "Install repo key"
+printAndLogMessage "Install owncloud"
+printAndLogMessage "Install repository key"
 wget -nv https://download.owncloud.org/download/repositories/stable/$(lsb_release -si)_$(lsb_release -sr)/Release.key -O- | apt-key add - 
 
-echo "Adding repo entry"
+printAndLogMessage "Adding repo entry to file: /etc/apt/sources.list.d/owncloud.list"
 echo "deb http://download.owncloud.org/download/repositories/stable/$(lsb_release -si)_$(lsb_release -sr)/ /" >> /etc/apt/sources.list.d/owncloud.list
 
-apt-get update
+printAndLogMessage "apt-get update to get new packages"
+printAndLogMessage "apt-get -y install owncloud"
 
+apt-get update
 apt-get -y install owncloud
 
 
-echo "Setting Strong Directory Permissions"
-echo "from owncloud homepage"
+printAndLogMessage "Setting Strong Directory Permissions"
+printAndLogMessage "from owncloud homepage"
 ocpath='/var/www/owncloud'
 htuser='www-data'
 htgroup='www-data'
@@ -57,5 +60,8 @@ chown ${rootuser}:${htgroup} ${ocpath}/data/.htaccess
 chmod 0644 ${ocpath}/.htaccess
 chmod 0644 ${ocpath}/data/.htaccess
 
+printAndLogMessage "CONNECT OWNCLOUD - DATABASE TO OWNCLOUD"
 /bin/bash connect_owncloud_and_db.sh
+
+printAndLogEndMessage "FINISH: INSTALLATION OF OWNCLOUD"
 

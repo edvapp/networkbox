@@ -8,11 +8,14 @@
 
 # manipulated file
 file=/etc/bind/named.conf.local
+printAndLogMessage "Manipulated file: " $file
 
 # save original.conf.options
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
-# write zone files to /etc/bind/named.conf.local
+printAndLogMessage "write zone files to: " $file
 getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 echo "
 zone \"${DOMAIN_NAME}\" {
@@ -26,3 +29,5 @@ zone \"${REVERSE_NET}.in-addr.arpa\" {
         file \"/etc/bind/db.${REVERSE_NET}\";
 };
 " >> $file
+
+logFile $file

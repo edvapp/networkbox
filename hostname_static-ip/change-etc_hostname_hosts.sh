@@ -8,34 +8,39 @@
 
 # manipulated file
 file=/etc/hostname
+printAndLogMessage "Manipulated file: " $file
 
-# check if interface eth0 does not have static ip
 if  [ $(hostname) = $HOSTNAME ];
 then
-	echo "hostname" $(hostname) "already OK!"
+	printAndLogMessage "hostname" $(hostname) "already OK!"
 	exit
 fi
 
 OLD_HOSTNAME=$(hostname)
 
-# save /etc/hostname
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
-# change hostname for runnig system
+printAndLogMessage "Change hostname for runnig system"
 hostname $HOSTNAME
 
-# change hostname file
+printAndLogMessage "Change file: " $file
 sed -e "{
 	/$OLD_HOSTNAME/ s/$OLD_HOSTNAME/$HOSTNAME/
 }" -i $file
+logFile $file
 
 # manipulated file
 file=/etc/hosts
+printAndLogMessage "Manipulated file: " $file
 
-# save /etc/hosts
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
-# change hosts file
+printAndLogMessage "Change file: " $file
 sed -e "{
 	/$OLD_HOSTNAME/ s/$OLD_HOSTNAME/$HOSTNAME/
 }" -i $file
+logFile $file

@@ -8,13 +8,15 @@
 
 # manipulated file
 file=/etc/dhcp/dhcpd.conf
+printAndLogMessage "Manipulated file: " $file
 
-# save original.conf.options
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
 rm $file
 
-# write /etc/dhcp/dhcpd.conf new
+printAndLogMessage "Write new: " $file
 
 echo "
 # Sample configuration file for ISC dhcpd for Debian
@@ -90,3 +92,5 @@ subnet $NETWORK netmask $NETMASK {
 ### room 002 room 002 room 002 room 002 room 002
 
 " >> $file
+
+logFile $file

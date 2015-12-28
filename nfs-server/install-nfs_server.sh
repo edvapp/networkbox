@@ -6,28 +6,32 @@
 # source configuration
 . ../OPTIONS.conf
 
+printAndLogStartMessage "START: INSTALLATION OF NFS - SERVER"
 
-# check in /etc/exports,
-# if filesystem is already exported
+printAndLogMessage "check in /etc/exports, if filesystem is already exported"
 if [ -f /etc/exports -a "$(grep -e $NFS_EXPORT_DIR /etc/exports)"=="$NFS_EXPORT_DIR" ];
 then
-	echo "filesystem already exported"
+	printAndLogMessage "filesystem already exported"
 	exit
 fi
 
-# install NFS - Server
+printAndLogMessage "install NFS - Server"
 # HOWTO from https://help.ubuntu.com/community/SettingUpNFSHowTo
 if [ ! "$FULLINSTALL" = "true" ];
 then
 	echo "FULLINSTALL=false"
 	apt-get -y update
 fi
+
+printAndLogMessage "apt-get -y install nfs-kernel-server"
 apt-get -y install nfs-kernel-server
 
-# create export directory
+printAndLogMessage "Create export directory " $NFS_EXPORT_DIR
 mkdir -p $NFS_EXPORT_DIR
 
+printAndLogMessage "WRITE TO /ETC/EXPORTS"
 /bin/bash change-etc_exports.sh
 
 service nfs-kernel-server restart
 
+printAndLogEndMessage "FINISH: INSTALLATION OF NFS - SERVER"

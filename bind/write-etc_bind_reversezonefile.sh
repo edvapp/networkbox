@@ -12,13 +12,15 @@
 getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 # file /etc/bind/db.reversenet
 file=/etc/bind/db.$REVERSE_NET
+printAndLogMessage "Manipulated file: " $file
 
 if [ -f $file ];
 then
-	echo "file" $file "alread exists!"
+	printAndLogMessage "File" $file "alread exists!"
 	exit
 fi
 
+printAndLogMessage "Write file: " $file
 echo ";
 ; BIND reverse data file for domain $DOMAIN_NAME
 ;
@@ -35,8 +37,11 @@ echo ";
 
 $REVERSE_IP	IN	PTR	$HOSTNAME.$DOMAIN_NAME.
 " >> $file
+
 # add ip address of gateway 
 getReverseNETAndIP $GATEWAY $NETMASK
 echo "
 $REVERSE_IP	IN	PTR	gateway.$DOMAIN_NAME.
 " >> $file
+
+logFile $file

@@ -12,12 +12,18 @@
 
 # manipulated file
 file=/etc/exports
+printAndLogMessage "Manipulated file: " $file
 
 # save original
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
+printAndLogMessage "write root export to: " $file
 getCIDRsubnetmask $NETMASK
 
 echo "
 $NFS_EXPORT_DIR      	$NETWORK/$CIDR_SUBNETMASK(rw,fsid=0,insecure,no_subtree_check,async)
 " >> $file
+
+logFile $file

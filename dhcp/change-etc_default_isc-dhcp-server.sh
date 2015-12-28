@@ -12,9 +12,9 @@ ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
 
 if [ "$FIRST_ACTIVE_INTERFACE" != "$ACTIVE_INTERFACES" ];
 then
-	echo "You have more than one active network interface:"
-	echo $LIST
-	echo "Please type in the name, which shall become the dhcp interface"
+	printAndLogEndMessage "You have more than one active network interface:"
+	printAndLogEndMessage $LIST
+	printAndLogEndMessage "Please type in the name, which shall become the dhcp interface"
 	read DHCP_INTERFACES
 else
 	DHCP_INTERFACES=$FIRST_ACTIVE_INTERFACE
@@ -22,12 +22,15 @@ fi
 
 # manipulated file
 file=/etc/default/isc-dhcp-server
+printAndLogMessage "Manipulated file: " $file
 
-# save original.conf.options
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
+printAndLogMessage "Change file: " $file
 sed -e "{
 	/INTERFACES=\"\"/ s/INTERFACES=\"\"/INTERFACES=\"$DHCP_INTERFACES\"/
 }" -i $file
-
+logFile $file
 

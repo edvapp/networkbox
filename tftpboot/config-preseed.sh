@@ -6,10 +6,10 @@
 # source configuration
 . ../OPTIONS.conf
 
-# generate MD5 - hash from clear text password with "salt" mUxl
-# save special characters / with \ => \/
-# from http://www.grymoire.com/Unix/Sed.html
-# original: arg=`echo "$1" | sed 's:[]\[\^\$\.\*\/]:\\\\&:g'` quotes more than one character
+# "Generate MD5 - hash from clear text password with salt: mUxl"
+# "save special characters / with \ => \/"
+# "from http://www.grymoire.com/Unix/Sed.html"
+# "original: arg=`echo "$1" | sed 's:[]\[\^\$\.\*\/]:\\\\&:g'` quotes more than one character"
 PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $PRESEED_ADMIN_ACCOUNT_PASSWORD | sed 's:[\/]:\\&:g')
 
 # source /etc/default/
@@ -32,6 +32,7 @@ do
 	sed -e "{
 		/d-i passwd\/user-password-crypted password/ s/d-i passwd\/user-password-crypted password/d-i passwd\/user-password-crypted password $PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH/
 	}" -i $file
+	printAndLogMessage "Set admin fullname, name & password in preseed-file: " $TFTP_DIRECTORY/preseed/upstart/$file
 done
 
 cd $TFTP_DIRECTORY/preseed/systemd
@@ -49,4 +50,6 @@ do
 	sed -e "{
 		/d-i passwd\/user-password-crypted password/ s/d-i passwd\/user-password-crypted password/d-i passwd\/user-password-crypted password $PRESEED_ADMIN_ACCOUNT_PASSWORD_HASH/
 	}" -i $file
+	printAndLogMessage "Set admin fullname, name & password in preseed-file: " $TFTP_DIRECTORY/preseed/systemd/$file
+
 done

@@ -8,12 +8,17 @@
 
 # manipulated file
 file=/etc/fstab
+printAndLogMessage "Manipulated file: " $file
 
-# save original.conf.options
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
+printAndLogMessage "Write to file: " $file
 echo "
 #
 /opt/autoinstall   $NFS_EXPORT_DIR/autoinstall   none    bind  0  0
 #
 " >> $file
+
+logFile $file

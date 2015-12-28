@@ -8,11 +8,14 @@
 
 # manipulated file
 file=/etc/bind/named.conf.options
+printAndLogMessage "Manipulated file: " $file
 
 # save original.conf.options
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
-# enable forwarding
+printAndLogMessage "Enable forwarding in file: " $file
 sed -e "{
 	/forwarders/ s/\/\/ forwarders/forwarders/
 }" -e "{
@@ -23,4 +26,5 @@ sed -e "{
 	/0.0.0.0/ s/0.0.0.0;/${DNS_IP_PROVIDER};\n\t\t${DNS_IP_WWW};/
 }" -i $file
 
+logFile $file
 

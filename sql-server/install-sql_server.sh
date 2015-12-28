@@ -12,10 +12,9 @@ then
 	apt-get -y update
 fi
 
-echo "silent mysql-server installation"
-
+printAndLogMessage "apt-get -q -y install mysql-server"
 export DEBIAN_FRONTEND=noninteractive 	
 apt-get -q -y install mysql-server
 
-echo "set password for user root for SQL-Server"
+printAndLogMessage "Set password for user root for SQL-Server"
 mysqladmin -u root password $SQL_SERVER_ROOT_PASSWORD

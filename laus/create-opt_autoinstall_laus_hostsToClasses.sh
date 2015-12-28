@@ -8,6 +8,9 @@
 
 # manipulated file
 file=/opt/autoinstall/laus/hostsToClasses
+printAndLogMessage "Manipulated file: " $file
+
+printAndLogMessage "write to file: " $file
 
 echo "
 # set HOSTCLASSES variable
@@ -36,3 +39,5 @@ echo "
 $DHCP_HOST_1_HOSTNAME:NETWORKBOX
 $DHCP_HOST_2_HOSTNAME:NETWORKBOX
 " >> $file
+
+logFile $file

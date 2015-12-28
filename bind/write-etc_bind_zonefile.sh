@@ -8,13 +8,15 @@
 
 # file /etc/bind/db.DOMAIN_NAME
 file=/etc/bind/db.$DOMAIN_NAME
+printAndLogMessage "Manipulated file: " $file
 
 if [ -f $file ];
 then
-	echo "file" $file "alread exists!"
+	printAndLogMessage "File" $file "alread exists!"
 	exit
 fi
 
+printAndLogMessage "Write file: " $file
 echo ";
 ; BIND data file for domain $DOMAIN_NAME
 ;
@@ -45,3 +47,5 @@ tftp01		IN	CNAME	$HOSTNAME
 
 gateway		IN	A	$GATEWAY
 " >> $file
+
+logFile $file

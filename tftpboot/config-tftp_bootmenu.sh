@@ -14,8 +14,11 @@
 cd $TFTP_DIRECTORY/ubuntu-installer/menus/boot-screens
 for file in $(ls);
 do
-	# set password for tftp boot screen
-	sed -e "{
+	if  grep 'MENU PASSWD' $file;
+	then
+		printAndLogMessage "set password for tftp boot screen in " $file
+		sed -e "{
 		/MENU PASSWD/ s/MENU PASSWD/MENU PASSWD $TFTP_MENU_PASSWD/
-	}" -i $file
+		}" -i $file
+	fi
 done

@@ -8,27 +8,32 @@
 
 # create LAUS - autoinstall - directory
 
+printAndLogStartMessage "START: INSTALLATION OF LAUS - SERVER"
+
 CURRENTRIR=$(pwd)
 cd /opt
+printAndLogMessage "clone git repository https://github.com/edvapp/autoinstall.git to " $(pwd)
 git clone https://github.com/edvapp/autoinstall.git
 cd ${CURRENTRIR};
-# create export directory
+printAndLogMessage "Create export directory"
 mkdir -p $NFS_EXPORT_DIR/autoinstall
 
 mount --bind /opt/autoinstall $NFS_EXPORT_DIR/autoinstall
 
-# mount /opt/autoinstall to export directory /export/autoinstall
+printAndLogMessage "MOUNT /opt/autoinstall TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/autoinstall"
 /bin/bash change-etc_fstab.sh
 
-# add /export/autoinstall to exports
+printAndLogMessage "ADD $NFS_EXPORT_DIR/autoinstall TO /etc/exports"
 /bin/bash change-etc_exports.sh
 
-# add hostsToClasses to /opt/autoinstall/laus
+printAndLogMessage "ADD hostsToClasses TO /opt/autoinstall/laus"
 /bin/bash create-opt_autoinstall_laus_hostsToClasses.sh
 
-# create class NEWWORKBOX for startup
+printAndLogMessage "CREATE CLASS NEWWORKBOX FOR STARTUP"
 /bin/bash create-classNETWORKBOX.sh
 
 service nfs-kernel-server restart
+
+printAndLogEndMessage "FINISH: INSTALLATION OF LAUS - SERVER"
 
 

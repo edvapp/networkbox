@@ -8,49 +8,53 @@
 
 # manipulated file
 file=/etc/network/interfaces
+printAndLogMessage "Manipulated file: " $file
 
-# check if any interface does a have static ip
+printAndLogMessage "Check if any interface does a have static ip"
 if  grep 'inet static' $file;
 then
-	echo "host" $(hostname) "already has static ip -"$(grep address $file)
-	echo "did not change ip address"
+	printAndLogMessage "Host" $(hostname) "already has static ip -"$(grep address $file)
+	printAndLogMessage "did not change ip address"
 	exit
 fi
 
-# get interface name of active network interfaces
+printAndLogMessage "Get interface name of active network interfaces"
 FIRST_ACTIVE_INTERFACE=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
 ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
 
+printAndLogMessage "FIRST_ACTIVE_INTERFACE: " $FIRST_ACTIVE_INTERFACE
+printAndLogMessage "ACTIVE_INTERFACES: " $ACTIVE_INTERFACES
+
 if [ "$FIRST_ACTIVE_INTERFACE" != "$ACTIVE_INTERFACES" ];
 then
-	echo "You have more than one active network interface:"
-	echo $LIST
-	echo "Please type in the name, which shall become the static interface"
+	printAndLogMessage "You have more than one active network interface:"
+	printAndLogMessage $ACTIVE_INTERFACES
+	printAndLogMessage "Please type in the name, which shall become the static interface"
 	read INTERFACE
 else
 	INTERFACE=$FIRST_ACTIVE_INTERFACE
 fi
 
-# save /etc/network/interfaces
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
 
-# write new static configuration to /etc/network/interfaces
+printAndLogMessage "Write new static configuration to " $file
 if   grep "auto $INTERFACE" $file ;
 then
-	echo "comment out dhcp: iface $INTERFACE inet dhcp"
+	printAndLogMessage "Comment out dhcp: iface $INTERFACE inet dhcp"
 	echo "# interface $INTERFACE changed by networkbox" >> $file
 	sed -e "{
 		/iface $INTERFACE/ s/iface $INTERFACE/#iface $INTERFACE/
 	}" -i $file
 else
-	echo write: auto $INTERFACE
+	printAndLogMessage "Add auto $INTERFACE to $file "
 	echo "" >> $file
 	echo "# interface $INTERFACE added by networkbox" >> $file
 	echo "auto $INTERFACE" >> $file
 fi
 
-# append new interface configuration
-echo "write interface configuration"
+printAndLogMessage "Append new interface configuration to " $file
 echo "iface $INTERFACE inet static
     address $STATIC_IP
     netmask $NETMASK
@@ -62,7 +66,8 @@ echo "iface $INTERFACE inet static
     
 " >> $file
 
-# restart network interface
+printAndLogMessage "Restart network interface with: " $file
+logFile $file
 ifdown $INTERFACE
 ifup $INTERFACE
 

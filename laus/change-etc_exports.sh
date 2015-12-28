@@ -8,9 +8,13 @@
 
 # manipulated file
 file=/etc/exports
+printAndLogMessage "Manipulated file: " $file
 
-# save original
+printAndLogMessage "Save original file: " $file
 saveOriginal $file
+logFile $file
+
+printAndLogMessage "Write to file: " $file
 
 getCIDRsubnetmask $NETMASK
 
@@ -19,3 +23,5 @@ echo "
 $NFS_EXPORT_DIR/autoinstall	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
 
 " >> $file
+
+logFile $file
