@@ -55,6 +55,7 @@ function getCIDRsubnetmask()
 	fi
 }
 
+LOGFILE="../protokoll.log"
 
 function printAndLogStartMessage()
 {

@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# source helper functions
+. ../helperfunctions.sh
+
+# source configuration
+. ../OPTIONS.conf
+
 # install isc-dhcp-server
 if [ ! "$FULLINSTALL" = "true" ];
 then

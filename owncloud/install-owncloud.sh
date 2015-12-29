@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# source helper functions
+. ../helperfunctions.sh
+
+# source configuration
+. ../OPTIONS.conf
+
 printAndLogStartMessage "START: INSTALLATION OF OWNCLOUD"
 
 # install owncloud 

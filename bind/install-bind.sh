@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# source helper functions
+. ../helperfunctions.sh
+
+# source configuration
+. ../OPTIONS.conf
+
 # install bind9 DNS dns_nameservers
 
 # install bind9 dpkg - package

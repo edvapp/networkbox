@@ -1,6 +1,6 @@
 #!/bin/bash
 
-printAndLogStartMessage "START: FULLINSTALL NETWORKBOX at: " $(date)
+
 # execute apt-get -y update just once
 FULLINSTALL=true
 export FULLINSTALL
@@ -40,8 +40,6 @@ cd $INSTALL_ROOT_DIR
 cd owncloud
 /bin/bash install-owncloud.sh
 cd $INSTALL_ROOT_DIR
-
-printAndLogStartMessage "FINISH: FULLINSTALL NETWORKBOX at: " $(date)
 
 reboot
 
