@@ -16,6 +16,8 @@ cd $CURRENT_DIR
 
 apt-get -y purge owncloud
 
+rm -R /etc/apt/sources.list.d/owncloud.list
+
 ocpath='/var/www/owncloud'
 
 rm -R $ocpath
