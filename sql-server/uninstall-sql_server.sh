@@ -2,4 +2,7 @@
 
 # uninstall mysql-server
 
-apt-get -y purge mysql-server
+apt-get remove --purge mysql-server mysql-client mysql-common
+
+rm -rf /var/lib/mysql
+rm -rf /etc/mysql*
