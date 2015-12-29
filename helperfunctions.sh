@@ -81,12 +81,12 @@ function printAndLogMessage()
 function printAndLogEndMessage()
 {
 	echo ""
-	echo "######  " $@
+	echo "#####  " $@
 	echo "#####################################################################"
 	echo ""
 	
 	echo "" >> $LOGFILE
-	echo "###### " $@ >> $LOGFILE
+	echo "##### " $@ >> $LOGFILE
 	echo "#####################################################################" >> $LOGFILE
 	echo "" >> $LOGFILE
 }

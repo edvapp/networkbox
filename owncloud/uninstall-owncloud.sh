@@ -10,7 +10,6 @@ cd ../sql-server
 cd $CURRENT_DIR
 
 # uninstall apache
-echo "Install web-server with https"
 cd ../web-server
 /bin/bash uninstall-web_server.sh
 cd $CURRENT_DIR

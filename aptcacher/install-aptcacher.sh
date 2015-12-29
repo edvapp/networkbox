@@ -1,4 +1,10 @@
-#!/bin/bash
+c#!/bin/bash
+
+# source helper functions
+. ../helperfunctions.sh
+
+# source configuration
+. ../OPTIONS.conf
 
 # install ng-apt-cacher
 if [ ! "$FULLINSTALL" = "true" ];
@@ -6,7 +12,6 @@ then
 	echo "FULLINSTALL=false"
 	apt-get -y update
 fi
-
 
 printAndLogStartMessage "START: INSTALLATION OF APT-CACHER"
 

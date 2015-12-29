@@ -1,5 +1,11 @@
 #! /bin/bash
 
+# source helper functions
+. ../helperfunctions.sh
+
+# source configuration
+. ../OPTIONS.conf
+
 # source /etc/default/
 . /etc/default/tftpd-hpa
 # to get variable $TFTP_DIRECTORY

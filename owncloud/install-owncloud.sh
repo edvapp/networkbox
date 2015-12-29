@@ -32,10 +32,17 @@ cd $CURRENT_SUB_DIR
 
 printAndLogMessage "Install owncloud"
 printAndLogMessage "Install repository key"
-wget -nv https://download.owncloud.org/download/repositories/stable/$(lsb_release -si)_$(lsb_release -sr)/Release.key -O- | apt-key add - 
+RELEASE=$(lsb_release -si)
+printAndLogMessage "Found Release " $RELEASE
+if [ $RELEASE = Raspian ];
+then
+	RELEASE="Debian"
+	printAndLogMessage "Changed Release from Raspian to Debian"
+fi
+wget -nv https://download.owncloud.org/download/repositories/stable/$RELEASE_$(lsb_release -sr)/Release.key -O- | apt-key add - 
 
 printAndLogMessage "Adding repo entry to file: /etc/apt/sources.list.d/owncloud.list"
-echo "deb http://download.owncloud.org/download/repositories/stable/$(lsb_release -si)_$(lsb_release -sr)/ /" >> /etc/apt/sources.list.d/owncloud.list
+echo "deb http://download.owncloud.org/download/repositories/stable/$RELEASE_$(lsb_release -sr)/ /" >> /etc/apt/sources.list.d/owncloud.list
 
 printAndLogMessage "apt-get update to get new packages"
 printAndLogMessage "apt-get -y install owncloud"
