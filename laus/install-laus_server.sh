@@ -11,8 +11,8 @@
 printAndLogStartMessage "START: INSTALLATION OF LAUS - SERVER"
 
 CURRENTRIR=$(pwd)
+printAndLogMessage "clone git repository https://github.com/edvapp/autoinstall.git to /opt"
 cd /opt
-printAndLogMessage "clone git repository https://github.com/edvapp/autoinstall.git to " $(pwd)
 git clone https://github.com/edvapp/autoinstall.git
 cd ${CURRENTRIR};
 printAndLogMessage "Create export directory"
