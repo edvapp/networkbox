@@ -4,7 +4,7 @@
 
 CURRENT_DIR=$(pwd)
 
-apt-get -y purge owncloud
+apt-get -y purge owncloud owncloud-server owncloud-config-apache
 
 rm -R /etc/apt/sources.list.d/owncloud.list
 
@@ -21,3 +21,4 @@ cd ../sql-server
 /bin/bash uninstall-sql_server.sh
 cd $CURRENT_DIR
 
+apt-get -y autoremove
