@@ -26,5 +26,21 @@ sed -e "{
 	/0.0.0.0/ s/0.0.0.0;/${DNS_IP_PROVIDER};\n\t\t${DNS_IP_WWW};/
 }" -i $file
 
+
+getCIDRsubnetmask $NETMASK
+
+printAndLogMessage "disable dns-querys from networks DIFFERENT from local network in file: " $file
+sed -e "{
+	/forwarders {/ i\
+	\\
+	allow-query  \{ \\
+		localhost; \\
+		$NETWORK\/$CIDR_SUBNETMASK; \\
+	\}; \\
+	\/\/ \\
+	\/\/
+}" -i $file
+
+
 logFile $file
 
