@@ -23,6 +23,8 @@ You will be able to control different groups of clients, distinguished by their 
 
 ## You will get
 
+![overview](networkbox.png)
+
 An automatic installed network with one server and as many automatic installed clients as you like.
 On your physical server you will find following services:
 
