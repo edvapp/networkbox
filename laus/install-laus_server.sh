@@ -10,11 +10,23 @@
 
 printAndLogStartMessage "START: INSTALLATION OF LAUS - SERVER"
 
-CURRENTRIR=$(pwd)
+printAndLogMessage "check in /etc/exports, if filesystem is already exported"
+if [ -f /etc/exports -a "$(grep -e $NFS_EXPORT_DIR /etc/exports)"=="$NFS_EXPORT_DIR" ];
+then
+	printAndLogMessage "filesystem already exported"
+else
+	printAndLogMessage "install nfs-server from install-laus_server.sh"
+	CURRENT_SUB_DIR=$(pwd)
+	cd ../nfs-server
+	/bin/bash install-nfs_server.sh
+	cd ${CURRENT_SUB_DIR}
+fi
+
+CURRENT_SUB_DIR=$(pwd)
 printAndLogMessage "clone git repository https://github.com/edvapp/autoinstall.git to /opt"
 cd /opt
 git clone https://github.com/edvapp/autoinstall.git
-cd ${CURRENTRIR};
+cd ${CURRENT_SUB_DIR}
 printAndLogMessage "Create export directory"
 mkdir -p $NFS_EXPORT_DIR/autoinstall
 

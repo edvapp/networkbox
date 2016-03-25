@@ -29,9 +29,9 @@ cd tftpboot
 /bin/bash install-tftpboot.sh
 cd $INSTALL_ROOT_DIR
 
-cd nfs-server
-/bin/bash install-nfs_server.sh
-cd $INSTALL_ROOT_DIR
+#cd nfs-server
+#/bin/bash install-nfs_server.sh
+#cd $INSTALL_ROOT_DIR
 
 cd laus
 /bin/bash install-laus_server.sh
