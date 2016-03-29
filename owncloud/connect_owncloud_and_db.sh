@@ -18,7 +18,7 @@ else
 	if ! [ -d $OC_DATA_PATH  ];
 	then
 		printAndLogMessage "create directory $OC_DATA_PATH"
-		mkdir $OC_DATA_PATH
+		mkdir -p $OC_DATA_PATH
 
 	fi
 	printAndLogMessage "set owner and permissions for  $OC_DATA_PATH"
