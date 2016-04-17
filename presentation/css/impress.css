@@ -1,0 +1,57 @@
+/* css by reinhard Fink */
+
+body {
+    font-family: sans-serif;
+    font-size: 125%;
+    background: rgb(215, 215, 215);
+}
+
+li {
+    line-height: 2;
+}
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td {
+    padding: 5px;
+    text-align: left;    
+}
+
+.slide-big {
+    width: 1024px;
+    height: 768px;
+
+    padding: 40px 60px;
+
+    border-radius: 10px;
+
+    background-color: white;
+}
+
+.slide-small {
+    width: 800px;
+    height: 600px;
+
+    padding: 20px 30px;
+
+    border-radius: 5px;
+
+    background-color: gray;
+}
+
+.slide-empty {
+}
+
+.title {
+      font-size: 300%;
+}
+
+/* fade out inactive slides */
+/*
+.step:not(.active) {
+    opacity: 0.3;
+}
+*/
+
