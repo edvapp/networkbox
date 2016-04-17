@@ -54,32 +54,33 @@
 		</table>
 	</div>
 	
-	<div class="step slide-big" data-x="-3000" data-y="-1000">
+	<div class="step slide-big" data-x="0" data-y="-3000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<img src="pictures/Heimnetzwerk.png" alt="Heimnetzwerk" style="float:right">
 	</div>
 	
-	<div class="step slide-big" data-x="-1500" data-y="-1000">
+	<div class="step slide-big" data-x="1500" data-y="-3000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<img src="pictures/Businessnetzwerk.png" alt="Businessnetzwerk">
 	</div>
 	
-	<div class="step slide-big" data-x="0" data-y="-1000">
+	<div class="step slide-big" data-x="3000" data-y="-3000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<img src="pictures/VirtuellesNetzwerk.png" alt="Virtuelles Netzwerk">
 	</div>
 	
-	<div  class="step" data-x="-1500" data-y="-1000" data-z="+2000">
+	<div  class="step" data-x="1500" data-y="-3000" data-z="+2000">
 		<!-- zeige Übersicht über die letzten 3 Folien-->
 	</div>
-	
-	<div class="step slide-big" data-x="-3000" data-y="1000">
+
+	<div class="step slide-big" data-x="-3000" data-y="-1000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation des Servers/der Serverdienste:</h1>
+		<p>auf einem normalen Debian/Ubuntu Server mit einem root-fähigen User einloggen und folgende Befehle ausführen:</p>
 		<ol>	
 			<li><code>>> git clone http://github.com/edvapp/networkbox</code></li>
 			<li><code>>> mc</code></li>
@@ -95,7 +96,7 @@
 		</ol>
 	</div>
 	
-	<div class="step slide-big" data-x="-1500" data-y="1000">
+	<div class="step slide-big" data-x="-1500" data-y="-1000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation des Servers/der Serverdienste:</h1>
@@ -114,7 +115,7 @@
 		<p>=> NETWORKBOX = <strong>Lernumgebung</strong></p></p>
 	</div>
 	
-	<div class="step slide-big" data-x="0" data-y="1000">
+	<div class="step slide-big" data-x="0" data-y="-1000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation des Servers/der Serverdienste:</h1>
@@ -128,7 +129,7 @@
 		</ol>
 	</div>
 	
-	<div class="step slide-big" data-x="1500" data-y="1000">
+	<div class="step slide-big" data-x="1500" data-y="-1000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation des Servers/der Serverdienste:</h1>
@@ -137,10 +138,11 @@
 		<p>wird die eigendliche Konfigurationsdatei des dhcpd geschrieben.</p>
 	</div>
 	
-	<div class="step slide-big" data-x="-3000" data-y="2000">
+	<div class="step slide-big" data-x="-3000" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
-		<h1>Client in Virtualbox anlegen:</h1>
+		<h1>Installation eines Clients:</h1>
+		<h2>Client in Virtualbox anlegen:</h2>
 		<p>in Virtualbox einen Client mit mit folgenden Einstellungen anlegen:</p>
 		<ol>
 		    <li>32 Bit</li>
@@ -150,9 +152,11 @@
 		    <li>Netzwerk/Adapter an internes Netz anschließen</li>
 		    <li>Netzwerk/AdapterMAC = 0000 0000 0001 umbenennen</li>
 		</ol>
+		<h2>PFSENSE umstellen:</h2>
+		<p>Der Snapshot des PFSENSE muss von "mit DHCP" auf "<strong>ohne DHCP</strong>" geändert werden!</p>
 	</div>
 	
-	<div class="step slide-big" data-x="-1500" data-y="2000">
+	<div class="step slide-big" data-x="-1500" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -192,7 +196,7 @@
 	</div>
 	
 	<div>
-		<div class="step slide-big" data-x="0" data-y="2000">
+		<div class="step slide-big" data-x="0" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -212,7 +216,7 @@
 	</div>
 	
 	<div>
-		<div class="step slide-big" data-x="1500" data-y="2000">
+		<div class="step slide-big" data-x="1500" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -228,7 +232,7 @@
 	</div>
 
 	<div>
-		<div class="step slide-big" data-x="3000" data-y="2000">
+		<div class="step slide-big" data-x="3000" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -262,7 +266,7 @@
 	</div>
 
 	<div>
-		<div class="step slide-big" data-x="4500" data-y="2000">
+		<div class="step slide-big" data-x="4500" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -273,7 +277,7 @@
 	</div>
 	
 	<div>
-		<div class="step slide-big" data-x="6000" data-y="2000">
+		<div class="step slide-big" data-x="6000" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<ol>
 			<li>	am LAUS-Server = networkbox in das richtige Verzeichnis wechseln:<br>
