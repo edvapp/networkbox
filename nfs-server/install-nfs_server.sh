@@ -32,6 +32,12 @@ mkdir -p $NFS_EXPORT_DIR
 printAndLogMessage "WRITE TO /ETC/EXPORTS"
 /bin/bash change-etc_exports.sh
 
+if [ $RELEASE = Raspbian ];
+then
+	printAndLogMessage "enable service rpcbind on Raspbian"
+	systemctl enable rpcbind
+fi
+
 service nfs-kernel-server restart
 
 printAndLogEndMessage "FINISH: INSTALLATION OF NFS - SERVER"
