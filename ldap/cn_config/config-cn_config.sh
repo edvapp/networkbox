@@ -15,3 +15,7 @@ printAndLogMessage "set password for admin account for ldap-database"
 
 printAndLogMessage "add schemas to cn=schema,cn=config"
 /bin/bash add-schemas_to_cn_config.sh
+
+printAndLogMessage "add indices to cn=schema,cn=config"
+/bin/bash add-indices_to_cn_config.sh
+
