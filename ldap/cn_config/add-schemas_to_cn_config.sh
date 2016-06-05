@@ -6,22 +6,25 @@
 # source configuration
 . ../../OPTIONS.conf
 
+# standard schemas loaded:
+# 1: core
+# 2: cosine
+# 3: nis
+# 4: inetorgperson
 
-printAndLogMessage "add schema samba to cn=schema,cn=config"
+# schema list comming with ldap standard
+# SCHEMA_LIST="collective corba duaconf dyngroup.schema java.schema misc openldap ppolicy.schema ldapns pmi"
+# added schema: samba kerberos dhcp
+SCHEMA_LIST="collective corba duaconf dyngroup.schema java.schema misc openldap ppolicy.schema ldapns pmi samba kerberos dhcp"
 
-file=./schemas/samba.ldif
+cp ./schemas/*.schema /etc/ldap/schema
+cp ./schemas/*.ldif /etc/ldap/schema
 
-ldapadd -v -Y EXTERNAL -H ldapi:/// -f $file
-
-printAndLogMessage "add schema kerberos to cn=schema,cn=config"
-
-file=./schemas/kerberos.ldif
-
-ldapadd -v -Y EXTERNAL -H ldapi:/// -f $file
-
-printAndLogMessage "add schema dhcp to cn=schema,cn=config"
-
-file=./schemas/dhcp.ldif
-
-ldapadd -v -Y EXTERNAL -H ldapi:/// -f $file
+for SCHEMA in ${SCHEMA_LIST[@]};
+do
+    printAndLogMessage "add schema $SCHEMA to cn=schema,cn=config"
+    file=/etc/ldap/schema/$SCHEMA.ldif
+    ldapadd -v -Y EXTERNAL -H ldapi:/// -f $file
+    printAndLogMessage "added $SCHEMA to cn=schema,cn=config"
+done
 

@@ -8,7 +8,9 @@
 
 
 printAndLogMessage "create ssha hash for $CN_CONFIG_ADMIN_NAME"
-CN_CONFIG_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $CN_CONFIG_ADMIN_PASSWORD | sed 's:[\/]:\\&:g')
+# version for sed to save / for s ///
+#CN_CONFIG_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $CN_CONFIG_ADMIN_PASSWORD | sed 's:[\/]:\\&:g')
+CN_CONFIG_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $CN_CONFIG_ADMIN_PASSWORD)
 
 # set olcRootDN: and olcRootPW: 
 file=./ldif/add-admin_to_cn_config.ldif

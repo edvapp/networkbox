@@ -8,7 +8,10 @@
 
 
 printAndLogMessage "create ssha hash for ldap:$LDAP_DOMAIN_ADMIN_NAME"
-LDAP_DOMAIN_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $LDAP_DOMAIN_ADMIN_PASSWORD | sed 's:[\/]:\\&:g')
+# version for sed to save / for s ///
+#LDAP_DOMAIN_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $LDAP_DOMAIN_ADMIN_PASSWORD | sed 's:[\/]:\\&:g')
+LDAP_DOMAIN_ADMIN_PASSWORD_HASH=$(slappasswd -h {SSHA} -s $LDAP_DOMAIN_ADMIN_PASSWORD)
+
 
 # set olcRootDN: and olcRootPW in cn=config: 
 file=./ldif/correct-ldapadmin_passwd_in_cn_config.ldif
