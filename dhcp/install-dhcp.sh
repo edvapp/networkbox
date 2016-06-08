@@ -24,8 +24,14 @@ service isc-dhcp-server stop
 printAndLogMessage "TELL DHCP - SERVER INTERFACE TO OFFER SERVICE"
 /bin/bash change-etc_default_isc-dhcp-server.sh
 
-printAndLogMessage "WRITE DHCP - CONFIGURATION"
-/bin/bash write-etc_dhcp_dhcpd.conf.sh
+if [ "$DHCP_GIT_REPOSITORY" = "" ];
+then
+    printAndLogMessage "WRITE DHCP - CONFIGURATION"
+    /bin/bash write-etc_dhcp_dhcpd.conf.sh
+else
+    printAndLogMessage "pull DHCP - CONFIGURATION from $DHCP_GIT"
+    /bin/bash pull-etc_dhcp_dhcpd.conf.sh
+fi
 
 service isc-dhcp-server start
 
