@@ -28,11 +28,17 @@ printAndLogMessage "ADD DNS - SERVERS TO FORWARDERS"
 printAndLogMessage "ADD ZONE-FILES FOR DOMAIN"
 /bin/bash change-etc_bind_named.conf.local.sh
 
-printAndLogMessage "WRITE ZONE-FILES"
-/bin/bash write-etc_bind_zonefile.sh
+if [ "$DNS_GIT_REPOSITORY" = "" ];
+then
+    printAndLogMessage "WRITE ZONE-FILES"
+    /bin/bash write-etc_bind_zonefile.sh
 
-printAndLogMessage "WRITE REVERSE-ZONE-FILES"
-/bin/bash write-etc_bind_reversezonefile.sh
+    printAndLogMessage "WRITE REVERSE-ZONE-FILES"
+    / bin/bash write-etc_bind_reversezonefile.sh
+else
+    printAndLogMessage "pull DNS - db files from $DNS_GIT"
+    /bin/bash pull-etc_bind_db.conf.sh
+fi
 
 service bind9 start
 
