@@ -32,14 +32,13 @@ olcAccess: {0}to attrs=shadowLastChange by dn="cn=ldapread,dc=$LDAP_DOMAIN_SUFFI
 dn: olcDatabase={1}mdb,cn=config
 changeType: modify
 add: olcAccess
-olcAccess: {1}to attrs=userPassword,shadowLastChange,sambaNTPassword,sambaLMPassword by anonymous auth by self write by dn="cn=admin,dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND" write by * none
+olcAccess: {1}to attrs=userPassword,shadowLastChange,krbPrincipalKey,sambaNTPassword,sambaLMPassword by anonymous auth by self write by dn="cn=admin,dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND" write by * none
 
 # make everything else read, writeable
 dn: olcDatabase={1}mdb,cn=config
 changeType: modify
 add: olcAccess
 olcAccess: {2}to * by dn="cn=ldapread,dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND" read by dn="cn=admin,dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND" write by * none
-
 
 " > $file
 

@@ -34,5 +34,3 @@ git pull origin master
 #sed -e "{
 #	/$file/d
 #}" -i .gitignore
-
-logFile $directory/$file

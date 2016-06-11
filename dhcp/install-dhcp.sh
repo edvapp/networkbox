@@ -29,7 +29,7 @@ then
     printAndLogMessage "WRITE DHCP - CONFIGURATION"
     /bin/bash write-etc_dhcp_dhcpd.conf.sh
 else
-    printAndLogMessage "pull DHCP - CONFIGURATION from $DHCP_GIT"
+    printAndLogMessage "pull DHCP - CONFIGURATION from $DHCP_GIT_REPOSITORY"
     /bin/bash pull-etc_dhcp_dhcpd.conf.sh
 fi
 

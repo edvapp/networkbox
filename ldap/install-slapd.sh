@@ -43,9 +43,9 @@ cd cn_config
 /bin/bash config-cn_config.sh
 cd ..
 
-printAndLogMessage "config ldap tree"
+printAndLogMessage "populate ldap tree"
 cd ldap_tree
-/bin/bash config-ldap_tree.sh
+/bin/bash populate-ldap_tree.sh
 cd ..
 
 printAndLogEndMessage "FINISH: INSTALLATION OF LDAP - SERVER"

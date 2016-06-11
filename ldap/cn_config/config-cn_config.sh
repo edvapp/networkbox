@@ -19,6 +19,6 @@ printAndLogMessage "add schemas to cn=schema,cn=config"
 printAndLogMessage "add indices to cn=schema,cn=config"
 /bin/bash add-indices_to_cn_config.sh
 
-#printAndLogMessage "correct acls in cn=schema,cn=config"
-#/bin/bash correct-acls_in_cn_config.sh
+printAndLogMessage "correct acls in cn=schema,cn=config"
+/bin/bash correct-acls_in_cn_config.sh
 
