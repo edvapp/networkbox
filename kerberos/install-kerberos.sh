@@ -46,4 +46,7 @@ printAndLogMessage "CREATE PASSWORD STASH TO CONNECT KRB5 TO LDAP"
 
 kdb5_ldap_util -D $LDAPADMIN -w $LDAP_DOMAIN_ADMIN_PASSWORD stashsrvpw -f /etc/krb5kdc/service.keyfile $LDAPADMIN
 
+printAndLogMessage "CREATE TESTUSERS IN REALM"
+/bin/bash create-TestUsers.sh
+
 printAndLogEndMessage "FINISH: INSTALLATION OF MIT-KERBEROS - SERVER"
