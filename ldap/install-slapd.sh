@@ -19,7 +19,7 @@ printAndLogStartMessage "START: SILENT INSTALLATION OF LDAP - SERVER"
 
 export DEBIAN_FRONTEND=noninteractive
 
-printAndLogMessage "create faked /etc/hosts file for setting name of ldap-database"
+printAndLogMessage "CREATE FAKED /etc/hosts FILE FOR SETTING NAME OF LDAP DATABASE"
 file=/etc/hosts
 cp $file $file.tmp
 
@@ -32,18 +32,18 @@ logFile $file
 printAndLogMessage "apt-get install slapd ldap-utils"
 apt-get -y install slapd ldap-utils
 
-printAndLogMessage "restore original /etc/hosts"
+printAndLogMessage "RESTORE ORIGINAL /etc/hosts"
 rm $file
 mv $file.tmp $file
 
 logFile $file
 
-printAndLogMessage "config cn=config database"
+printAndLogMessage "CONFIG cn=config database"
 cd cn_config
 /bin/bash config-cn_config.sh
 cd ..
 
-printAndLogMessage "populate ldap tree"
+printAndLogMessage "POPULATE LDAP TREE"
 cd ldap_tree
 /bin/bash populate-ldap_tree.sh
 cd ..
