@@ -33,23 +33,23 @@ echo "
 #                kdc = kdc01.example.com
 #                kdc = kdc02.example.com
 #                admin_server = kdc01.example.com
-#               admin_server = kdc02.example.com
+#                admin_server = kdc02.example.com
 #                default_domain = example.com
 #                database_module = openldap_ldapconf
 #        }
 
         $REALM_DOMAIN_NAME = {
-                kdc = kdc01.$DIT
-                kdc = kdc02.$DIT
-                admin_server = kdc01.$DIT
-                admin_server = kdc02.$DIT
-                default_domain = $DIT
+                kdc = localhost
+                kdc = kdc01.$DOMAIN_NAME
+                admin_server = localhost
+                admin_server = kdc01.$DOMAIN_NAME
+                default_domain = $DOMAIN_NAME
                 database_module = openldap_ldapconf
         }
         
 [domain_realm]
 #                .example.com = EXAMPLE.COM
-                .$LDAP_DOMAIN_SUFFIX_FIRST.$LDAP_DOMAIN_SUFFIX_SECOND = $REALM_DOMAIN_NAME
+                .$DOMAIN_NAME = $REALM_DOMAIN_NAME
         
 [dbdefaults]
 #        ldap_kerberos_container_dn = dc=example,dc=com

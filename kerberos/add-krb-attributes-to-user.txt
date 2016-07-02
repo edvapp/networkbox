@@ -1,0 +1,4 @@
+# in kadmin.local
+# to add kerberos attributes to user tu1
+
+>> addprinc -x dn="uid=tu1,ou=testUsers,cn=krb5Container,dc=example,dc=com" tu1
