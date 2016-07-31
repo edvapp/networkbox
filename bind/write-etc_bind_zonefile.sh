@@ -45,7 +45,7 @@ laus01		IN	CNAME	$HOSTNAME
 apca01		IN	CNAME	$HOSTNAME
 tftp01		IN	CNAME	$HOSTNAME
 
-owncloud01	IN	CNAME	$HOSTNAME
+mycloud01	IN	CNAME	$HOSTNAME
 
 gateway		IN	A	$GATEWAY
 " >> $file

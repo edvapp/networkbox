@@ -74,3 +74,7 @@ echo "
                 ldap_conns_per_server = 5
         }
 " > $file
+
+
+printAndLogMessage "restart service krb5-kdc"
+service krb5-kdc restart
