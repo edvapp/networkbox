@@ -24,8 +24,8 @@ an easy to install and use firewall running on every PC.
 
 Installation “networkbox”
 
-1. Install Ubuntu 14.04 server:
-Install a fresh ubuntu-server 14.04 (http://www.ubuntu.com/server). 
+1. Install Ubuntu 16.04 server:
+Install a fresh ubuntu-server 16.04 (http://www.ubuntu.com/server). 
 You should get all network - settings from your router.
 Install all updates:
 >> sudo apt-get update
@@ -73,7 +73,7 @@ and restart the dhcp - server
 
 3. Boot your client into PXE menu:
 
-4. Select Unattended Ubuntu 14.04:
+4. Select Unattended Ubuntu 16.04:
 
 5. Authenticate with password you set in OPTIONS.conf (TFTP_MENU_PASSWD=)
 
@@ -82,12 +82,6 @@ amd64 2 Part 1 & 2 format	means	64 Bit 2 Partitions 1 & 2 formated
 		
 amd64 2 Part 1 format		means:	64 Bit 2 Partitions only first formated
 	
-i386 2 Part 1 & 2 format	means	32 Bit 2 Partitions 1 & 2 formated
-
-i386 2 Part 1 format		means:	32 Bit 2 Partitions only first formated
-
-i386 1 Part 1 format		means	32 Bit 1 Partitions 1 formated
-
 the fist partition:
 is 40G big and 
 mounted to /

@@ -50,7 +50,7 @@ On your physical server you will find following services:
 
 6.	3 standard users:
 	- worker	for sudo work on the clients
-	- manager	to mange a “read only” share
+	- manager	to manage a “read only” share
 	- user		the standard user for everybody
 
 7.	3 shares:
