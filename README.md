@@ -28,6 +28,9 @@ You will be able to control different groups of clients, distinguished by their 
 An automatic installed network with one server and as many automatic installed clients as you like.
 On your physical server you will find following services:
 
+TODO IN FUTURE: in 6. create manager & user; in 7. create all shares
+ADDITIONAL DONE: LDAP-Server & Kerberos with LDAP-Backend
+
 1.	nameserver for
 	- name & ip resolution
 	- dns forwarding
