@@ -19,8 +19,8 @@ then
 fi
 
 printAndLogMessage "Get interface name of active network interfaces"
-FIRST_ACTIVE_INTERFACE=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://' | head -1)
-ACTIVE_INTERFACES=$(ip link | grep "UP mode" | awk '{print $2}' | sed 's/://')
+FIRST_ACTIVE_INTERFACE=$(ip link | grep "state UP" | awk '{print $2}' | sed 's/://' | head -1)
+ACTIVE_INTERFACES=$(ip link | grep "state UP" | awk '{print $2}' | sed 's/://')
 
 printAndLogMessage "FIRST_ACTIVE_INTERFACE: " $FIRST_ACTIVE_INTERFACE
 printAndLogMessage "ACTIVE_INTERFACES: " $ACTIVE_INTERFACES
