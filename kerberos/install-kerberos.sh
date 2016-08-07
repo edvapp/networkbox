@@ -26,9 +26,9 @@ export DEBIAN_FRONTEND=noninteractive
 if [ ! -d /etc/ldap/slapd.d ];
 then
     printAndLogMessage "INSTALL LDAP- BACKEND FOR KERBEROS"
-    cd ../ldap
+    cd ../ldap-server
     /bin/bash install-slapd.sh
-    cd ../kerberos
+    cd ../kerberos-server
 fi
 
 printAndLogMessage "apt-get -y install krb5-kdc krb5-admin-server krb5-kdc-ldap"
@@ -37,7 +37,7 @@ apt-get -y install krb5-kdc krb5-admin-server krb5-kdc-ldap
 printAndLogMessage "WRITE KRB5 CONFIGURATION in /etc/krb5.conf"
 /bin/bash write-etc_krb5.conf.sh
 
-printAndLogMessage "CREATE REALM IN LDAP-TREE DIT"
+printAndLogMessage "CREATE REALM IN LDAP-TREE $DIT"
 kdb5_ldap_util -D $LDAPADMIN -w $LDAP_DOMAIN_ADMIN_PASSWORD create -subtrees $KRB5_DIT -r $REALM_DOMAIN_NAME -s -H ldap://localhost
 
 # Create a stash of the password used to bind to the LDAP server. 
