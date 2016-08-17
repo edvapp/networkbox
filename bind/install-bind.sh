@@ -34,7 +34,7 @@ then
     /bin/bash write-etc_bind_zonefile.sh
 
     printAndLogMessage "WRITE REVERSE-ZONE-FILES"
-    / bin/bash write-etc_bind_reversezonefile.sh
+    /bin/bash write-etc_bind_reversezonefile.sh
 else
     printAndLogMessage "PULL DNS - DB FILES FROM $DNS_GIT_REPOSITORY"
     /bin/bash pull-etc_bind_db.conf.sh
