@@ -40,6 +40,9 @@ else
     /bin/bash pull-etc_bind_db.conf.sh
 fi
 
+printAndLogMessage "LINK ZONE FILES TO /var/lib/bind"
+/bin/bash link-etc_bind_zonefiles_to_var_lib_bind.sh
+
 service bind9 start
 
 printAndLogEndMessage "FINISH: INSTALLATION OF DNS - SERVER"
