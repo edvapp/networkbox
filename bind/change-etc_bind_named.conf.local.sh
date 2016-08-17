@@ -18,7 +18,7 @@ logFile $file
 printAndLogMessage "write zone files to: " $file
 getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 echo "
-include "/etc/bind/rndc.key";
+include \"/etc/bind/rndc.key\";
 
 zone \"${DOMAIN_NAME}\" {
 	type master;
