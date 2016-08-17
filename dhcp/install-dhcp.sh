@@ -33,6 +33,13 @@ else
     /bin/bash pull-etc_dhcp_dhcpd.conf.sh
 fi
 
+printAndLogMessage "COPY rndc.key FROM /etc/bind IF EXISTS"
+if [ -f /etc/bind/rndc.key ];
+then
+	cp -v /etc/bind/rndc.key /etc/dhcp
+	chmod -v o+r /etc/dhcp/rndc.key
+fi
+
 service isc-dhcp-server start
 
 printAndLogEndMessage "FINISH: INSTALLATION OF DHCP - SERVER"

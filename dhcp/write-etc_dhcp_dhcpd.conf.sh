@@ -18,18 +18,43 @@ rm $file
 
 printAndLogMessage "Write new: " $file
 
+getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
+
 echo "
 # Sample configuration file for ISC dhcpd for Debian
 #
 # Attention: If /etc/ltsp/dhcpd.conf exists, that will be used as\n
 # configuration file instead of this file.\n
 #
+
+# uncomment for DDNS BEGIN ############
+#ddns-updates on;
+#ddns-update-style interim;
+#update-static-leases on;
 #
+## copied from  /etc/bind/rndc.key to /etc/dhcp/rndc.key and made it readable!
+#include \"/etc/dhcp/rndc.key\";
+#
+## DNS Zone
+#zone ${DOMAIN_NAME}. {
+#  primary ${DNS_IP_LOCAL_NETWORK}; # This server is the primary DNS server for the zone
+#  key rndc-key;       # Use the key we defined earlier for dynamic updates
+#}
+#
+## Reverse DNS Zone
+#zone ${REVERSE_NET}.in-addr.arpa. {
+#  primary ${DNS_IP_LOCAL_NETWORK}; # This server is the primary DNS server for the zone
+#  key rndc-key;       # Use the key we defined earlier for dynamic updates
+#}
+# uncomment for DDNS END ##############
+
+
+# remove when ddns enabled
 ddns-update-style none;
 
 # option definitions common to all supported networks...
 option domain-name \"$DOMAIN_NAME\";
-option domain-name-servers $DNS_IP_LOCAL_NETWORK;
+option domain-name-servers ${DNS_IP_LOCAL_NETWORK};
 #option netbios-name-servers smb01;
 #option ntp-servers ntp01;
 
