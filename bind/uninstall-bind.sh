@@ -9,4 +9,4 @@ echo "remove bind directories"
 
 rm -R -v /etc/bind
 
-rm -R -v /var/cache/bind
+rm -R -v /var/lib/bind

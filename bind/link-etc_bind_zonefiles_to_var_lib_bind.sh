@@ -8,5 +8,5 @@
 
 getReverseNETAndIP $DNS_IP_LOCAL_NETWORK $NETMASK
 cd /var/lib/bind
-ln -s db.${DOMAIN_NAME}
-ln -s db.${REVERSE_NET}
+ln -s /etc/bind/db.${DOMAIN_NAME} .
+ln -s /etc/bind/db.${REVERSE_NET} .
