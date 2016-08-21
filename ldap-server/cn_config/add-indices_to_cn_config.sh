@@ -19,6 +19,7 @@ olcDbIndex: sambaGroupType eq
 olcDbIndex: sambaSIDList eq
 olcDbIndex: sambaDomainName eq
 olcDbIndex: krbPrincipalName eq,pres,sub
+olcDbIndex: uniqueMember eq
 olcDbIndex: default sub
 " > $file
 

@@ -15,7 +15,7 @@ then
 	exit
 fi
 
-printAndLogMessage "install NFS - Server"
+printAndLogMessage "Install NFS - Server"
 # HOWTO from https://help.ubuntu.com/community/SettingUpNFSHowTo
 if [ ! "$FULLINSTALL" = "true" ];
 then
@@ -29,12 +29,15 @@ apt-get -y install nfs-kernel-server
 printAndLogMessage "Create export directory " $NFS_EXPORT_DIR
 mkdir -p $NFS_EXPORT_DIR
 
-printAndLogMessage "WRITE TO /ETC/EXPORTS"
+printAndLogMessage "Write to /etc/exports"
 /bin/bash change-etc_exports.sh
 
 if [ $RELEASE = Raspbian ];
 then
-	printAndLogMessage "enable service rpcbind on Raspbian"
+	printAndLogMessage "Enable idmap-daemon on Raspbian"
+	/bin/bash change-etc_default_nfs-common.sh
+	
+	printAndLogMessage "Enable service rpcbind on Raspbian"
 	systemctl enable rpcbind
 fi
 
