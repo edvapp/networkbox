@@ -23,7 +23,7 @@ printAndLogStartMessage "START: INSTALLATION OF SAMBA-3 - SERVER"
 
 export DEBIAN_FRONTEND=noninteractive
 
-if [ ! -d /etc/ldap/slapd.d ];
+if [ ! -d /etc/ldap/slapd.d ] && [ "SAMBA3_LDAP_SERVER" = "127.0.0.1" ];
 then
     printAndLogMessage "INSTALL LDAP- BACKEND FOR SAMBA-3"
     cd ../ldap-server
