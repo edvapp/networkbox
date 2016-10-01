@@ -23,7 +23,8 @@ echo "
 
 [global]
     workgroup = $SAMBA3_WORKGROUP
-    netbios name = $SAMBA3_NETBIOS_NAME server (Samba, Ubuntu)
+    # be carefull $SAMBA3_NETBIOS_NAME has to be the hostname
+    netbios name = $SAMBA3_NETBIOS_NAME
 
     domain master = yes
     ### next 3 options:
