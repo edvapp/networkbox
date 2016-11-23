@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html>
+<html lang="de">
 <head>
     <meta charset="utf-8" />
     <title>the networkbox</title>
@@ -21,8 +21,8 @@
 		<p><small>für:</small></p>
 		<ul>
 			<li>kleine Heimnetzwerke</li>
-			<li>mittlere Netzwerke in Schule &amp Büro</li>
-			<li>Lern- &amp Testumgebung</li>
+			<li>mittlere Netzwerke in Schule &amp; Büro</li>
+			<li>Lern- &amp; Testumgebung</li>
 		</ul>
 	</div>
 	
@@ -82,12 +82,12 @@
 		<h1>Installation des Servers/der Serverdienste:</h1>
 		<p>auf einem normalen Debian/Ubuntu Server mit einem root-fähigen User einloggen und folgende Befehle ausführen:</p>
 		<ol>	
-			<li><code>>> git clone http://github.com/edvapp/networkbox</code></li>
-			<li><code>>> mc</code></li>
-			<li> 	im File networkbox/OPTIONS.conf</li>
+			<li><code>&gt;&gt; git clone http://github.com/edvapp/networkbox</code></li>
+			<li><code>&gt;&gt; mc</code></li>
+			<li>im File networkbox/OPTIONS.conf
 				<ul>	
 					<li>GLOBAL NETWORK - settings</li>
-					<li>hostname &amp IP</li>
+					<li>hostname &amp; IP</li>
 				</ul>
 				ändern
 			</li>
@@ -112,7 +112,7 @@
 		<p>
 		<p><strong>Folgerung:</strong></p>
 		<p>Änderungen können reativ einfach nachvollzogen werden</p>
-		<p>=> NETWORKBOX = <strong>Lernumgebung</strong></p></p>
+		<p>=> NETWORKBOX = <strong>Lernumgebung</strong></p>
 	</div>
 	
 	<div class="step slide-big" data-x="0" data-y="-1000">
@@ -169,34 +169,33 @@
 					<td><strong>TFTP</strong></td>
 				</tr>
 				<tr>
-					<td>getNetworkInfo(MAC) -----></td>
-					<td>IP & Netzwerkeinstellungen<br><----- next-server tftp01</td>
+					<td>getNetworkInfo(MAC) -----&gt;</td>
+					<td>IP & Netzwerkeinstellungen<br>&lt;----- next-server tftp01</td>
 					<td></td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>getIPfor(tftp01) ----></td>
+					<td>getIPfor(tftp01) ----&gt;</td>
 					<td></td>
 					<td>192.168.1.1</td>
 					<td></td>
 				</tr>
 				<tr>
-					<td>getBootMenu() -----></td>
+					<td>getBootMenu() -----&gt;</td>
 					<td></td>
 					<td></td>
 					<td>menu.cfg</td>
 				</tr>
 				<tr>
-					<td>getKernel(Benutzerauswahl) -----></td>
+					<td>getKernel(Benutzerauswahl) -----&gt;</td>
 					<td></td>
 					<td></td>
-					<td>kernel = 14.04/amd64/linux <br><-----preseed_2P_1F.cfg</td>
+					<td>kernel = 14.04/amd64/linux <br>&lt;-----preseed_2P_1F.cfg</td>
 				</tr>
 			</table>
 	</div>
 	
-	<div>
-		<div class="step slide-big" data-x="0" data-y="500">
+	<div class="step slide-big" data-x="0" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -205,7 +204,7 @@
 			<li>d-i debian-installer/locale string de_AT</li>
 			<li>d-i keyboard-configuration/layoutcode string de</li>
 			<li> ... </li>
-			<li>d-i preseed/late_command string <strong> <= Zeiträuber</strong><br>
+			<li>d-i preseed/late_command string <strong> &gt;= Zeiträuber</strong><br>
 				tftp -l /target/etc/default/laus-setup -r preseed/laus-setup -g tftp01; <br>
 				tftp -l /target/usr/local/sbin/laus-client.sh -r preseed/systemd/laus-client.sh -g tftp01; <br>
 				tftp -l /target/lib/systemd/system/laus.service -r preseed/systemd/laus.service -g tftp01; <br>
@@ -215,8 +214,7 @@
 		</ul>
 	</div>
 	
-	<div>
-		<div class="step slide-big" data-x="1500" data-y="500">
+	<div class="step slide-big" data-x="1500" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -231,8 +229,7 @@
 		</ul>
 	</div>
 
-	<div>
-		<div class="step slide-big" data-x="3000" data-y="500">
+	<div class="step slide-big" data-x="3000" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -244,12 +241,12 @@
 				<td><strong>LAUS - SERVER</strong></td>
 			</tr>
 			<tr>
-				<td>laus.service (NFS mount) ----></td>
+				<td>laus.service (NFS mount) ----&gt;</td>
 				<td></td>
 			</tr>
 			<tr>
 				<td></td>
-				<td><----- NFS - Freigabe <strong>autoinstall</strong></td>
+				<td>&lt;----- NFS - Freigabe <strong>autoinstall</strong></td>
 			</tr>
 			<tr>
 				<td>
@@ -259,14 +256,14 @@
 						<li>prüfen ob HOSTNAME im File hostsToClasses vorhanden?</li>
 						<li>wenn ja, Verzeichnisse mit Skripten sammeln</li>
 						<li>Skripte in gesammelten Verzeichnissen ausführen</li>
+					</ul>
 				</td>
 				<td></td>
 			</tr>
 		</table>
 	</div>
 
-	<div>
-		<div class="step slide-big" data-x="4500" data-y="500">
+	<div class="step slide-big" data-x="4500" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>Installation eines Clients:</h1>
@@ -276,26 +273,25 @@
 		<p>Die Konsolenbefehle <code>>> apt-get install openbox xinit</code> müssen nur als Shell - File an der richtigen Stelle abgespeichert werden.</p>
 	</div>
 	
-	<div>
-		<div class="step slide-big" data-x="6000" data-y="500">
+	<div class="step slide-big" data-x="6000" data-y="500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<ol>
 			<li>	am LAUS-Server = networkbox in das richtige Verzeichnis wechseln:<br>
 				<code>>> cd /opt/autoinstall/laus/scriptsForClasses/NETWORKBOX</code> <br>
 			</li>
-			<li>	File anlegen &amp ausführbar machen:<br>
-				<code>>> sudo touch 050-installOpenbox.sh</code> <br>
-				<code>>> sudo chmod 755 050-installOpenbox.sh</code>
+			<li>	File anlegen &amp; ausführbar machen:<br>
+				<code>&gt;&gt; sudo touch 050-installOpenbox.sh</code> <br>
+				<code>&gt;&gt; sudo chmod 755 050-installOpenbox.sh</code>
 			</li>
 			<li>	Midnightcommander als root öffnen und 050-installOpenbox.sh mit F4 öffnen<br>
-				<code>>> sudo mc</code>
+				<code>&gt;&gt; sudo mc</code>
 			</li>
 			<li>	File mit folgendem Inhalt befüllen: <br>
 				<code>#!/bin/bash</code> <br>
 				<code>apt-get update</code> <br>
 				<code>apt-get -y install openbox xinit</code> <strong> (Hinweis: -y = ohne Rückfrage)</strong><br>
 			</li>
-			<li>	mittels Midnightcommanderüberprüfen, ob dem Client im File <br>
+			<li>	mittels Midnightcommander überprüfen, ob dem Client im File <br>
 				<code>/opt/autoinstall/laus/hostsToClasses</code> <br>
 				in der Form <br>
 				<code>r001pc01:NETWORKBOX</code><br>
