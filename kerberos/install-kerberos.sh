@@ -28,7 +28,7 @@ then
     printAndLogMessage "INSTALL LDAP- BACKEND FOR KERBEROS"
     cd ../ldap-server
     /bin/bash install-slapd.sh
-    cd ../kerberos-server
+    cd ../kerberos
 fi
 
 printAndLogMessage "apt-get -y install krb5-kdc krb5-admin-server krb5-kdc-ldap"
