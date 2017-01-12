@@ -66,10 +66,45 @@ echo "iface $INTERFACE inet static
     
 " >> $file
 
-printAndLogMessage "Restart network interface with: " $file
+printAndLogMessage "Network interface started with: " $file
+saveOriginal $file
 logFile $file
+
+printAndLogMessage "Restart $INTERFACE"
 ifdown $INTERFACE
 ifup $INTERFACE
+
+if [ "$CREATE_BRIDGE" = "yes" ];
+then
+	printAndLogMessage "Change network settings to use br0"
+	printAndLogMessage "Install bridge-utils"
+	apt-get -y install bridge-utils
+	
+	printAndLogMessage "Stop interface $INTERFACE"
+	ifdown $INTERFACE
+
+	# change auto $INTERFACE to auto br0
+	sed -e "{
+		/auto $INTERFACE/ s/auto $INTERFACE/auto br0/
+	}" -i $file
+	
+	# change iface $INTERFACE inet static to iface br0 inet static
+	sed -e "{
+		/iface $INTERFACE/ s/iface $INTERFACE/iface br0/
+	}" -i $file
+	
+	# append bridge_ports $INTERFACE with 4 spaces (\ ) after dns-search $DOMAIN_NAME
+	sed -e "{
+		/dns-search/ a \ \ \ \ bridge_ports $INTERFACE
+	}" -i $file
+
+	printAndLogMessage "Start interface br0"
+	ifup br0
+fi
+
+printAndLogMessage "Network interface started with: " $file
+logFile $file
+
 
 
 
