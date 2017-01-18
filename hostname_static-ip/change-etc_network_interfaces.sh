@@ -8,6 +8,12 @@
 
 # manipulated file
 file=/etc/network/interfaces
+
+if [ "$LXD_CONTAINER" = "yes" ];
+then
+	printAndLogMessage "path for network-config-file in a LXD Container:"
+	file=/etc/network/interfaces.d/50-cloud-init.cfg
+fi
 printAndLogMessage "Manipulated file: " $file
 
 printAndLogMessage "Check if any interface does a have static ip"
@@ -33,6 +39,12 @@ then
 	read INTERFACE
 else
 	INTERFACE=$FIRST_ACTIVE_INTERFACE
+fi
+
+if [ "$LXD_CONTAINER" = "yes" ];
+then
+	printAndLogMessage "Set INTERFACE=eth0"
+	INTERFACE=eth0
 fi
 
 printAndLogMessage "Save original file: " $file
@@ -73,6 +85,14 @@ logFile $file
 printAndLogMessage "Restart $INTERFACE"
 ifdown $INTERFACE
 ifup $INTERFACE
+printAndLogMessage "Network interface started with: " $file
+logFile $file
+
+if [ "$LXD_CONTAINER" = "yes" ];
+then
+	printAndLogMessage "Container has to be rebooted for new interface configuration"
+	reboot
+fi
 
 if [ "$CREATE_BRIDGE" = "yes" ];
 then
@@ -98,12 +118,14 @@ then
 		/dns-search/ a \ \ \ \ bridge_ports $INTERFACE
 	}" -i $file
 
-	printAndLogMessage "Start interface br0"
-	ifup br0
+	#printAndLogMessage "Start interface br0"
+	#ifup br0
+	printAndLogMessage "Network interface congigured with: " $file
+	logFile $file
+	printAndLogMessage "Reboot to get rid off $INTERFACE"
+	reboot
 fi
 
-printAndLogMessage "Network interface started with: " $file
-logFile $file
 
 
 
