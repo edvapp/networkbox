@@ -92,6 +92,7 @@ if [ "$LXD_CONTAINER" = "yes" ];
 then
 	printAndLogMessage "Container has to be rebooted for new interface configuration"
 	reboot
+	exit
 fi
 
 if [ "$CREATE_BRIDGE" = "yes" ];

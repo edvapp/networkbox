@@ -8,10 +8,10 @@
 
 printAndLogStartMessage "START: INSTALL FIX IP AND SET HOSTNAME"
 
-printAndLogMessage "CHANGE NETWORK INTERFACE FIX IP"
-/bin/bash change-etc_network_interfaces.sh
-
 printAndLogMessage "CHANGE HOSTNAME"
 /bin/bash change-etc_hostname_hosts.sh
+
+printAndLogMessage "CHANGE NETWORK INTERFACE FIX IP"
+/bin/bash change-etc_network_interfaces.sh
 
 printAndLogEndMessage "FINISH: INSTALL FIX IP AND SET HOSTNAME"
