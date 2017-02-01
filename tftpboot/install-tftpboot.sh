@@ -36,6 +36,9 @@ printAndLogMessage "SET PASSWORD FOR TFTP-BOOT-SCREEN"
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS IN PRESEED - FILES"
 /bin/bash config-preseed.sh
 
+printAndLogMessage "SET TFTP-Servername IN PRESEED - FILES AND BOOTSCREENS MENU.CFG"
+/bin/bash config-tftp_name.sh
+
 printAndLogMessage "DOWNLOAD UBUNTU - KERNEL IMAGES"
 /bin/bash wget-Ubuntu.sh
 
