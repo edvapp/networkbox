@@ -1,4 +1,4 @@
-c#!/bin/bash
+#!/bin/bash
 
 # source helper functions
 . ../helperfunctions.sh
