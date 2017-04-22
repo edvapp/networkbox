@@ -7,13 +7,14 @@
 . ../OPTIONS.conf
 
 # manipulated directory
-networkbox=/opt/autoinstall/laus/scriptsForClasses/NETWORKBOX
-printAndLogMessage "Manipulated directory " $networkbox
+NETWORKBOX_LAUS_DIR=/opt/autoinstall/laus/scriptsForClasses/NETWORKBOX
+printAndLogMessage "Manipulated directory " $NETWORKBOX_LAUS_DIR
 
-printAndLogMessage "mkdir " $networkbox
-mkdir $networkbox
+printAndLogMessage "mkdir " $NETWORKBOX_LAUS_DIR
+mkdir $NETWORKBOX_LAUS_DIR
 
-printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1404/020-installUbuntuDesktop.sh " $networkbox
-printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1404/030-installLibreOffice.sh " $networkbox
-cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1404/020-installUbuntuDesktop.sh $networkbox
-cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1404/030-installLibreOffice.sh $networkbox
+printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/010-update.sh " $NETWORKBOX_LAUS_DIR
+cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/010-update.sh $NETWORKBOX_LAUS_DIR
+
+printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/020-install_UBUNTU_Desktop.sh " $NETWORKBOX_LAUS_DIR
+cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/020-install_UBUNTU_Desktop.sh $NETWORKBOX_LAUS_DIR

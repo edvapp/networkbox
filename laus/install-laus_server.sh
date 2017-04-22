@@ -41,7 +41,7 @@ printAndLogMessage "ADD $NFS_EXPORT_DIR/autoinstall TO /etc/exports"
 printAndLogMessage "ADD hostsToClasses TO /opt/autoinstall/laus"
 /bin/bash create-opt_autoinstall_laus_hostsToClasses.sh
 
-printAndLogMessage "CREATE CLASS NEWWORKBOX FOR STARTUP"
+printAndLogMessage "CREATE CLASS NETWORKBOX FOR STARTUP"
 /bin/bash create-classNETWORKBOX.sh
 
 service nfs-kernel-server restart
