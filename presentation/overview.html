@@ -1,0 +1,301 @@
+<!DOCTYPE HTML>
+<html lang="de">
+<head>
+    <meta charset="utf-8" />
+    <title>NETWORKBOX OVERVIEW</title>
+    <link href="css/impress.css" rel="stylesheet" />
+</head>
+
+
+<body>
+
+<div id="impress">
+
+<!-- Line 1 y = -3000 -->
+	<div class="step slide-big" data-x="-3000" data-y="-3000">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		
+		<h1>WAS IST DIE NETWORKBOX:</h1>
+		<p>Eine Sammlung von Skripten, die Serverdienste (dhcp, dns, ...) auf einem Computer/Container installiert.</p>
+		
+		<h1>WIE FUNKTIONIERT DIE NETWORKBOX:</h1>
+		<p>In einer zentralen Konfigurationsdatei werden alle wichtigen Daten (IP-Nummer, Rechnernamen, ...) eingetragen.</p>
+		<p>Skripte installiere daraus die gewünschten Serverdienste mit den entsprechen angepassten Konfigurationsdateien.</p>
+		
+		<h1>VERWENDUNGSZWECK:</h1>
+		<ul>
+			<li>zur vereinfachten Installation einzelner Serverdienste</li>
+			<li>zum Aufsetzen eines gesamten Netzwerkes</li>
+			<li>als einfache Lernumgebung</li>
+		</ul>
+	</div>
+	
+	<div class="step slide-big" data-x="-1500" data-y="-3000">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		
+		<h1>VERWANDTE PROFESSIONELLE PRODUKTE:</h1>
+		<ul>
+			<li><strong>YaST – openSUSE:</strong> <br> 
+				Konfigurationsfiles werden im Hintergrung geschrieben. <a href="https://de.opensuse.org/Portal:YaST" target="_blank">https://de.opensuse.org/Portal:YaST</a>
+			</li>
+			
+			<li><strong>FAI</strong> <br> 
+				Fully Automatic Installation für Debian Distributionen: 
+				<a href="https://fai-project.org" target="_blank">https://fai-project.org</a>
+			</li>
+			<li><strong>UBUNTU "Landscape"":</strong> <br>
+				Bezahl Tool von Canonical zur Installation &amp Verwaltung vieler Rechner <a href="https://landscape.canonical.com/" target="_blank">https://landscape.canonical.com/</a>
+			</li>
+			<li><strong>RED HAT "Ansible"":</strong> <br>
+				Distribitionsübergreifendes Open Soure Tool von Red Hat
+				<a href="https://www.ansible.com/how-ansible-works" target="_blank">https://www.ansible.com/</a>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="step slide-big" data-x="0" data-y="-3000">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		
+		<h1>NETWORKBOX vs PROFESSIONELLE PRODUKTE:</h1>
+		Die professionellen Produkte bieten mächtige Tool, mit folgenden Nachteile:
+		<ul>
+			<li><strong>fehlende Transparenz:</strong> YaST – openSUSE (Benutzer sieht keine Konfigurationsdateien)</li>
+			
+			<li><strong>hohe Komplexität, steile Lernkurve:</strong> FAI</li>
+			
+			<li><strong>Kosten:</strong> UBUNTU Landscape</li>
+		</ul>
+		Die Networkbox bietet nicht den Funktionsumfang der "Konkurrenz" hat aber folgende Vorteile:
+		<ul>
+			<li><strong>Transparenz:</strong> alle Skripte einsehbar</li>
+			
+			<li><strong>überschaubare Komplexität:</strong> "nur" BASH Skripte müsssen gelesen werden
+			</li>
+			
+			<li><strong>keine Koste, weil Open Source :-)</strong>
+			</li>
+		</ul>
+	</div>
+
+	<div class="step slide-big" data-x="1500" data-y="-3000">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		
+		<h1>DIE NETWORKBOX BIETET:</h1>
+		<ul>
+			<li>Netzwerkinterface auf fixe IP umstellen / Netzwerkinterface als Netzwerkbrücke betreiben</li>
+			
+			<li>DHCP - Server mit Verbindung zu einem git-Repository</li>
+			
+			<li>DNS - Server mit Verbindung zu einem git-Repository</li>
+			
+			<li>TFTP - Server mit Debian pressed-Files zur Erstinstallation von Linux -PCs als LAUS - Clients</li>
+			
+			<li>NFS - Server</li>
+		
+			<li>LAUS = Linux Automatic Update Server (automatischen ferngesteuerten Verwaltung von Linux - Clients)</li>
+			
+			<li>LDAP - Server</li>
+			
+			<li>LDAP - Client</li>
+			
+			<li>SAMBA-3 Server mit Anbindung an LDAP - Server</li>
+			
+			<li>MYSQL - Server</li>
+			
+			<li>APACHE - Server</li>
+			
+			<li>OWNCLOUD - Server</li>
+		</ul>
+	</div>
+
+<!-- Line 2 y= -1500 -->
+
+	<div class="step slide-big" data-x="-3000" data-y="-1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		
+		<h1>NETWORKBOX TESTUMGEBUNG:</h1>
+		<h2>In virteller Umgebung (Virtualbox)</h2>
+		<p>Mit 3 Host in einem internen Netzwerk</p>
+		<h2>In Ubuntus LXD - Containern</h2>
+		<p>Nicht alle Dienste sind im LXD internen Netz sinnvoll. Ein DHCP-Server ist im Containernetzwerk bereits vorhanden.</p>
+		<h2>Echtes Netzwerk</h2>
+		<p>Nachteil, dass Aufbau länger dauert, als im "virtuellen" Fall.</p>
+	</div>
+
+	<div class="step slide-big" data-x="-1500" data-y="-1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<img src="pictures/VirtuellesNetzwerk.png" alt="Virtuelles Netzwerk">
+	</div>
+
+	<div class="step slide-big" data-x="0" data-y="-1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>INSTALLATION DER SERVERDIENSTE:</h1>
+		<p>Die Skripte der NETWORKBOX liegen im öffentlichen git - Repository <a href="https://github.com/edvapp/" target="_blank">https://github.com/edvapp</a> und können von dort heruntergeladen werden.</p>
+		<p>Auf einem normalen Debian/Ubuntu/Raspberry Pi mit einem root-fähigen User einloggen und folgende Befehle ausführen:</p>
+		<ol>	
+			<li><code>&gt;&gt; git clone http://github.com/edvapp/networkbox</code></li>
+			<li><code>>> cd networkbox</code></li>
+			<li>im File networkbox/OPTIONS.conf mit bevorzugtem Texteditor Optionen ändern.</li>
+			<li><code>>> sudo ./install.sh</code></li>
+		</ol>
+		<p>und fertiges Netzwerk mit genießen.</p>
+	</div>
+	
+	<div class="step slide-big" data-x="1500" data-y="-1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>WICHTIGE FILES:</h1>
+		<ol>	
+			<li><a href="https://github.com/edvapp/networkbox/blob/master/OPTIONS.conf" target="_blank">OPTIONS.conf</a></li>
+			<li><a href="https://github.com/edvapp/networkbox/blob/master/install.sh" target="_blank">install.sh</a></li>
+			<li>exemplarischer Serverdienst: <a href="https://github.com/edvapp/networkbox/blob/master/dhcp/install-dhcp.sh" target="_blank">install-dhcp.sh</a></li>
+			
+			
+			
+		</ol>
+	</div>
+	
+<!-- Line 3 y=0 -->
+	
+	<div class="step slide-big" data-x="-3000" data-y="0">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>Grundinstallation eines Clients :</h1>
+		<p>Die NETWORKBOX stellt alles zur Verfügung um eine Grundinstallation eines Ubuntu - Clients über das Netzwerk vorzunehmen.<p>
+		<p>Der Client muss dazu nur einen Eintrag für eine fixe IP in der dhcpd.conf besitzen </p>
+		<h2>Installationsablauf:</h2>
+		<table style="width:100%">
+				<tr>
+					<td><strong>CLIENT</strong></td>
+					<td><strong>DHCP</strong></td>
+					<td><strong>DNS</strong></td>
+					<td><strong>TFTP</strong></td>
+				</tr>
+				<tr>
+					<td>getNetworkInfo(MAC) -----&gt;</td>
+					<td>IP & Netzwerkeinstellungen<br>&lt;----- next-server tftp01</td>
+					<td></td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>getIPfor(tftp01) ----&gt;</td>
+					<td></td>
+					<td>192.168.1.1</td>
+					<td></td>
+				</tr>
+				<tr>
+					<td>getBootMenu() -----&gt;</td>
+					<td></td>
+					<td></td>
+					<td>menu.cfg</td>
+				</tr>
+				<tr>
+					<td>getKernel(Benutzerauswahl) -----&gt;</td>
+					<td></td>
+					<td></td>
+					<td>kernel = 16.04/amd64/linux <br>&lt;-----preseed_2P_1F.cfg</td>
+				</tr>
+			</table>
+	</div>
+	
+	<div class="step slide-big" data-x="-1500" data-y="0">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>Grundinstallation eines Clients :</h1>
+		<h2>Automatische Konfiguration mit Hilfe des preseed.cfg Files:</h2>
+		<ul>
+			<li>d-i debian-installer/locale string de_AT</li>
+			<li>d-i keyboard-configuration/layoutcode string de</li>
+			<li> ... </li>
+			<li>d-i preseed/late_command string <strong> &gt;= Zeiträuber</strong><br>
+				tftp -l /target/etc/default/laus-setup -r preseed/laus-setup -g tftp01; <br>
+				tftp -l /target/usr/local/sbin/laus-client.sh -r preseed/systemd/laus-client.sh -g tftp01; <br>
+				tftp -l /target/lib/systemd/system/laus.service -r preseed/systemd/laus.service -g tftp01; <br>
+				chmod 755 /target/usr/local/sbin/laus-client.sh; <br>
+				chroot /target /bin/ln -s /lib/systemd/system/laus.service /etc/systemd/system/multi-user.target.wants/laus.service
+			</li>
+		</ul>
+	</div>
+	
+<!-- Line 4 y=1500 -->
+
+	<div class="step slide-big" data-x="-3000" data-y="1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>L(inux)A(utomatic)U(date)S(ystem) = LAUS :-)</h1>
+		<p>Viele verschiedene Gruppen von Linux - Clients werden mittels LAUS auf folgende Art verwaltet:</p>
+		<ul>
+			<li>einfach => nur 2 Skripte bilden die Basis</li>
+			<li>zentrale Verwaltung am Server => alle Arbeit findet am LAUS-Sever statt</li>
+			<li>dokumentiert/archiviert/nachvollziehbar => alles in Skripten nachlesbar, alle Änderungen sind durch Skripte dokumentiert</li>
+		</ul>
+	</div>
+
+	<div class="step slide-big" data-x="-1500" data-y="1500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>Installation eines Clients:</h1>
+		<h2>L(inux)A(utomatic)U(date)S(ystem) = LAUS :-)</h2>
+		<h3>Funktionsweise:</h3>
+		<table style="width:100%">
+			<tr>
+				<td><strong>LAUS - CLIENT</strong></td>
+				<td><strong>LAUS - SERVER</strong></td>
+			</tr>
+			<tr>
+				<td>laus.service (NFS mount) ----&gt;</td>
+				<td></td>
+			</tr>
+			<tr>
+				<td></td>
+				<td>&lt;----- NFS - Freigabe <strong>autoinstall</strong></td>
+			</tr>
+			<tr>
+				<td>
+					<p>in Freigabe /opt/autoinstall</p>
+					<ul>
+						<li>laus-server.sh ausführen</li>
+						<li>prüfen ob HOSTNAME im File hostsToClasses vorhanden?</li>
+						<li>wenn ja, Verzeichnisse mit Skripten sammeln</li>
+						<li>Skripte in gesammelten Verzeichnissen ausführen</li>
+					</ul>
+				</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	
+	<div class="step slide-big" data-x="0" data-y="01500">
+		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
+		<p class="title">NETWORKBOX</p>
+		<h1>WICHTIGE LAUS - FILES:</h1>
+		<p>Die LAUS - Skripte sind eine eigene Sammlung von Skripten die in die NETWORKBOX eingebaut werden. 
+		Sie befinden sich auf <a href="https://github.com/edvapp/autoinstall" target="_blank">https://github.com/edvapp/autoinstall</a></p>
+		<ol>	
+			<li><a href="https://github.com/edvapp/networkbox/tree/master/tftpboot/preseed/systemd" target="_blank">Client - Files für systemd Systeme</a></li>
+			<li><a href="https://github.com/edvapp/autoinstall/blob/master/laus/laus-server.sh" target="_blank">laus-server.sh</a> mit Erklärung für das hostsToClasses File, welches jeder an sein Netz anpassen muss.</li>
+			<li>und die Sammlung unseres ganzen Wissens über Installationen gesammelt im Verzeichnis autoinstall/<a href="https://github.com/edvapp/autoinstall/tree/master/laus/scriptsForClasses" target="_blank">scriptsForClasses</a></li>
+			
+			
+			
+		</ol>
+	</div>
+
+	
+	<div id="overview" class="step" data-x="0" data-y="0" data-scale="10">
+	</div>
+</div>
+    
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+</body>
+</html>
+
