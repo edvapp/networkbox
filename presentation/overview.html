@@ -12,22 +12,23 @@
 <div id="impress">
 
 <!-- Line 1 y = -3000 -->
+
 	<div class="step slide-big" data-x="-3000" data-y="-3000">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
-		<p class="title">NETWORKBOX</p>
+		<p class="title">DIE NETWORKBOX</p>
 		
-		<h1>WAS IST DIE NETWORKBOX:</h1>
-		<p>Eine Sammlung von Skripten, die Serverdienste (dhcp, dns, ...) auf einem Computer/Container installiert.</p>
+		<h1>IST:</h1>
+		<p>eine Sammlung von Skripten, die Serverdienste (dhcp, dns, ...) auf einem Computer/Container installiert.</p>
 		
-		<h1>WIE FUNKTIONIERT DIE NETWORKBOX:</h1>
-		<p>In einer zentralen Konfigurationsdatei werden alle wichtigen Daten (IP-Nummer, Rechnernamen, ...) eingetragen.</p>
-		<p>Skripte installiere daraus die gewünschten Serverdienste mit den entsprechen angepassten Konfigurationsdateien.</p>
+		<h1>FUNKTIONIERT:</h1>
+		<p>mittels einer zentralen Konfigurationsdatei, in die alle wichtigen Daten (IP-Nummer, Rechnernamen, ...) eingetragen werden
+		 und aus der heraus Skripte die gewünschten Serverdienste mit den entsprechen angepassten Konfigurationsdateien erzeugen.</p>
 		
-		<h1>VERWENDUNGSZWECK:</h1>
+		<h1>ZUM:</h1>
 		<ul>
-			<li>zur vereinfachten Installation einzelner Serverdienste</li>
-			<li>zum Aufsetzen eines gesamten Netzwerkes</li>
-			<li>als einfache Lernumgebung</li>
+			<li>vereinfachten Aufsetzen einzelner Serverdienste</li>
+			<li>Aufsetzen eines gesamten Netzwerkes</li>
+			<li>Lernen, wie Serverdienste funktionieren und wie sie zusammenhängen.</li>
 		</ul>
 	</div>
 	
@@ -70,12 +71,12 @@
 		</ul>
 		Die Networkbox bietet nicht den Funktionsumfang der "Konkurrenz" hat aber folgende Vorteile:
 		<ul>
-			<li><strong>Transparenz:</strong> alle Skripte einsehbar</li>
+			<li><strong>hohe Transparenz:</strong> alle Skripte einsehbar</li>
 			
 			<li><strong>überschaubare Komplexität:</strong> "nur" BASH Skripte müsssen gelesen werden
 			</li>
 			
-			<li><strong>keine Koste, weil Open Source :-)</strong>
+			<li><strong>keine Kosten, weil Open Source :-)</strong>
 			</li>
 		</ul>
 	</div>
@@ -118,13 +119,13 @@
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		
-		<h1>NETWORKBOX TESTUMGEBUNG:</h1>
-		<h2>In virteller Umgebung (Virtualbox)</h2>
+		<h1>TESTUMGEBUNG:</h1>
+		<h2>In virtellen Maschinen (Virtualbox):</h2>
 		<p>Mit 3 Host in einem internen Netzwerk</p>
-		<h2>In Ubuntus LXD - Containern</h2>
+		<h2>In Ubuntus LXD - Containern:</h2>
 		<p>Nicht alle Dienste sind im LXD internen Netz sinnvoll. Ein DHCP-Server ist im Containernetzwerk bereits vorhanden.</p>
-		<h2>Echtes Netzwerk</h2>
-		<p>Nachteil, dass Aufbau länger dauert, als im "virtuellen" Fall.</p>
+		<h2>In einem echten Netzwerk:</h2>
+		<p>Nachteil: keine Snapshots, wie im "virtuellen" Fall. <br> Die NETWORKBOX bietet aber relative gute uninstall Möglichkeiten.</p>
 	</div>
 
 	<div class="step slide-big" data-x="-1500" data-y="-1500">
@@ -167,7 +168,7 @@
 	<div class="step slide-big" data-x="-3000" data-y="0">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
-		<h1>Grundinstallation eines Clients :</h1>
+		<h1>TFTP - Grundinstallation eines Clients:</h1>
 		<p>Die NETWORKBOX stellt alles zur Verfügung um eine Grundinstallation eines Ubuntu - Clients über das Netzwerk vorzunehmen.<p>
 		<p>Der Client muss dazu nur einen Eintrag für eine fixe IP in der dhcpd.conf besitzen </p>
 		<h2>Installationsablauf:</h2>
@@ -208,7 +209,7 @@
 	<div class="step slide-big" data-x="-1500" data-y="0">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
-		<h1>Grundinstallation eines Clients :</h1>
+		<h1>TFTP - Grundinstallation eines Clients:</h1>
 		<h2>Automatische Konfiguration mit Hilfe des preseed.cfg Files:</h2>
 		<ul>
 			<li>d-i debian-installer/locale string de_AT</li>
@@ -230,6 +231,7 @@
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
 		<h1>L(inux)A(utomatic)U(date)S(ystem) = LAUS :-)</h1>
+		<h2>Zur Konfiguration vieler Linux - Clients:</h2>
 		<p>Viele verschiedene Gruppen von Linux - Clients werden mittels LAUS auf folgende Art verwaltet:</p>
 		<ul>
 			<li>einfach => nur 2 Skripte bilden die Basis</li>
@@ -241,9 +243,8 @@
 	<div class="step slide-big" data-x="-1500" data-y="1500">
 		<div class="gotoOverview"><a href="#overview"><img src="pictures/networkbox.png" alt="the networkbox" style="float:right"></a></div>
 		<p class="title">NETWORKBOX</p>
-		<h1>Installation eines Clients:</h1>
-		<h2>L(inux)A(utomatic)U(date)S(ystem) = LAUS :-)</h2>
-		<h3>Funktionsweise:</h3>
+		<h1>L(inux)A(utomatic)U(date)S(ystem) = LAUS :-)</h1>
+		<h2>Funktionsweise:</h2>
 		<table style="width:100%">
 			<tr>
 				<td><strong>LAUS - CLIENT</strong></td>
