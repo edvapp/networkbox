@@ -58,3 +58,16 @@ do
 done
 
 
+printAndLogMessage "Download 17.10 amd64"
+SOURCE="http://archive.ubuntu.com//ubuntu/dists/artful/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
+DEST=$TFTP_DIRECTORY"/ubuntu-installer/17.10/amd64/"
+
+for FILE in $FILELIST;
+do
+	if [ ! -e ${DEST}${FILE} ];
+	then
+		printAndLogMessage "wget -P "$DEST ${SOURCE}${FILE}
+		wget -P $DEST ${SOURCE}${FILE}
+	fi
+done
+

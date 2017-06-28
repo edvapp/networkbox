@@ -37,7 +37,7 @@ for file in $(ls);
 do
 	# set tftp server name
 	sed -e "{
-		/menu title Installer boot menu (tftp01)/ s/tftp01/$TFTP_SERVER_NAME/
+		s/tftp01/$TFTP_SERVER_NAME/
 	}" -i $file
 	printAndLogMessage "Set tftp server name in menu-config-file: " $TFTP_DIRECTORY/ubuntu-installer/menus/boot-screens/$file
 
