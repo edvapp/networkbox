@@ -8,6 +8,12 @@
 
 printAndLogStartMessage "START: INSTALL FIX IP AND SET HOSTNAME"
 
+if [ "$LXD_CONTAINER" = "yes" ];
+then
+	printAndLogMessage "CREATE SSH-SUDO USER IN CONTAINER"
+	/bin/bash create_SSH_SUDO_USER.sh
+fi
+
 printAndLogMessage "CHANGE HOSTNAME"
 /bin/bash change-etc_hostname_hosts.sh
 
