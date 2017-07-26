@@ -16,6 +16,13 @@ cd ../sql-server
 /bin/bash install-sql_server.sh
 cd $CURRENT_SUB_DIR
 
+printAndLogMessage "CREATE DATABASE & DATABASE-ADMIN FOR CLOUD-DATABASE"
+printAndLogMessage "Setup mysql database for cloud" 
+printAndLogMessage "from http://raspberry.tips/server-2/owncloud-8-1-auf-dem-raspberry-pi-2-mit-apache/"
+cd ../sql-database
+/bin/bash install-database.sh
+cd $CURRENT_SUB_DIR
+
 printAndLogMessage "INSTALL WEB - SERVER WITH HTTPS"
 cd ../web-server
 /bin/bash install-web_server.sh

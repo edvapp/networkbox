@@ -16,6 +16,9 @@ CURRENT_SUB_DIR=$(pwd)
 printAndLogMessage "SILENT INSTALLATION OF MYSQL - SERVER"
 cd ../sql-server
 /bin/bash install-sql_server.sh
+printAndLogMessage "Set password for user root for SQL-Server"
+## next step not necessary if using mariadb
+# mysqladmin -u root password $SQL_SERVER_ROOT_PASSWORD
 cd $CURRENT_SUB_DIR
 
 printAndLogMessage "CREATE DATABASE & DATABASE-ADMIN FOR OWNCLOUD-DATABASE"
