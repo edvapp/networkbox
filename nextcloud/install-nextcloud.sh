@@ -65,7 +65,7 @@ chown -R www-data:www-data /var/www/nextcloud/
 
 cd /var/www/nextcloud/
 
-#sudo -u www-data php occ  maintenance:install --database "mysql" --database-name "nextcloud"  --database-user "root" --database-pass "password" --admin-user "admin" --admin-pass "password"
+sudo -u www-data php occ  maintenance:install --database "mysql" --database-name "${DB}"  --database-user "${DB_ADMIN}" --database-pass "${DB_ADMIN_PASSWORD}" --admin-user "${CLOUD_ADMIN}" --admin-pass "${CLOUD_ADMIN_PASSWORD}"
 
 
 printAndLogEndMessage "FINISH: INSTALLATION OF OWNCLOUD"

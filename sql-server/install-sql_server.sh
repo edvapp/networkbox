@@ -16,5 +16,5 @@ printAndLogMessage "apt-get -q -y install mariadb-server"
 export DEBIAN_FRONTEND=noninteractive 	
 apt-get -q -y install mariadb-server
 
-printAndLogMessage "Set password for user root for SQL-Server"
-mysqladmin -u root password $SQL_SERVER_ROOT_PASSWORD
+#printAndLogMessage "Set password for user root for SQL-Server"
+#mysqladmin -u root password $SQL_SERVER_ROOT_PASSWORD
