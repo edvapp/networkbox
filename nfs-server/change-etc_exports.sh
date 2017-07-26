@@ -23,7 +23,7 @@ printAndLogMessage "write root export to: " $file
 getCIDRsubnetmask $NETMASK
 
 echo "
-$NFS_EXPORT_DIR      	$NETWORK/$CIDR_SUBNETMASK(rw,fsid=0,insecure,no_subtree_check,async)
+$NFS_EXPORT_DIR      	$NETWORK/$CIDR_SUBNETMASK(fsid=0,rw,insecure,no_subtree_check,async)
 " >> $file
 
 logFile $file

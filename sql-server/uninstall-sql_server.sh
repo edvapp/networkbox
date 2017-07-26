@@ -1,8 +1,6 @@
 #!/bin/bash
 
-# uninstall mysql-server
+# uninstall mariadb-server
 
-apt-get remove -y --purge mysql-server mysql-client mysql-common
-
-rm -rf /var/lib/mysql
-rm -rf /etc/mysql*
+apt-get remove -y --purge mariadb-server
+apt-get -y autoremove
