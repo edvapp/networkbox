@@ -26,6 +26,9 @@ cd $CURRENT_SUB_DIR
 printAndLogMessage "INSTALL WEB - SERVER WITH HTTPS"
 cd ../web-server
 /bin/bash install-web_server.sh
+printAndLogMessage "Install additional php7 packages"
+apt-get -y install libapache2-mod-php7.0 php7.0-gd php7.0-json php7.0-mysql php7.0-curl php7.0-mbstring
+apt-get -y install php7.0-intl php7.0-mcrypt php-imagick php7.0-xml php7.0-zip
 cd $CURRENT_SUB_DIR
 
 printAndLogMessage "Install nextcloud"
@@ -74,6 +77,7 @@ cd /var/www/nextcloud/
 
 sudo -u www-data php occ  maintenance:install --database "mysql" --database-name "${DB}"  --database-user "${DB_ADMIN}" --database-pass "${DB_ADMIN_PASSWORD}" --admin-user "${CLOUD_ADMIN}" --admin-pass "${CLOUD_ADMIN_PASSWORD}"
 
+cd $CURRENT_SUB_DIR
 
 printAndLogEndMessage "FINISH: INSTALLATION OF OWNCLOUD"
 

@@ -14,9 +14,7 @@ fi
 
 printAndLogMessage "apt-get -q -y install apache2"
 export DEBIAN_FRONTEND=noninteractive 	
-apt-get -q -y install apache2 libapache2-mod-php7.0
-apt-get -q -y install php7.0-gd php7.0-json php7.0-mysql php7.0-curl php7.0-mbstring
-apt-get -q -y install php7.0-intl php7.0-mcrypt php-imagick php7.0-xml php7.0-zip
+apt-get -y install apache2 
 
 # from: https://doc.owncloud.org/server/8.2/admin_manual/installation/source_installation.html
 # example-installation-on-ubuntu-14-04-lts-server

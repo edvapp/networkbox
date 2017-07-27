@@ -17,6 +17,5 @@ CREATE USER '${DB_ADMIN}'@'localhost' IDENTIFIED BY '${DB_ADMIN_PASSWORD}'; \
 GRANT ALL PRIVILEGES ON ${DB}.* TO '${DB_ADMIN}'@'localhost'; \
 FLUSH PRIVILEGES;"
 
-mysql -u root -p$SQL_SERVER_ROOT_PASSWORD -e "$SQL_COMMAND"
-
-
+#mysql -u root -p$SQL_SERVER_ROOT_PASSWORD -e "$SQL_COMMAND"
+mysql -u root -e "$SQL_COMMAND"
