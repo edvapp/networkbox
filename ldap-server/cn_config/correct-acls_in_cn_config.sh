@@ -22,6 +22,12 @@ dn: olcDatabase={1}mdb,cn=config
 changeType: modify
 delete: olcAccess
 
+#### IDEA/KONCEPT ####
+# {0}: ldapread has to read shadowLastChange, otherwise a passwordchange is forced.
+# {1}: allow authenification to passwords, but only admin may read, unsecure ldapread is NOT allowed to read passwords.
+# {2}: allow ldapread to read the rest of the ldaptree, to get group info for example.
+#      Maybe access can be restricted for ldapread even more, but hard to find out and test :-(
+
 # needed, otherwise passworchange forced
 dn: olcDatabase={1}mdb,cn=config
 changeType: modify

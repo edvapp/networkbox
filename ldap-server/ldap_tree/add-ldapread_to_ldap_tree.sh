@@ -15,7 +15,7 @@ objectClass: top
 cn: ldapread
 userPassword: {SSHA}aEm8iJxqQfAoCav2pde+u0t4b+idi7np
 # nurlesen
-description: object to read authentification info, replaces adminaccount in /etc/ldap on clients
+description: object to read authentification info, replaces admin account in /etc/ldap on clients
 "> $file
 
 printAndLogMessage "add ldif to dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND database"

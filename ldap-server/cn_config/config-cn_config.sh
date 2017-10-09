@@ -6,6 +6,7 @@
 # source configuration
 . ../../OPTIONS.conf
 
+printAndLogMessage "All generated LDIF-files can be found in subdirectory ldap-server/cn_config/ldif"
 
 printAndLogMessage "add admin to cn=config for external access"
 /bin/bash add-admin_to_cn_config.sh
