@@ -8,6 +8,9 @@
 
 printAndLogMessage "All generated LDIF-files can be found in subdirectory ldap-server/ldap_tree/ldif"
 
+printAndLogMessage "add ldapsync - object  to LDAP - tree"
+/bin/bash add-ldapsync_to_ldap_tree.sh
+
 printAndLogMessage "add ldapread - object with password "nurlesen" to LDAP - tree"
 /bin/bash add-ldapread_to_ldap_tree.sh
 

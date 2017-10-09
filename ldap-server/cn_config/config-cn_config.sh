@@ -23,3 +23,7 @@ printAndLogMessage "add indices to cn=schema,cn=config"
 printAndLogMessage "correct acls in cn=schema,cn=config"
 /bin/bash correct-acls_in_cn_config.sh
 
+printAndLogMessage "add sycnmodule to cn=schema,cn=config"
+/bin/bash add_syncmodul_to_cn_config.sh
+
+
