@@ -26,4 +26,10 @@ printAndLogMessage "correct acls in cn=schema,cn=config"
 printAndLogMessage "add sycnmodule to cn=schema,cn=config"
 /bin/bash add_syncmodul_to_cn_config.sh
 
+if [ $LDAP_IS_SLAVE_SERVER = yes ];
+then
+    printAndLogMessage "add slave information to cn=schema,cn=config"
+    /bin/bash add_replication_slave_to_cn_config.sh
+fi
+
 
