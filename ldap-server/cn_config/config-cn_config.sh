@@ -26,10 +26,14 @@ printAndLogMessage "correct acls in cn=schema,cn=config"
 printAndLogMessage "add sycnmodule to cn=schema,cn=config"
 /bin/bash add_syncmodul_to_cn_config.sh
 
+printAndLogMessage "activate sync-Provider for DOMAIN-database"
+/bin/bash activate_syncmodul_for_DOMAIN_database.sh
+
+
 if [ $LDAP_IS_SLAVE_SERVER = yes ];
 then
-    printAndLogMessage "add slave information to cn=schema,cn=config"
-    /bin/bash add_replication_slave_to_cn_config.sh
+    printAndLogMessage "add replication for DOMAIN database to slave cn=schema,cn=config"
+    /bin/bash add_replication_for_DOMAIN_database_to_slave_cn_config.sh
 fi
 
 
