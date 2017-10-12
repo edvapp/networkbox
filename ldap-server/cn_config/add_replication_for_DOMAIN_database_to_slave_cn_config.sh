@@ -14,7 +14,7 @@ echo "
 dn: olcDatabase={1}mdb,cn=config
 changetype: modify
 add: olcSyncrepl
-olcSyncrepl: {0}rid=2 provider=ldap://ldap01:389
+olcSyncrepl: {0}rid=2 provider=ldap://ldap01
   type=refreshOnly
   bindmethod=simple
   binddn=\"cn=ldapsync,dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND\"

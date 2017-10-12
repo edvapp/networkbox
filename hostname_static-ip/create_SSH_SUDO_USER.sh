@@ -7,7 +7,7 @@
 . ../OPTIONS.conf
 
 printAndLogMessage "create sudo user $LXD_SSH_SUDO_USER in Container"
-useradd --shell=/bin/bash --uid=1020 -G sudo -p $(openssl passwd -1 $LXD_SSH_SUDO_USER_PASSWORD) $LXD_SSH_SUDO_USER
+useradd --shell=/bin/bash --uid=1001 -G sudo -p $(openssl passwd -1 $LXD_SSH_SUDO_USER_PASSWORD) $LXD_SSH_SUDO_USER
 
 # manipulated file
 file=/etc/ssh/sshd_config
