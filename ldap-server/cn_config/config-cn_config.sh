@@ -29,6 +29,8 @@ printAndLogMessage "add sycnmodule to cn=schema,cn=config"
 printAndLogMessage "activate sync-Provider for DOMAIN-database"
 /bin/bash activate_syncmodul_for_DOMAIN_database.sh
 
+printAndLogMessage "encrease maximum for ldap-queries in DOMAIN-database"
+/bin/bash encrease_max_for_queries_in_DOMAIN_database.sh
 
 if [ "$LDAP_IS_SLAVE_SERVER" = "yes" ];
 then
