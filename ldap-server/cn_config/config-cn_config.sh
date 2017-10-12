@@ -30,7 +30,7 @@ printAndLogMessage "activate sync-Provider for DOMAIN-database"
 /bin/bash activate_syncmodul_for_DOMAIN_database.sh
 
 
-if [ $LDAP_IS_SLAVE_SERVER = yes ];
+if [ "$LDAP_IS_SLAVE_SERVER" = "yes" ];
 then
     printAndLogMessage "add replication for DOMAIN database to slave cn=schema,cn=config"
     /bin/bash add_replication_for_DOMAIN_database_to_slave_cn_config.sh

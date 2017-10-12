@@ -53,7 +53,7 @@ cd ..
 
 ## populating the database while replication sycn is running might break replication sync
 ## after sync will be the same anyway
-if [ $LDAP_IS_SLAVE_SERVER != yes ];
+if [ "$LDAP_IS_SLAVE_SERVER" != "yes" ];
 then
 	printAndLogMessage "POPULATE LDAP TREE"
 	cd ldap_tree
