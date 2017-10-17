@@ -13,7 +13,10 @@ echo "
 # disable password change for users
 dn: olcDatabase={1}mdb,cn=config
 changeType: modify
-replace: olcAccess
+delete: olcAccess
+olcAccess: {3}
+-
+add: olcAccess
 olcAccess: {3}to attrs=userPassword,shadowLastChange,krbPrincipalKey,sambaNTPassword,sambaLMPassword by anonymous auth by self read by * none
 
 " > $file
