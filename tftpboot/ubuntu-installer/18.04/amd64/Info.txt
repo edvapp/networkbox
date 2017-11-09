@@ -1,0 +1,3 @@
+OS: Ubuntu
+Version: 18.04
+Architecture: amd64
