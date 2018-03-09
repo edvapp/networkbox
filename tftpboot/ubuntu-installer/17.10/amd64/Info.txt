@@ -1,3 +1,0 @@
-OS: Ubuntu
-Version: 17.10
-Architecture: amd64

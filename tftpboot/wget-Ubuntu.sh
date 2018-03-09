@@ -32,20 +32,6 @@ done
 cp $TFTP_DIRECTORY"/ubuntu-installer/16.04/amd64/pxelinux.0" $TFTP_DIRECTORY
 
 
-printAndLogMessage "Download 17.10 amd64"
-SOURCE="http://archive.ubuntu.com/ubuntu/dists/artful/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
-DEST=$TFTP_DIRECTORY"/ubuntu-installer/17.10/amd64/"
-
-for FILE in $FILELIST;
-do
-	if [ ! -e ${DEST}${FILE} ];
-	then
-		printAndLogMessage "wget -P "$DEST ${SOURCE}${FILE}
-		wget -P $DEST ${SOURCE}${FILE}
-	fi
-done
-
-
 printAndLogMessage "Download 18.04 amd64"
 SOURCE="http://archive.ubuntu.com/ubuntu/dists/bionic/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
 DEST=$TFTP_DIRECTORY"/ubuntu-installer/18.04/amd64/"
