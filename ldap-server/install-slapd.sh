@@ -25,15 +25,11 @@ cp $file $file.tmp
 
 # block host entrance, if one exists
 sed -e "{
-    /127.0.1.1/ s/127.0.1.1/#127.0.1.1/
+    /$(hostname)/ s/^/#/
 }" -i $file 
 
 # write host entrance with our LDAP suffixes
 echo "127.0.1.1 $(hostname).$LDAP_DOMAIN_SUFFIX_FIRST.$LDAP_DOMAIN_SUFFIX_SECOND $(hostname)" >> $file
-
-#sed -e "{
-#    /127.0.1.1/ s/127.0.1.1/127.0.1.1 $(hostname).$LDAP_DOMAIN_SUFFIX_FIRST.$LDAP_DOMAIN_SUFFIX_SECOND $(hostname)/
-#}" -i $file 
 
 logFile $file
 
