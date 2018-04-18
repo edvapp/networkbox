@@ -13,9 +13,9 @@
 # 4: inetorgperson
 
 # schema list comming with ldap standard
-# SCHEMA_LIST="collective corba duaconf dyngroup.schema java.schema misc openldap ppolicy.schema ldapns pmi"
+# SCHEMA_LIST="collective corba duaconf dyngroup java misc openldap ppolicy ldapns pmi"
 # added schema: samba kerberos dhcp
-SCHEMA_LIST="collective corba duaconf dyngroup.schema java.schema misc openldap ppolicy.schema ldapns pmi samba kerberos dhcp"
+SCHEMA_LIST="collective corba duaconf misc openldap ldapns pmi samba kerberos dhcp"
 
 cp ./schemas/*.schema /etc/ldap/schema
 cp ./schemas/*.ldif /etc/ldap/schema

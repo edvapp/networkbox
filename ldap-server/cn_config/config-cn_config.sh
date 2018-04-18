@@ -24,7 +24,7 @@ printAndLogMessage "correct acls in cn=schema,cn=config"
 /bin/bash correct-acls_in_cn_config.sh
 
 printAndLogMessage "add sycnmodule to cn=schema,cn=config"
-/bin/bash add_syncmodul_to_cn_config.sh
+/bin/bash add-syncmodul_to_cn_config.sh
 
 printAndLogMessage "activate sync-Provider for DOMAIN-database"
 /bin/bash activate-syncmodul_for_DOMAIN_database.sh
