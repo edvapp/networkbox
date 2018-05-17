@@ -18,6 +18,11 @@ printAndLogMessage "CHANGE HOSTNAME"
 /bin/bash change-etc_hostname_hosts.sh
 
 printAndLogMessage "CHANGE NETWORK INTERFACE FIX IP"
-/bin/bash change-etc_network_interfaces.sh
+if [ -d /etc/netplan ];
+then
+	/bin/bash change-etc_netplan_interfaces.sh
+else
+	/bin/bash change-etc_network_interfaces.sh
+fi
 
 printAndLogEndMessage "FINISH: INSTALL FIX IP AND SET HOSTNAME"
