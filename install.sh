@@ -37,10 +37,6 @@ cd laus
 /bin/bash install-laus_server.sh
 cd $INSTALL_ROOT_DIR
 
-cd owncloud
-/bin/bash install-owncloud.sh
-cd $INSTALL_ROOT_DIR
-
 reboot
 
 

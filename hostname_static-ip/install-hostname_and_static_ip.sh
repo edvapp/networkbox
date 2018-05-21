@@ -15,7 +15,11 @@ then
 fi
 
 printAndLogMessage "CHANGE HOSTNAME"
-/bin/bash change-etc_hostname_hosts.sh
+if [ -d /etc/cloud ];
+then
+	/bin/bash change-etc_cloud_cloud.cfg.sh
+fi
+	/bin/bash change-etc_hostname_hosts.sh
 
 printAndLogMessage "CHANGE NETWORK INTERFACE FIX IP"
 if [ -d /etc/netplan ];
