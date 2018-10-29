@@ -59,16 +59,13 @@ Alias /nextcloud \"/var/www/nextcloud/\"
 </Directory>
 " >> /etc/apache2/sites-available/nextcloud.conf
 
-ln -s /etc/apache2/sites-available/nextcloud.conf /etc/apache2/sites-enabled/nextcloud.conf
+a2ensite nextcloud.conf
 
-printAndLogMessage "Enable Apache modules"
+printAndLogMessage "Enable more Apache modules"
 a2enmod rewrite
 a2enmod headers
-a2enmod env
-a2enmod dir
-a2enmod mime
 
-service apache2 restart
+systemctl restart apache2
 
 chown -R www-data:www-data /var/www/nextcloud/
 
