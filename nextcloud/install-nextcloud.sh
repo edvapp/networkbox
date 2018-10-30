@@ -68,10 +68,12 @@ systemctl restart apache2
 
 chown -R www-data:www-data /var/www/nextcloud/
 
+printAndLogMessage "CONNECT NEXTCLOUD - DATABASE TO NEXTCLOUD"
+/bin/bash connect-nextcloud_and_db.sh
+
+printAndLogMessage "SET OWN IP AS SECOND TRUSTED_DOMAIN"
 cd /var/www/nextcloud/
-
-sudo -u www-data php occ maintenance:install --database "mysql" --database-name "${DB}"  --database-user "${DB_ADMIN}" --database-pass "${DB_ADMIN_PASSWORD}" --admin-user "${CLOUD_ADMIN}" --admin-pass "${CLOUD_ADMIN_PASSWORD}"
-
+sudo -u www-data php occ config:system:set trusted_domains 1 --value=$(hostname -i)
 cd $CURRENT_SUB_DIR
 
 printAndLogEndMessage "FINISH: INSTALLATION OF NEXTCLOUD"
