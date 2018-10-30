@@ -22,10 +22,10 @@ apt-get -y install apache2
 # All you have to do is to enable the ssl module and the default site. Open a terminal and run:
 printAndLogMessage "enable module ssl with: a2enmod ssl"
 a2enmod ssl
-printAndLogMessage "enable site default-ssl in /etc/apache2/site-available/default-sll.conf with: a2ensite default-ssl"
+printAndLogMessage "enable site default-ssl in /etc/apache2/site-available/default-ssl.conf with: a2ensite default-ssl"
 a2ensite default-ssl
-# restart apache2
-service apache2 reload
+# reload apache2
+systemctl reload apache2
 
 
 

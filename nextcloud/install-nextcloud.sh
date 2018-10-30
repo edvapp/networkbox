@@ -8,7 +8,6 @@
 
 printAndLogStartMessage "START: INSTALLATION OF NEXTCLOUD"
 
-
 CURRENT_SUB_DIR=$(pwd)
 
 printAndLogMessage "SILENT INSTALLATION OF MARIADB-SQL - SERVER"
@@ -26,8 +25,8 @@ cd $CURRENT_SUB_DIR
 printAndLogMessage "INSTALL WEB - SERVER WITH HTTPS"
 cd ../web-server
 /bin/bash install-web_server.sh
-printAndLogMessage "Install additional php7 packages"
-apt-get -y install libapache2-mod-php php-common php-cli php-curl php-gd php-gmp php-gmagick php-imagick php-intl php-json php-mbstring php-mysql php-xmlrpc php-xml php-zip
+printAndLogMessage "Install additional php packages"
+apt-get -y install libapache2-mod-php php php-common php-cli php-curl php-gd php-gmp php-imagick php-intl php-json php-mbstring php-mysql php-xmlrpc php-xml php-zip
 cd $CURRENT_SUB_DIR
 
 printAndLogMessage "Install nextcloud"
