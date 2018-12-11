@@ -54,7 +54,7 @@ echo "
 host $LDAP_CLIENT_LDAP_SERVERS
 
 # The distinguished name of the search base.
-base dc=$LDAP_DOMAIN_SUFFIX_FIRST,dc=$LDAP_DOMAIN_SUFFIX_SECOND
+base dc=$LDAP_CLIENT_DOMAIN_SUFFIX_FIRST,dc=$LDAP_CLIENT_DOMAIN_SUFFIX_SECOND
 
 # Another way to specify your LDAP server is to provide an
 # uri with the server name. This allows to use
@@ -329,3 +329,4 @@ nss_initgroups_ignoreusers backup,bin,daemon,games,gnats,irc,landscape,libuuid,l
 " >> $file
 
 logFile $file
+
