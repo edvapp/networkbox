@@ -16,7 +16,7 @@ FILELIST="initrd.gz linux pxelinux.0"
 
 
 printAndLogMessage "Download 16.04 amd64"
-SOURCE="http://archive.ubuntu.com/ubuntu/dists/xenial/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
+SOURCE="http://archive.ubuntu.com/ubuntu/dists/xenial-updates/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
 DEST=$TFTP_DIRECTORY"/ubuntu-installer/16.04/amd64/"
 
 for FILE in $FILELIST;
