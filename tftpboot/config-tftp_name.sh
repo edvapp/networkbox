@@ -11,24 +11,14 @@
 # to get variable $TFTP_DIRECTORY
 # configured in /etc/default/tftpd-hpa
 
-cd $TFTP_DIRECTORY/preseed/upstart
+cd $TFTP_DIRECTORY/preseed
 for file in $(ls);
 do
 	# set tftp server name
 	sed -e "{
-		/d-i preseed\/late_command/ s/tftp01/$TFTP_SERVER_NAME/
+		/d-i preseed\/late_command/ s/tftp01/$TFTP_SERVER_NAME/g
 	}" -i $file
- 	printAndLogMessage "Set tftp server name preseed-file: " $TFTP_DIRECTORY/preseed/upstart/$file
-done
-
-cd $TFTP_DIRECTORY/preseed/systemd
-for file in $(ls);
-do
-	# set tftp server name
-	sed -e "{
-		/d-i preseed\/late_command/ s/tftp01/$TFTP_SERVER_NAME/
-	}" -i $file
-	printAndLogMessage "Set tftp server name in preseed-file: " $TFTP_DIRECTORY/preseed/systemd/$file
+	printAndLogMessage "Set tftp server name in preseed-file: " $TFTP_DIRECTORY/preseed/$file
 
 done
 
