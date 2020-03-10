@@ -10,7 +10,7 @@
 file=./ldif/disable-write_to_DOMAIN_database_for_slave.ldif
 
 echo "
-# disable password change for users
+# disable password change for users if ldap-database is a slave
 dn: olcDatabase={1}mdb,cn=config
 changeType: modify
 delete: olcAccess

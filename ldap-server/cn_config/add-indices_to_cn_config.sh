@@ -10,9 +10,10 @@
 file=./ldif/add-indices_to_cn_config.ldif
 
 echo "
-# samba... for SAMBA Fileserver
-# krb.... for KERBEROS Server
-# entry.. for REPLICATION to backup LDAP Servers
+# samba...      for SAMBA Fileserver
+# krb...        for KERBEROS Server
+# entry...      for REPLICATION to backup LDAP Servers
+# displayName   will be queried on login
 #
 dn: olcDatabase={1}mdb,cn=config
 changetype: modify
@@ -26,6 +27,7 @@ olcDbIndex: krbPrincipalName eq,pres,sub
 olcDbIndex: uniqueMember eq
 olcDbIndex: entryUUID,entryCSN eq
 olcDbIndex: default sub
+olcDbIndex: displayName eq
 " > $file
 
 printAndLogMessage "add ldif to cn=config database"
