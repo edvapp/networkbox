@@ -30,7 +30,8 @@ done
 
 
 printAndLogMessage "Download 20.04 amd64"
-SOURCE="http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
+# SOURCE="http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/images/netboot/ubuntu-installer/amd64/"
+SOURCE="http://archive.ubuntu.com/ubuntu/dists/focal/main/installer-amd64/current/legacy-images/netboot/ubuntu-installer/amd64/"
 DEST=$TFTP_DIRECTORY"/ubuntu-installer/20.04/amd64/"
 
 for FILE in $FILELIST;
