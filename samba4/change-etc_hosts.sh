@@ -23,7 +23,12 @@ sed -e "{
 }" -i $file 
 
 # write host entrance with our LDAP suffixes
-echo "${SAMBA4_STATIC_IP} $(hostname).${SAMBA4_DNS_DOMAIN_NAME} $(hostname)" >> $file
+echo "
+
+## added by networkbox
+${SAMBA4_STATIC_IP} $(hostname).${SAMBA4_DNS_DOMAIN_NAME} $(hostname)
+##
+" >> $file
 
 logFile $file
 

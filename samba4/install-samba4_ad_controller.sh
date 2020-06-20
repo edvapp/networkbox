@@ -28,6 +28,7 @@ printAndLogMessage "INSTALL PACKAGES"
 printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools"
 ## from samba - wiki: acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user
 ## acl, attr: exteded acls
+## bind9-dnsutils: dig, nslookup
 ## to have a look at the ldb-databases: ldb-tools
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools
 

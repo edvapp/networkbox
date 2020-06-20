@@ -49,5 +49,7 @@ network:
           addresses: [$DNS_IP_LOCAL_NETWORK, $DNS_IP_PROVIDER, $DNS_IP_WWW]   
 " >> $file
 
+logFile $file
+
 printAndLogMessage "netplan apply " $file
 netplan apply
