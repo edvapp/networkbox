@@ -34,10 +34,11 @@ apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind k
 
 ## CONNECT client via nsswitch.conf and winbind to domain ${SAMBA4_DOMAIN}
 /bin/bash change-nsswitch.conf.sh
+printAndLogMessage "systemctl restart winbind"
+systemctl restart winbind
 
-printAndLogMessage "CLEAN KERBEROS CONFIGURATION FILES"
-printAndLogMessage "mv /etc/krb5.conf /etc/krb5.conf.orig"
-mv /etc/krb5.conf /etc/krb5.conf.orig
+printAndLogMessage "WRITE NEW CLEAN KERBEROS CONFIGURATION FILES"
+/bin/bash write-etc_krb5.conf.sh
 
 ##STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh
@@ -54,13 +55,13 @@ mkdir -p /home/xchange
 net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}/users/"
-chgrp -R "Domain Users" ${SAMBA4_HOMES_BASE_DIR}/users/
+chgrp -R "${SAMBA4_DOMAIN}\Domain Users" ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}/users/"
 chmod 2750 ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "change group to Domain Users for /home/xchange/"
-chgrp -R "Domain Users" /home/xchange/
+chgrp -R "${SAMBA4_DOMAIN}\Domain Users" /home/xchange/
 
 printAndLogMessage "change mode for directory /home/xchange/"
 chmod 2777 /home/xchange/
