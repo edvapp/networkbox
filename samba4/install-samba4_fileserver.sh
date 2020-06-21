@@ -25,12 +25,15 @@ then
 fi
 
 printAndLogMessage "INSTALL PACKAGES"
-printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools"
+printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind"
 ## from samba - wiki: acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user
 ## acl, attr: exteded acls
 ## bind9-dnsutils: dig, nslookup
-## to have a look at the ldb-databases: ldb-tools
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools
+## to get Domain Users/Groups onto Fileserver to set Directory/File Permissions: libnss-winbind
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind
+
+## CONNECT client via nsswitch.conf and winbind to domain ${SAMBA4_DOMAIN}
+/bin/bash change-nsswitch.conf.sh
 
 printAndLogMessage "CLEAN KERBEROS CONFIGURATION FILES"
 printAndLogMessage "mv /etc/krb5.conf /etc/krb5.conf.orig"

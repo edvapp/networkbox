@@ -65,7 +65,7 @@ echo "
     force create mode = 0600
     force directory mode = 0700
 
-[public]
+[xchange]
     # an xchange share for testing
     path = /home/xchange/ 
     public = yes
