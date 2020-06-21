@@ -63,6 +63,9 @@ systemctl unmask samba-ad-dc
 systemctl start samba-ad-dc
 systemctl enable samba-ad-dc
 
+printAndLogMessage  "copy simple netlogon.bat to /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts"
+cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
+
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"
 
 
