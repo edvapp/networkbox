@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # source helper functions
-. ../helperfunctions.sh
+. ../../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../../OPTIONS.conf
 
 ## test Users:
 echo "TEST ALL USERS"

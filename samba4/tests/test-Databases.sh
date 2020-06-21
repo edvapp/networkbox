@@ -1,10 +1,10 @@
 #!/bin/bash
 
 # source helper functions
-. ../helperfunctions.sh
+. ../../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../../OPTIONS.conf
 
 # list databases
 ldbsearch -H /var/lib/samba/private/sam.ldb
