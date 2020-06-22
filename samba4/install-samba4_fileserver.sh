@@ -53,7 +53,7 @@ printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}/users/"
 mkdir -p ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}/users/"
-chgrp -R "${SAMBA4_DOMAIN}\Domain Administrators" ${SAMBA4_HOMES_BASE_DIR}/users/
+chgrp "${SAMBA4_DOMAIN}\Domain Administrators" ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}/users/"
 chmod 2775 ${SAMBA4_HOMES_BASE_DIR}/users/
