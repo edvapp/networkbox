@@ -10,9 +10,9 @@
 file=/etc/netplan/50-static-interface.yaml
 
 printAndLogMessage "Save all yaml files in /etc/netplan"
-for fileToSave in *.yaml;
+for fileToSave in /etc/netplan/*.yaml;
 do
-	mv /etc/netplan${fileToSave} ${fileToSave}.save
+	mv ${fileToSave} ${fileToSave}.save
 done
 
 printAndLogMessage "Get interface name of active network interfaces"
