@@ -9,6 +9,7 @@
 ## manipulated file /etc/krb5.conf 
 file=/etc/krb5.conf 
 
+printAndLogMessage "WRITE NEW CLEAN KERBEROS CONFIGURATION FILES"
 printAndLogMessage "Save original file: " ${file}
 saveOriginal ${file}
 logFile ${file}

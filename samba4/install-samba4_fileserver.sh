@@ -33,11 +33,12 @@ printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-v
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind
 
 ## CONNECT client via nsswitch.conf and winbind to domain ${SAMBA4_DOMAIN}
-/bin/bash change-nsswitch.conf.sh
+/bin/bash change-etc_nsswitch.conf.sh
+
 printAndLogMessage "systemctl restart winbind"
 systemctl restart winbind
 
-printAndLogMessage "WRITE NEW CLEAN KERBEROS CONFIGURATION FILES"
+### WRITE NEW CLEAN KERBEROS CONFIGURATION FILES
 /bin/bash write-etc_krb5.conf.sh
 
 ##STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"

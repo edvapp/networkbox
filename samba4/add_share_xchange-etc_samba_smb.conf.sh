@@ -21,7 +21,6 @@ logFile ${file}
 printAndLogMessage "Change file: " ${file}
 
 echo "
-
 [xchange]
     # an xchange share for testing
     path = /home/xchange/ 
