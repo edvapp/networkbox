@@ -31,7 +31,7 @@ echo "
     printable = no
     guest ok = yes
 
-" > ${file}
+" >> ${file}
 
 logFile ${file}
 

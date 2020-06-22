@@ -65,15 +65,6 @@ echo "
     force create mode = 0600
     force directory mode = 0700
 
-[xchange]
-    # an xchange share for testing
-    path = /home/xchange/ 
-    public = yes
-    writable = yes
-    comment = exchange share on $(hostname)
-    printable = no
-    guest ok = yes
-
 " > ${file}
 
 logFile ${file}
