@@ -43,28 +43,23 @@ printAndLogMessage "WRITE NEW CLEAN KERBEROS CONFIGURATION FILES"
 ##STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh
 
-printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}/users/"
-mkdir -p ${SAMBA4_HOMES_BASE_DIR}/users/
-
-printAndLogMessage "create directory /home/xchange"
-mkdir -p /home/xchange
-
 ## WRITE NEW /etc/samba/smb.conf
 /bin/bash write-etc_samba_smb.conf.sh
 
+printAndLogMessage "join domain ${SAMBA4_DNS_DOMAIN_NAME}"
 net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
+printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}/users/"
+mkdir -p ${SAMBA4_HOMES_BASE_DIR}/users/
+
 printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}/users/"
-chgrp -R "${SAMBA4_DOMAIN}\Domain Users" ${SAMBA4_HOMES_BASE_DIR}/users/
+chgrp -R "${SAMBA4_DOMAIN}\Domain Administrators" ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}/users/"
-chmod 2750 ${SAMBA4_HOMES_BASE_DIR}/users/
+chmod 2775 ${SAMBA4_HOMES_BASE_DIR}/users/
 
-printAndLogMessage "change group to Domain Users for /home/xchange/"
-chgrp -R "${SAMBA4_DOMAIN}\Domain Users" /home/xchange/
-
-printAndLogMessage "change mode for directory /home/xchange/"
-chmod 2777 /home/xchange/
+printAndLogMessage "add share /home/xchange/"
+/bin/bash add_share_xchange-etc_samba_smb.conf.sh
 
 printAndLogEndMessage "FINISH:  INSTALLATION OF SAMBA4 FILE - SERVER"
 
