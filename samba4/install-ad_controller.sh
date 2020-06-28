@@ -21,7 +21,8 @@ export DEBIAN_FRONTEND=noninteractive
 ## check if FQDN exists in /etc/hosts
 if [ $(hostname) = $(hostname --fqdn) ];
 then
-        /bin/bash change-etc_hosts.sh
+        /bin/bash change-FQHN-etc_hosts.sh
+        /bin/bash change-IP-etc_hosts.sh
 fi
 
 printAndLogMessage "INSTALL PACKAGES"
