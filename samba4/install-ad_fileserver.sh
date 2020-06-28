@@ -6,13 +6,7 @@
 # source configuration
 . ../OPTIONS.conf
 
-# install samba4 ad controller
-if [ ! "$FULLINSTALL" = "true" ];
-then
-	echo "FULLINSTALL=false"
-	apt-get -y update
-fi
-
+# full install check is done in install-ad_client.sh
 
 printAndLogStartMessage "START: INSTALLATION OF SAMBA4 FILE - SERVER"
 
