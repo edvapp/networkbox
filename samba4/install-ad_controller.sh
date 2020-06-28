@@ -32,7 +32,6 @@ printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-v
 ## to have a look at the ldb-databases: ldb-tools
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools
 
-
 printAndLogMessage "CLEAN SAMBA & KERBEROS CONFIGURATION FILES"
 printAndLogMessage "mv /etc/samba/smb.conf /etc/samba/smb.conf.orig"
 printAndLogMessage "mv /etc/krb5.conf /etc/krb5.conf.orig"
