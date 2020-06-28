@@ -35,7 +35,7 @@ realm join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}
 /bin/bash change-etc_sssd_sssd.conf.sh
 
 printAndLogMessage "enable automatic home-directory creation"
-pam−auth−update −−enable mkhomedir
+pam-auth-update --enable mkhomedir
 
 printAndLogStartMessage "STOP: INSTALLATION OF AD - CLIENT"
 
