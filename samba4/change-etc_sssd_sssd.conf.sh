@@ -41,3 +41,6 @@ sed -e "{
 }" -i $file
 
 logFile $file
+
+printAndLogMessage "restart sssd daemon"
+systemctl restart sssd
