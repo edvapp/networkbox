@@ -13,8 +13,8 @@ printAndLogMessage "Manipulated directory " $NETWORKBOX_LAUS_DIR
 printAndLogMessage "mkdir " $NETWORKBOX_LAUS_DIR
 mkdir $NETWORKBOX_LAUS_DIR
 
-printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/010-update.sh " $NETWORKBOX_LAUS_DIR
-cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/010-update.sh $NETWORKBOX_LAUS_DIR
+printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/INSTALL_U2004/010-update.sh " $NETWORKBOX_LAUS_DIR
+cp /opt/autoinstall/laus/scriptsForClasses/INSTALL_U2004/010-update.sh $NETWORKBOX_LAUS_DIR
 
-printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/020-install_UBUNTU_Desktop.sh " $NETWORKBOX_LAUS_DIR
-cp /opt/autoinstall/laus/scriptsForClasses/UBUNTU1604/020-install_UBUNTU_Desktop.sh $NETWORKBOX_LAUS_DIR
+printAndLogMessage "cp /opt/autoinstall/laus/scriptsForClasses/INSTALL_U2004/020-install_UBUNTU_Desktop.sh " $NETWORKBOX_LAUS_DIR
+cp /opt/autoinstall/laus/scriptsForClasses/INSTALL_U2004/020-install_UBUNTU_Desktop.sh $NETWORKBOX_LAUS_DIR
