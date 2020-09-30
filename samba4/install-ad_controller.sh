@@ -13,7 +13,6 @@ then
 	apt-get -y update
 fi
 
-
 printAndLogStartMessage "START: INSTALLATION OF SAMBA4 AD - CONTROLLER"
 
 export DEBIAN_FRONTEND=noninteractive
@@ -22,8 +21,10 @@ export DEBIAN_FRONTEND=noninteractive
 if [ $(hostname) = $(hostname --fqdn) ];
 then
         /bin/bash change-FQHN-etc_hosts.sh
-        /bin/bash change-IP-etc_hosts.sh
 fi
+
+## set the static IP in /etc/hosts
+/bin/bash change-IP-etc_hosts.sh
 
 printAndLogMessage "INSTALL PACKAGES"
 printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools"
@@ -32,6 +33,11 @@ printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-v
 ## bind9-dnsutils: dig, nslookup
 ## to have a look at the ldb-databases: ldb-tools
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools
+
+printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
+systemctl mask smbd nmbd winbind
+systemctl disable smbd nmbd winbind
+systemctl stop smbd nmbd winbind
 
 printAndLogMessage "CLEAN SAMBA & KERBEROS CONFIGURATION FILES"
 printAndLogMessage "mv /etc/samba/smb.conf /etc/samba/smb.conf.orig"
@@ -48,14 +54,14 @@ printAndLogMessage "cp /var/lib/samba/private/krb5.conf /etc"
 cp /var/lib/samba/private/krb5.conf /etc
 
 ## "STOP AND DISABLE systemd-resolved & SET OWN IP AS NAMESERVER IN NEW $file"
+## has to be done AFTER
+## * apt-get install
+## * samba-tool domain provision
+## because DNS lookup is brocken
 /bin/bash change-etc_resolv.conf.sh
 
-printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
-systemctl mask smbd nmbd winbind
-systemctl disable smbd nmbd winbind
-systemctl stop smbd nmbd winbind
-
-## SET FORWARDER IN /etc/samba/smb.conf
+## SET FORWARDER IN /etc/samba/smb.conf 
+## DNS lookup should work now again
 /bin/bash change-etc_samba_smb.conf.sh
 
 printAndLogMessage  "UMASK, START & ENABLE samba-ad-dc"
