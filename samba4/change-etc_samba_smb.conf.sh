@@ -17,9 +17,9 @@ logFile ${file}
 printAndLogMessage "Change file: " ${file}
 
 ## HINTS to understand sed:
-## 1: we have tu use " instead ' because of ${...} variable substitution
+## 1: we have to use " instead ' because of ${...} variable substitution
 ## 2: remove all quoting \ in s/.../.../ and you get a readable regex
-sed -e "/dns/ s/\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}/${SAMBA4_DNS_FORWARDER_IP}/" -i ${file}
+sed -e "/dns/ s/\([[:digit:]]\{1,3\}\.\)\{3\}[[:digit:]]\{1,3\}/${SAMBA4_AD_DNS_FORWARDER_IP}/" -i ${file}
 
 logFile ${file}
 
