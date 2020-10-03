@@ -27,11 +27,12 @@ fi
 /bin/bash change-IP-etc_hosts.sh
 
 printAndLogMessage "INSTALL PACKAGES"
-printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools"
+printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli"
 ## from samba - wiki: acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user
 ## acl, attr: exteded acls
 ## bind9-dnsutils: dig, nslookup
 ## to have a look at the ldb-databases: ldb-tools
+## to preset computer-accounts: adcli
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools
 
 printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
@@ -58,7 +59,7 @@ cp /var/lib/samba/private/krb5.conf /etc
 ## * apt-get install
 ## * samba-tool domain provision
 ## because DNS lookup is brocken
-/bin/bash change-etc_resolv.conf.sh
+/bin/bash change_for_AD-etc_resolv.conf.sh
 
 ## SET FORWARDER IN /etc/samba/smb.conf 
 ## DNS lookup should work now again
