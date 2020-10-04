@@ -56,8 +56,11 @@ printAndLogMessage "enable automatic home-directory creation"
 pam-auth-update --enable mkhomedir
 
 printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
-adcli join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}
-#net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
+# adcli join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}
+# looks like adcli works only with sssd without problems :-( ??
+# so we use net ads on servers
+# server will also be added to DNS, if it does not exist. error message if allready in DNS
+net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}/users/"
 mkdir -p ${SAMBA4_HOMES_BASE_DIR}/users/
