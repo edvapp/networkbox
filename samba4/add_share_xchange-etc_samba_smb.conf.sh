@@ -39,10 +39,13 @@ systemctl start smbd nmbd winbind
 
 mkdir -p /home/xchange/
 
-chgrp -R "${SAMBA4_DOMAIN}\Domain Users" /home/xchange/
+printAndLogMessage "change mode for directory /home/xchange/"
+chgrp -v -R "${SAMBA4_DOMAIN}\Domain Users" /home/xchange/
 
 printAndLogMessage "change mode for directory /home/xchange/"
-chmod 2777 /home/xchange/
+chmod -v 2777 /home/xchange/
+
+
 
 
 

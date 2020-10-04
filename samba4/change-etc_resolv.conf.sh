@@ -20,7 +20,7 @@ systemctl disable systemd-resolved
 rm $file
 
 printAndLogMessage "SET OWN IP AS NAMESERVER IN NEW $file"
-echo "nameserver ${SAMBA4_DNS_STATIC_IP}
+echo "nameserver ${SAMBA4_AD_DNS_STATIC_IP}
 search ${SAMBA4_DNS_DOMAIN_NAME}
 "> $file
 logFile $file

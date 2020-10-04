@@ -14,17 +14,17 @@ logFile $file
 
 ## all set back to standard:
 ##
-## use_fully_qualified_names = False
+## use_fully_qualified_names = False (default)
 ## we don not want peter@domain.com as username
 ##
-## krb5_store_password_if_offline = False
+## krb5_store_password_if_offline = False (default)
 ## do not store password
 ##
-## cache_credentials = False
+## cache_credentials = False (default)
 ## do not store user credentials
 ##
-## ldap_id_mapping = False
-## use UID ad GID from AD-Controller
+## ldap_id_mapping = False (default = True)
+## use UID and GID from AD-Controller
 ## if users on AD do NOT have these attributes 
 ## set to True and they will get domain comprehensive UIDs and GIDs
 
@@ -37,7 +37,7 @@ sed -e "{
 }"  -e "{
 	/cache_credentials/ s/cache_credentials/#cache_credentials/
 }" -e "{
-	/ldap_id_mapping/ s/ldap_id_mapping/#ldap_id_mapping/
+	/ldap_id_mapping/ s/ldap_id_mapping = True/ldap_id_mapping = ${HAS_LDAP_ID_MAPPING}/
 }" -i $file
 
 logFile $file

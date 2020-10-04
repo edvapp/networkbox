@@ -17,12 +17,12 @@ printAndLogStartMessage "START: INSTALLATION OF SAMBA4 AD - CONTROLLER"
 
 export DEBIAN_FRONTEND=noninteractive
 
+printAndLogStartMessage "CHECK /etc/hosts FOR FQDN & STATIC IP"
 ## check if FQDN exists in /etc/hosts
 if [ $(hostname) = $(hostname --fqdn) ];
 then
         /bin/bash change-FQHN-etc_hosts.sh
 fi
-
 ## set the static IP in /etc/hosts
 /bin/bash change-IP-etc_hosts.sh
 
