@@ -32,8 +32,10 @@ printAndLogMessage "acl attr samba samba-dsdb-modules samba-vfs-modules winbind 
 ## acl, attr: exteded acls
 ## bind9-dnsutils: dig, nslookup
 ## to get Domain Users/Groups onto Fileserver to set Directory/File Permissions: libnss-winbind
+## to enable local logins for Domain Users: libpam-winbind
 ## to preset computer-accounts: adcli
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind adcli
+## to act as nfs-server: nfs-kernel-server
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind libpam-winbind adcli nfs-kernel-server
 
 ##STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh  
@@ -73,6 +75,23 @@ chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "add share /home/xchange/"
 /bin/bash add_share_xchange-etc_samba_smb.conf.sh
+
+
+#### ADD NFS - Server START ####
+printAndLogMessage "add nfs-shares"
+/bin/bash ../nfs-server/install-nfs_server.sh
+
+mkdir -p $NFS_EXPORT_DIR/users
+
+mount --bind ${SAMBA4_HOMES_BASE_DIR}/users/ $NFS_EXPORT_DIR/users
+
+printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/users/ TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/users"
+/bin/bash change-etc_fstab.sh
+
+printAndLogMessage "ADD $NFS_EXPORT_DIR/users TO /etc/exports"
+/bin/bash change-etc_exports.sh
+#### ADD NFS - Server END ####
+
 
 printAndLogEndMessage "FINISH:  INSTALLATION OF SAMBA4 FILE - SERVER"
 

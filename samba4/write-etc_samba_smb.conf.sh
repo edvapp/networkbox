@@ -43,7 +43,7 @@ echo "
    # idmap config for the ${SAMBA4_REALM_DOMAIN_NAME} domain
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : backend = ad
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : schema_mode = rfc2307
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 10000-999999
+   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 100000000-999999999
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_nss_info = yes
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_primary_group = yes
 
