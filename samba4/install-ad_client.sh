@@ -22,9 +22,9 @@ then
         /bin/bash change-FQDN-etc_hosts.sh
 fi
 
-printAndLogMessage "apt-get -y install sssd−ad sssd−tools realmd adcli samba-common krb5−user"
+printAndLogMessage "apt-get -y install sssd-ad sssd-tools realmd adcli samba-common krb5-user"
 ## krb5−user: users get a kerberos ticket
-apt-get -y install sssd−ad sssd−tools realmd adcli samba-common krb5−user
+apt-get -y install sssd-ad sssd-tools realmd adcli samba-common krb5-user
 
 printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 realm join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}
