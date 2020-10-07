@@ -41,6 +41,6 @@ then
 	systemctl enable rpcbind
 fi
 
-service nfs-kernel-server restart
+systemctl restart nfs-kernel-server
 
 printAndLogEndMessage "FINISH: INSTALLATION OF NFS - SERVER"
