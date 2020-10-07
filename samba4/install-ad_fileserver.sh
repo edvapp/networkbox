@@ -78,8 +78,10 @@ printAndLogMessage "add share /home/xchange/"
 
 
 #### ADD NFS - Server START ####
+cd ../nfs-server
 printAndLogMessage "add nfs-shares"
-/bin/bash ../nfs-server/install-nfs_server.sh
+/bin/bash install-nfs_server.sh
+cd ../samba4
 
 mkdir -p $NFS_EXPORT_DIR/users
 
