@@ -27,13 +27,14 @@ fi
 /bin/bash change-IP-etc_hosts.sh
 
 printAndLogMessage "INSTALL PACKAGES"
-printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli"
+printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli nfs-common autofs"
 ## from samba - wiki: acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user
 ## acl, attr: exteded acls
 ## bind9-dnsutils: dig, nslookup
 ## to have a look at the ldb-databases: ldb-tools
 ## to preset computer-accounts: adcli
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli
+## to act as an nfs-client: nfs-common autofs
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli nfs-common autofs
 
 printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
 systemctl mask smbd nmbd winbind
