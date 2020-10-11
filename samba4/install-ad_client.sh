@@ -26,6 +26,9 @@ printAndLogMessage "apt-get -y install sssd-ad sssd-tools realmd adcli samba-com
 ## krb5−user: users get a kerberos ticket
 apt-get -y install sssd-ad sssd-tools realmd adcli samba-common krb5-user
 
+## write new /etc/krb5.conf with needed rdns = false
+/bin/bash write-etc_krb5.conf.sh
+
 printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 realm join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}
 

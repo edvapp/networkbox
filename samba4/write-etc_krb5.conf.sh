@@ -19,10 +19,17 @@ rm ${file}
 printAndLogMessage "Write file: " ${file}
 
 echo "
+[logging]
+        default = FILE:/var/log/krb5libs.log
+
 [libdefaults]
-	default_realm = ${SAMBA4_REALM_DOMAIN_NAME}
-	dns_lookup_realm = false
-	dns_lookup_kdc = true
+         default_realm = ${SAMBA4_REALM_DOMAIN_NAME}
+         dns_lookup_realm = true
+         dns_lookup_kdc = true
+         #ticket_lifetime = 24h
+         #renew_lifetime = 7d
+         rdns = false
+         forwardable = yes
 
 " > ${file}
 

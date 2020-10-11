@@ -8,10 +8,11 @@
 
 
 file=/etc/sssd/sssd.conf
-printAndLogMessage "Manipulated file: " $file
-saveFile $file
-logFile $file
-
+printAndLogMessage "SETTINGS FOR sssd"
+printAndLogMessage "Manipulated file: " ${file}
+printAndLogMessage "Save original file: " ${file}
+saveOriginal ${file}
+logFile ${file}
 ## all set back to standard:
 ##
 ## use_fully_qualified_names = False (default)
