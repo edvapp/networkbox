@@ -17,6 +17,8 @@ logFile ${file}
 ##
 ## use_fully_qualified_names = False (default)
 ## we don not want peter@domain.com as username
+## seems like default has changed to True
+## so we set it to False
 ##
 ## krb5_store_password_if_offline = False (default)
 ## do not store password
@@ -32,13 +34,13 @@ logFile ${file}
 
 printAndLogMessage "Change file: " $file
 sed -e "{
-	/use_fully_qualified_names/ s/use_fully_qualified_names/#use_fully_qualified_names/
+	/use_fully_qualified_names/ s/True/False/
 }" -e "{
 	/krb5_store_password_if_offline/ s/krb5_store_password_if_offline/#krb5_store_password_if_offline/
 }"  -e "{
 	/cache_credentials/ s/cache_credentials/#cache_credentials/
 }" -e "{
-	/ldap_id_mapping/ s/ldap_id_mapping = True/ldap_id_mapping = ${HAS_LDAP_ID_MAPPING}/
+	/ldap_id_mapping/ s/True/${HAS_LDAP_ID_MAPPING}/
 }" -i $file
 
 logFile $file
