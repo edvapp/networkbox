@@ -18,7 +18,8 @@ printAndLogStartMessage "START: INSTALLATION OF DHCP - SERVER"
 printAndLogMessage "apt-get -y install isc-dhcp-server"
 apt-get -y install isc-dhcp-server
 
-service isc-dhcp-server stop
+systemctl stop isc-dhcp-server
+systemctl status isc-dhcp-server
 
 ## Configuration dhcp -server
 printAndLogMessage "TELL DHCP - SERVER INTERFACE TO OFFER SERVICE"
@@ -40,7 +41,8 @@ then
 	chmod -v o+r /etc/dhcp/rndc.key
 fi
 
-service isc-dhcp-server start
+systemctl start isc-dhcp-server
+systemctl status isc-dhcp-server
 
 printAndLogEndMessage "FINISH: INSTALLATION OF DHCP - SERVER"
 
