@@ -32,3 +32,14 @@ do
 	printAndLogMessage "Set tftp server name in menu-config-file: " $TFTP_DIRECTORY/ubuntu-installer/menus/boot-screens/$file
 
 done
+
+cd $TFTP_DIRECTORY/grub
+for file in $(ls);
+do
+	# set tftp server name
+	sed -e "{
+		s/tftp01/$TFTP_SERVER_NAME/
+	}" -i $file
+	printAndLogMessage "Set tftp server name in grub-config-file: " $TFTP_DIRECTORY/grub/$file
+
+done

@@ -26,9 +26,11 @@ printAndLogMessage "CONFIGURATION OF TFTP - SERVER"
 printAndLogMessage "cp -R pxelinux.cfg $TFTP_DIRECTORY"
 printAndLogMessage "cp -R ubuntu-installer $TFTP_DIRECTORY"
 printAndLogMessage "cp -R preseed $TFTP_DIRECTORY"
+printAndLogMessage "cp -R grub $TFTP_DIRECTORY"
 cp -R pxelinux.cfg 	$TFTP_DIRECTORY
 cp -R ubuntu-installer	$TFTP_DIRECTORY
 cp -R preseed		$TFTP_DIRECTORY
+cp -R grub		$TFTP_DIRECTORY
 
 printAndLogMessage "SET PASSWORD FOR TFTP-BOOT-SCREEN"
 /bin/bash config-tftp_bootmenu.sh
