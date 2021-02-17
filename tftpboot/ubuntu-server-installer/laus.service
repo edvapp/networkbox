@@ -1,0 +1,12 @@
+[Unit]
+Description=LAUS client service
+Requires=network-online.target nfs-client.target
+After=network-online.target nfs-client.target
+
+[Service]
+Type=simple
+EnvironmentFile=-/etc/default/laus-setup
+ExecStart=/usr/local/sbin/laus-client.sh
+
+[Install]
+WantedBy=multi-user.target

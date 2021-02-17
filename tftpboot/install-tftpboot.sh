@@ -27,6 +27,7 @@ apt-get -y install tftpd-hpa
 #### CONFIGURATION FOR ***LEGACY-PXE-PART*** ON TFTP - SERVER
 printAndLogMessage "CONFIGURATION FOR ***LEGACY-PXE-PART*** ON TFTP - SERVER"
 
+## 1: we copy all the needed files for tftp
 printAndLogMessage "cp -R pxelinux.cfg ${TFTP_DIRECTORY}"
 printAndLogMessage "cp -R ubuntu-installer ${TFTP_DIRECTORY}"
 printAndLogMessage "cp -R preseed ${TFTP_DIRECTORY}"
@@ -34,45 +35,58 @@ cp -R pxelinux.cfg 	${TFTP_DIRECTORY}
 cp -R ubuntu-installer	${TFTP_DIRECTORY}
 cp -R preseed		${TFTP_DIRECTORY}
 
+## 2: we set a password for bootmenues
 printAndLogMessage "SET PASSWORD FOR TFTP-LEGACY-PXE-BOOT-SCREEN"
-/bin/bash config-legacy_pxe_bootmenu.sh
+/bin/bash legacy_pxe-set_password_for_bootmenu.sh
 
+## 3: we set the tftp-hostname where necessary
 printAndLogMessage "SET TFTP-Servername IN LEGACY-PXE-PRESEED - FILES AND LEGACY-PXE-BOOTSCREENS MENU.CFG"
-/bin/bash config-legacy_pxe_tftpservername.sh
+/bin/bash legacy_pxe-set_tftpservername.sh
 
-printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS IN LEGACY-PXE-PRESEED - FILES"
-/bin/bash config-legacy_pxe_preseed.sh
-
+## 4: we download all necessary files for pxe - boot
 printAndLogMessage "DOWNLOAD UBUNTU - LEGACY-PXE-BOOT FILES and KERNEL IMAGES"
-/bin/bash wget-legacy_pxe_ubuntustaff.sh
+/bin/bash legacy_pxe-wget_ubuntustaff.sh
+
+## 5: we config an admin-account
+printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS IN LEGACY-PXE-PRESEED - FILES"
+/bin/bash legacy_pxe-set_admin_account_in_preseed.sh
 
 
 #### CONFIGURATION FOR ***UEFI-GRUB-SERVER_ISO-PART*** ON TFTP - SERVER
 printAndLogMessage "CONFIGURATION FOR ***UEFI-GRUB-SERVER_ISO-PART*** ON TFTP - SERVER"
 
+## 1: we copy all the needed files for tftp
 printAndLogMessage "COPY GRUB - CONFIGFILE to ${TFTP_DIRECTORY}/grub"
 cp -R grub ${TFTP_DIRECTORY}
 
+## 2: we set a password for bootmenues
+## TODO:
+
+## 3: we set the tftp-hostname where necessary
 printAndLogMessage "SET TFTP-Servername IN GRUB - FILE"
-#TODO: /bin/bash config-uefi_grub_tftpservername.sh
+/bin/bash uefi_grub-set_tftpservername.sh
 
+## 4: we download all necessary files for uefi - boot
 printAndLogMessage "DOWNLOAD UBUNTU - UEFI-GRUB-BOOT FILES"
-/bin/bash wget-uefi_grub_ubuntustaff.sh
+/bin/bash uefi_grub-wget_ubuntustaff.sh
 
+## 5: we install webserver to serve ubuntu-server-iso and yaml-configfiles
 printAndLogMessage "INSTALL Apache - Webserver to serve ISO-image and YAML-configfiles"
 printAndLogMessage "INSTALL p7zip-full to extract kernel and initrd from iso"
 apt-get -y install apache2 p7zip-full
 
+## 6: we download server-iso and extract kernel & initrd
 printAndLogMessage "DOWNLOAD Ubuntu Server-ISO-IMAGE TO WEBSERVER_SUBDIRECTORY"
-/bin/bash wget-iso_and_extract_kernel_and_initrd.sh
+/bin/bash uefi_grub-wget_iso_and_extract_kernel_and_initrd.sh
 
+## 7: we copy yaml - config -files to webserver
 printAndLogMessage "COPY user-data & meta-data YAML FILES to WEBSERVER-SUBDIRECTORY"
-cp server-install-data/user-data ${HTTP_DEST}
-cp server-install-data/meta-data ${HTTP_DEST}
+cp server-install-data/user-data ${HTTP_ISO_YAML_DEST}
+cp server-install-data/meta-data ${HTTP_ISO_YAML_DEST}
 
+## 8: we config an admin-account
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS FOR UEFI-GRUB IN user-data FILE"
-#TODO: /bin/bash config-uefi_grub_user-data.sh
-
+/bin/bash uefi_grub-set_admin_account_in_user-data.sh
 
 printAndLogEndMessage "FINISH: INSTALLATION OF TFTP - SERVER"
 

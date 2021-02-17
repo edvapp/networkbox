@@ -1,1 +1,116 @@
+#cloud-config
+autoinstall:
+  version: 1
+  apt:
+    geoip: true
+    primary:
+    - arches: [amd64, i386]
+      uri: http://at.archive.ubuntu.com/ubuntu
+    - arches: [default]
+      uri: http://ports.ubuntu.com/ubuntu-ports
+  proxy:
+    http://apca01:3142
+  ssh:
+    allow-pw: true
+    install-server: true
+  keyboard:
+    layout: at
+    variant: nodeadkeys
+  locale:
+    de_AT
+  identity:
+    hostname: localhost
+    username: worker
+    realname: Worker
+    password: $1$mUxl$mxrWhnbpHGqa.4J9ToxGa/
+  storage:
+    config:
+    ### drive ###
+    - id: disk0
+      type: disk
+      ptable: gpt
+      grub_device: true
+      preserve: false
+      wipe: superblock
+    ### partitions ###
+    ### efi ###
+    - id: efi_partition
+      type: partition
+      size: 512MB
+      device: disk0
+      flag: boot
+      grub_device: true
+      preserve: false
+    ### swap ###
+    - id: swap_partition
+      type: partition
+      size: 8GB
+      device: disk0
+      flag: swap
+      preserve: false
+    ### root ###
+    - id: root_partition
+      type: partition
+      size: 40GB
+      device: disk0
+      preserve: false
+    ### opt ###
+    - id: opt_partition
+      type: partition
+      size: -1
+      device: disk0
+      preserve: false
+    ### format and mount efi partition
+    - id: efi_format
+      type: format
+      fstype: fat32
+      volume: efi_partition
+      preserve: false
+    - id: efi_mount
+      type: mount
+      path: /boot/efi
+      device: efi_format
+    ### format and mount swap partition
+    - id: swap_format
+      type: format
+      fstype: swap
+      volume: swap_partition
+      preserve: false
+    - id: swap_mount
+      path: none
+      type: mount
+      device: swap_format
+    ### format and mount root partition
+    - id: root_format
+      type: format
+      fstype: ext4
+      volume: root_partition
+      preserve: false
+    - id: root_mount
+      type: mount
+      path: /
+      device: root_format
+    ### format and mount opt partition
+    - id: opt_format
+      type: format
+      fstype: ext4
+      volume: opt_partition
+      preserve: false
+    - id: opt_mount
+      type: mount
+      path: /opt
+      device: opt_format
+  packages:
+    - nfs-common
+  late-commands:
+    - tftp -l /target/etc/default/laus-setup -r preseed/laus-setup -g tftp01 
+    - tftp -l /target/usr/local/sbin/laus-client.sh -r preseed/laus-client.sh -g tftp01
+    - tftp -l /target/lib/systemd/system/laus.service -r preseed/laus.service -g tftp01
+    - chmod 755 /target/usr/local/sbin/laus-client.sh
+    - chroot /target /bin/ln -s /lib/systemd/system/laus.service /etc/systemd/system/multi-user.target.wants/laus.service
+
+
+
+
+
 

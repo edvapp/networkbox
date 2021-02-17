@@ -1,0 +1,3 @@
+OS: Ubuntu
+Version: 20.04
+Architecture: amd64
