@@ -81,8 +81,8 @@ printAndLogMessage "DOWNLOAD Ubuntu Server-ISO-IMAGE TO WEBSERVER_SUBDIRECTORY"
 
 ## 7: we copy yaml - config -files to webserver
 printAndLogMessage "COPY user-data & meta-data YAML FILES to WEBSERVER-SUBDIRECTORY"
-cp server-install-data/user-data ${HTTP_ISO_YAML_DEST}
-cp server-install-data/meta-data ${HTTP_ISO_YAML_DEST}
+cp ubuntu-server-installer/user-data ${HTTP_ISO_YAML_DEST}
+cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_DEST}
 
 ## 8: we config an admin-account
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS FOR UEFI-GRUB IN user-data FILE"
