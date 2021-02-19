@@ -81,7 +81,11 @@ printAndLogMessage "DOWNLOAD Ubuntu Server-ISO-IMAGE TO WEBSERVER_SUBDIRECTORY"
 
 ## 7: we copy yaml - config -files to webserver
 printAndLogMessage "COPY user-data & meta-data YAML FILES to WEBSERVER-SUBDIRECTORY"
-cp ubuntu-server-installer/user-data ${HTTP_ISO_YAML_DEST}
+mkdir ${HTTP_ISO_YAML_DEST}/2P1F2F
+cp ubuntu-server-installer/user-data_2P1F2F ${HTTP_ISO_YAML_DEST}/user-data
+cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_DEST}
+mkdir ${HTTP_ISO_YAML_DEST}/2P1F
+cp ubuntu-server-installer/user-data_2P1F ${HTTP_ISO_YAML_DEST}/user-data
 cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_DEST}
 
 ## 8: we config an admin-account
