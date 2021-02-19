@@ -103,9 +103,9 @@ autoinstall:
   packages:
     - nfs-common
   late-commands:
-    - tftp -l /target/etc/default/laus-setup -r preseed/laus-setup -g tftp01 
-    - tftp -l /target/usr/local/sbin/laus-client.sh -r preseed/laus-client.sh -g tftp01
-    - tftp -l /target/lib/systemd/system/laus.service -r preseed/laus.service -g tftp01
+    - tftp -l /target/etc/default/laus-setup -r ubuntu-server-installer/laus-setup -g tftp01 
+    - tftp -l /target/usr/local/sbin/laus-client.sh -r ubuntu-server-installer/laus-client.sh -g tftp01
+    - tftp -l /target/lib/systemd/system/laus.service -r ubuntu-server-installer/laus.service -g tftp01
     - chmod 755 /target/usr/local/sbin/laus-client.sh
     - chroot /target /bin/ln -s /lib/systemd/system/laus.service /etc/systemd/system/multi-user.target.wants/laus.service
 
