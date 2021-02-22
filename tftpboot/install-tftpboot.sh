@@ -64,7 +64,7 @@ cp -R grub ${TFTP_DIRECTORY}
 
 ## 3: we set the tftp-hostname where necessary
 printAndLogMessage "SET TFTP-Servername IN GRUB - FILE"
-/bin/bash uefi_grub-set_tftpservername.sh
+/bin/bash uefi_grub-set_tftpservername_in_grub_cfg.sh
 
 ## 4: we download all necessary files for uefi - boot
 printAndLogMessage "DOWNLOAD UBUNTU - UEFI-GRUB-BOOT FILES"
@@ -89,15 +89,15 @@ cp ubuntu-server-installer/user-data_2P1F ${HTTP_ISO_YAML_LAUS_DIR}/2P1F/user-da
 cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_LAUS_DIR}/2P1F
 
 ## 8: we copy LAUS client files to webserver
-cp ubuntu-server-installer/laus-client-files ${HTTP_ISO_YAML_LAUS_DIR}
+cp -R ubuntu-server-installer/laus-client-files ${HTTP_ISO_YAML_LAUS_DIR}
 
 ## 9: we config an admin-account
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS FOR UEFI-GRUB IN user-data FILE"
 /bin/bash uefi_grub-set_admin_account_in_user-data.sh
 
 ## 10: again we set the tftp-hostname where necessary
-printAndLogMessage "SET TFTP-Servername IN user-data - FILE"
-/bin/bash uefi_user-data-set_tftpservername.sh
+printAndLogMessage "SET TFTP-Servername IN user-data - FILE (late-command)"
+/bin/bash uefi_grub-set_tftpservername_in_user-data.sh
 
 
 printAndLogEndMessage "FINISH: INSTALLATION OF TFTP - SERVER"

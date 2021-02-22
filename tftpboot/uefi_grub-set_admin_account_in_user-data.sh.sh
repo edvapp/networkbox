@@ -12,7 +12,7 @@
 # "original: arg=`echo "$1" | sed 's:[]\[\^\$\.\*\/]:\\\\&:g'` quotes more than one character"
 ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl ${ADMIN_ACCOUNT_PASSWORD} | sed 's:[\/]:\\&:g')
 
-cd ${HTTP_ISO_YAML_LAUS_DIR}\2P1F2F
+cd ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F
 for file in $(ls);
 do
 	# set admin user: realname
@@ -30,7 +30,7 @@ do
 	printAndLogMessage "Set admin realname, name & password in user-data: " ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F/${file}
 done
 
-cd ${HTTP_ISO_YAML_LAUS_DIR}\2P1F
+cd ${HTTP_ISO_YAML_LAUS_DIR}/2P1F
 for file in $(ls);
 do
 	# set admin user: realname
