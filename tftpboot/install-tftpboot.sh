@@ -95,6 +95,11 @@ cp ubuntu-server-installer/laus-client-files ${HTTP_ISO_YAML_LAUS_DIR}
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS FOR UEFI-GRUB IN user-data FILE"
 /bin/bash uefi_grub-set_admin_account_in_user-data.sh
 
+## 10: again we set the tftp-hostname where necessary
+printAndLogMessage "SET TFTP-Servername IN user-data - FILE"
+/bin/bash uefi_user-data-set_tftpservername.sh
+
+
 printAndLogEndMessage "FINISH: INSTALLATION OF TFTP - SERVER"
 
  
