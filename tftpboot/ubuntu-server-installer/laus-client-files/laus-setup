@@ -1,0 +1,20 @@
+#
+#	Configuration - Script for LAUS - Client
+#
+
+ENABLE_AUTOUPDATE="yes"
+
+# Server hosting all LAUS - scripts:
+LAUS_SERVER="laus01"
+
+# Rootpath,where LAUS - directory is stored:
+PATH_ON_LAUS_SERVER="/autoinstall"
+
+# Directory, relativ to PATH_ON_LAUS_SERVER, where laus_server.sh - script is stored:
+LAUS_PATH="laus"
+
+# Mountpoint on client, for Serverdirectory
+MOUNT_PATH_ON_CLIENT="/opt/autoinstall"
+
+# Path, where updatelogfiles are written to:
+UPDATE_LOG_DIR="/var/log/laus"

@@ -23,8 +23,8 @@ apt-get -y install tftpd-hpa
 # to get variable ${TFTP_DIRECTORY}
 # configured in /etc/default/tftpd-hpa
 
-
-#### CONFIGURATION FOR ***LEGACY-PXE-PART*** ON TFTP - SERVER
+##############################################################################################
+#### CONFIGURATION FOR ***LEGACY-PXE-PART*** ON TFTP - SERVER ################################
 printAndLogMessage "CONFIGURATION FOR ***LEGACY-PXE-PART*** ON TFTP - SERVER"
 
 ## 1: we copy all the needed files for tftp
@@ -51,8 +51,8 @@ printAndLogMessage "DOWNLOAD UBUNTU - LEGACY-PXE-BOOT FILES and KERNEL IMAGES"
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS IN LEGACY-PXE-PRESEED - FILES"
 /bin/bash legacy_pxe-set_admin_account_in_preseed.sh
 
-
-#### CONFIGURATION FOR ***UEFI-GRUB-SERVER_ISO-PART*** ON TFTP - SERVER
+##############################################################################################
+#### CONFIGURATION FOR ***UEFI-GRUB-SERVER_ISO-PART*** ON TFTP - SERVER ######################
 printAndLogMessage "CONFIGURATION FOR ***UEFI-GRUB-SERVER_ISO-PART*** ON TFTP - SERVER"
 
 ## 1: we copy all the needed files for tftp
@@ -81,14 +81,17 @@ printAndLogMessage "DOWNLOAD Ubuntu Server-ISO-IMAGE TO WEBSERVER_SUBDIRECTORY"
 
 ## 7: we copy yaml - config -files to webserver
 printAndLogMessage "COPY user-data & meta-data YAML FILES to WEBSERVER-SUBDIRECTORY"
-mkdir ${HTTP_ISO_YAML_DEST}/2P1F2F
-cp ubuntu-server-installer/user-data_2P1F2F ${HTTP_ISO_YAML_DEST}/2P1F2F/user-data
-cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_DEST}/2P1F2F
-mkdir ${HTTP_ISO_YAML_DEST}/2P1F
-cp ubuntu-server-installer/user-data_2P1F ${HTTP_ISO_YAML_DEST}/2P1F/user-data
-cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_DEST}/2P1F
+mkdir ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F
+cp ubuntu-server-installer/user-data_2P1F2F ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F/user-data
+cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F
+mkdir ${HTTP_ISO_YAML_LAUS_DIR}/2P1F
+cp ubuntu-server-installer/user-data_2P1F ${HTTP_ISO_YAML_LAUS_DIR}/2P1F/user-data
+cp ubuntu-server-installer/meta-data ${HTTP_ISO_YAML_LAUS_DIR}/2P1F
 
-## 8: we config an admin-account
+## 8: we copy LAUS client files to webserver
+cp ubuntu-server-installer/laus-client-files ${HTTP_ISO_YAML_LAUS_DIR}
+
+## 9: we config an admin-account
 printAndLogMessage "SET ADMIN & ADMIN-PASSWORD FOR WORKSTATIONS FOR UEFI-GRUB IN user-data FILE"
 /bin/bash uefi_grub-set_admin_account_in_user-data.sh
 

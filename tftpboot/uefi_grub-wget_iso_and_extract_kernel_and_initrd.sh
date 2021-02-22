@@ -20,17 +20,17 @@ SHORT_FILE_NAME="ubuntu-20.04-live-server-amd64.iso"
 KERNEL_AND_INITRD_DIR="ubuntu-server-installer/20.04"
 
 printAndLogMessage "create directory for ISO-image and YAML-configfiles"
-mkdir -p ${HTTP_ISO_YAML_DEST} 
+mkdir -p ${HTTP_ISO_YAML_LAUS_DIR}
 
-if [ ! -e ${HTTP_ISO_YAML_DEST}/${FILE} ];
+if [ ! -e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} ];
 then
-	printAndLogMessage "wget -P "${HTTP_ISO_YAML_DEST} ${SOURCE}/${FILE}
-	wget -P ${HTTP_ISO_YAML_DEST} ${SOURCE}/${FILE}
-	ln ${HTTP_ISO_YAML_DEST}/${FILE} ${HTTP_ISO_YAML_DEST}/${SHORT_FILE_NAME}
+	printAndLogMessage "wget -P "${HTTP_ISO_YAML_LAUS_DIR} ${SOURCE}/${FILE}
+	wget -P ${HTTP_ISO_YAML_LAUS_DIR} ${SOURCE}/${FILE}
+	ln ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} ${HTTP_ISO_YAML_LAUS_DIR}/${SHORT_FILE_NAME}
 	
 	printAndLogMessage "EXTRACT vmlinuz & initrd"
-	7z e ${HTTP_ISO_YAML_DEST}/${FILE} casper/vmlinuz
-	7z e ${HTTP_ISO_YAML_DEST}/${FILE} casper/initrd
+	7z e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} casper/vmlinuz
+	7z e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} casper/initrd
 	
 	printAndLogMessage "COPY vmlinuz & initrd to tftp subdirectory"
 	mkdir -p ${TFTP_DIRECTORY}/${KERNEL_AND_INITRD_DIR}
@@ -49,17 +49,17 @@ SHORT_FILE_NAME="ubuntu-21.04-live-server-amd64.iso"
 KERNEL_AND_INITRD_DIR="ubuntu-server-installer/21.04"
 
 printAndLogMessage "create directory for ISO-image and YAML-configfiles"
-mkdir -p ${HTTP_ISO_YAML_DEST} 
+mkdir -p ${HTTP_ISO_YAML_LAUS_DIR}
 
-if [ ! -e ${HTTP_ISO_YAML_DEST}/${FILE} ];
+if [ ! -e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} ];
 then
-	printAndLogMessage "wget -P "${HTTP_ISO_YAML_DEST} ${SOURCE}/${FILE}
-	wget -P ${HTTP_ISO_YAML_DEST} ${SOURCE}/${FILE}
-	ln ${HTTP_ISO_YAML_DEST}/${FILE} ${HTTP_ISO_YAML_DEST}/${SHORT_FILE_NAME}
+	printAndLogMessage "wget -P "${HTTP_ISO_YAML_LAUS_DIR} ${SOURCE}/${FILE}
+	wget -P ${HTTP_ISO_YAML_LAUS_DIR} ${SOURCE}/${FILE}
+	ln ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} ${HTTP_ISO_YAML_LAUS_DIR}/${SHORT_FILE_NAME}
 	
 	printAndLogMessage "EXTRACT vmlinuz & initrd"
-	7z e ${HTTP_ISO_YAML_DEST}/${FILE} casper/vmlinuz
-	7z e ${HTTP_ISO_YAML_DEST}/${FILE} casper/initrd
+	7z e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} casper/vmlinuz
+	7z e ${HTTP_ISO_YAML_LAUS_DIR}/${FILE} casper/initrd
 	
 	printAndLogMessage "COPY vmlinuz & initrd to tftp subdirectory"
 	mkdir ${TFTP_DIRECTORY}/${KERNEL_AND_INITRD_DIR}
