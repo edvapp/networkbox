@@ -23,7 +23,7 @@ printAndLogMessage "Download 20.04 amd64"
 SOURCE="http://archive.ubuntu.com/ubuntu/dists/focal/main/uefi/grub2-amd64/current/"
 DEST=$TFTP_DIRECTORY"/"
 
-for FILE in $FILELIST;
+for FILE in ${FILELIST};
 do
 	if [ ! -e ${DEST}${FILE} ];
 	then

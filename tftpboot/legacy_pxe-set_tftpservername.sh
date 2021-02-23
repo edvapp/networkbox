@@ -17,8 +17,8 @@ do
 	# set tftp server name
 	sed -e "{
 		/d-i preseed\/late_command/ s/tftp01/$TFTP_SERVER_NAME/g
-	}" -i $file
-	printAndLogMessage "Set tftp server name in preseed-file: " $TFTP_DIRECTORY/preseed/$file
+	}" -i ${file}
+	printAndLogMessage "Set tftp server name in preseed-file: " ${TFTP_DIRECTORY}/preseed/${file}
 
 done
 
@@ -28,8 +28,8 @@ do
 	# set tftp server name
 	sed -e "{
 		s/tftp01/$TFTP_SERVER_NAME/
-	}" -i $file
-	printAndLogMessage "Set tftp server name in menu-config-file: " $TFTP_DIRECTORY/ubuntu-installer/menus/boot-screens/$file
+	}" -i ${file}
+	printAndLogMessage "Set tftp server name in menu-config-file: " ${TFTP_DIRECTORY}/ubuntu-installer/menus/boot-screens/${file}
 
 done
 

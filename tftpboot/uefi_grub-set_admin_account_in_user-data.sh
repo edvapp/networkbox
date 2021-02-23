@@ -18,15 +18,15 @@ do
 	# set admin user: realname
 	sed -e "{
 		/realname:/ s/realname:/realname: ${ADMIN_ACCOUNT_FULLNAME}/
-	}" -i $file
+	}" -i ${file}
  	# set admin user: name
 	sed -e "{
 		/username:/ s/username:/username: ${ADMIN_ACCOUNT_NAME}/
-	}" -i $file
+	}" -i ${file}
 	# set admin user: password - hash
 	sed -e "{
 		/password:/ s/password:/password: ${ADMIN_ACCOUNT_PASSWORD_HASH}/
-	}" -i $file
+	}" -i ${file}
 	printAndLogMessage "Set admin realname, name & password in user-data: " ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F/${file}
 done
 
@@ -36,14 +36,14 @@ do
 	# set admin user: realname
 	sed -e "{
 		/realname:/ s/realname:/realname: ${ADMIN_ACCOUNT_FULLNAME}/
-	}" -i $file
+	}" -i ${file}
  	# set admin user: name
 	sed -e "{
 		/username:/ s/username:/username: ${ADMIN_ACCOUNT_NAME}/
-	}" -i $file
+	}" -i ${file}
 	# set admin user: password - hash
 	sed -e "{
 		/password:/ s/password:/password: ${ADMIN_ACCOUNT_PASSWORD_HASH}/
-	}" -i $file
+	}" -i ${file}
 	printAndLogMessage "Set admin realname, name & password in user-data: " ${HTTP_ISO_YAML_LAUS_DIR}/2P1F/${file}
 done

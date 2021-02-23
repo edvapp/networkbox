@@ -20,9 +20,9 @@ autoinstall:
     de_AT
   identity:
     hostname: localhost
-    username: worker
-    realname: Worker
-    password: $1$mUxl$mxrWhnbpHGqa.4J9ToxGa/
+    username: 
+    realname: 
+    password: 
   storage:
     config:
     ### drive ###

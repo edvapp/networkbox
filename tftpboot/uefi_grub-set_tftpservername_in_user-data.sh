@@ -17,8 +17,8 @@ do
 	# set tftp server name
 	sed -e "{
 		s/tftp01/${TFTP_SERVER_NAME}/g
-	}" -i $file
-	printAndLogMessage "Set tftp server name in user-data config-file: " ${HTTP_ISO_YAML_LAUS_DIR}/$file
+	}" -i ${file}
+	printAndLogMessage "Set tftp server name in user-data config-file: " ${HTTP_ISO_YAML_LAUS_DIR}/2P1F2F/${file}
 
 done
 
@@ -28,7 +28,7 @@ do
 	# set tftp server name
 	sed -e "{
 		s/tftp01/${TFTP_SERVER_NAME}/g
-	}" -i $file
-	printAndLogMessage "Set tftp server name in user-data config-file: " ${HTTP_ISO_YAML_LAUS_DIR}/$file
+	}" -i ${file}
+	printAndLogMessage "Set tftp server name in user-data config-file: " ${HTTP_ISO_YAML_LAUS_DIR}/2P1F/${file}
 
 done

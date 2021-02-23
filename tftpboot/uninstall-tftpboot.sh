@@ -12,7 +12,7 @@ SAVE_TFTP_DIRECTORY=$TFTP_DIRECTORY
 
 apt-get -y purge tftpd-hpa
 
-rm -R $SAVE_TFTP_DIRECTORY
+rm -R ${SAVE_TFTP_DIRECTORY}
 
 apt-get -y purge apache2
 

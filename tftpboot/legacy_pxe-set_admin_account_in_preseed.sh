@@ -17,21 +17,21 @@ ADMIN_ACCOUNT_PASSWORD_HASH=$(openssl passwd -1 -salt mUxl $ADMIN_ACCOUNT_PASSWO
 # to get variable $TFTP_DIRECTORY
 # configured in /etc/default/tftpd-hpa
 
-cd $TFTP_DIRECTORY/preseed
+cd ${TFTP_DIRECTORY}/preseed
 for file in $(ls);
 do
 	# set admin user: fullname
 	sed -e "{
 		/d-i passwd\/user-fullname string/ s/d-i passwd\/user-fullname string/d-i passwd\/user-fullname string $ADMIN_ACCOUNT_FULLNAME/
-	}" -i $file
+	}" -i ${file}
  	# set admin user: name
 	sed -e "{
 		/d-i passwd\/username string/ s/d-i passwd\/username string/d-i passwd\/username string $ADMIN_ACCOUNT_NAME/
-	}" -i $file
+	}" -i ${file}
 	# set admin user: password - hash
 	sed -e "{
 		/d-i passwd\/user-password-crypted password/ s/d-i passwd\/user-password-crypted password/d-i passwd\/user-password-crypted password $ADMIN_ACCOUNT_PASSWORD_HASH/
-	}" -i $file
-	printAndLogMessage "Set admin fullname, name & password in preseed-file: " $TFTP_DIRECTORY/preseed/$file
+	}" -i ${file}
+	printAndLogMessage "Set admin fullname, name & password in preseed-file: " ${TFTP_DIRECTORY}/preseed/${file}
 
 done
