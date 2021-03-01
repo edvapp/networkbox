@@ -8,8 +8,9 @@ autoinstall:
       uri: http://at.archive.ubuntu.com/ubuntu
     - arches: [default]
       uri: http://ports.ubuntu.com/ubuntu-ports
-  proxy:
-    http://apca01:3142
+  # proxy to apt-cacher-ng breaks wget in late-commands
+  #proxy:
+  #  http://apca01:3142
   ssh:
     allow-pw: true
     install-server: true
