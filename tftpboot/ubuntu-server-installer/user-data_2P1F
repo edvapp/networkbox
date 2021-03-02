@@ -42,13 +42,6 @@ autoinstall:
       flag: boot
       grub_device: true
       preserve: false
-    ### swap ###
-    - id: swap_partition
-      type: partition
-      size: 8GB
-      device: disk0
-      flag: swap
-      preserve: false
     ### root ###
     - id: root_partition
       type: partition
@@ -60,7 +53,7 @@ autoinstall:
       type: partition
       size: -1
       device: disk0
-      preserve: false
+      preserve: true
     ### format and mount efi partition
     - id: efi_format
       type: format
@@ -71,16 +64,6 @@ autoinstall:
       type: mount
       path: /boot/efi
       device: efi_format
-    ### format and mount swap partition
-    - id: swap_format
-      type: format
-      fstype: swap
-      volume: swap_partition
-      preserve: false
-    - id: swap_mount
-      path: none
-      type: mount
-      device: swap_format
     ### format and mount root partition
     - id: root_format
       type: format
@@ -91,7 +74,7 @@ autoinstall:
       type: mount
       path: /
       device: root_format
-    ### format and mount opt partition
+    ### mount opt partition
     - id: opt_format
       type: format
       fstype: ext4

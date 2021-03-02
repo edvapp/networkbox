@@ -71,16 +71,6 @@ autoinstall:
       type: mount
       path: /boot/efi
       device: efi_format
-    ### format and mount swap partition
-    - id: swap_format
-      type: format
-      fstype: swap
-      volume: swap_partition
-      preserve: false
-    - id: swap_mount
-      path: none
-      type: mount
-      device: swap_format
     ### format and mount root partition
     - id: root_format
       type: format
