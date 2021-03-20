@@ -42,13 +42,6 @@ autoinstall:
       flag: boot
       grub_device: true
       preserve: false
-    ### swap ###
-    - id: swap_partition
-      type: partition
-      size: 8GB
-      device: disk0
-      flag: swap
-      preserve: false
     ### root ###
     - id: root_partition
       type: partition
