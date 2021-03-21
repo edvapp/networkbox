@@ -14,23 +14,35 @@ then
 fi
 
 ## extract certifikate from pkcs12 file, which has to be placed in 
-## /var/lib/samba/private/tls
+## networkbox/samba4/tls
 
-KEYSTORE_FILE=$(ls /var/lib/samba/private/tls/*.p12)
+KEYSTORE_FILE=$(ls tls/*.p12)
+if [ "${KEYSTORE_FILE}" == "" ];
+then
+        printAndLogMessage "no *.p12 container found, we exit!"
+        exit
+fi
+
+PASSWORD_FILE="tls/password.txt"
+if [ "${PASSWORD_FILE}" == "" ];
+then
+        printAndLogMessage "no pasword.txt file found, we exit!"
+        exit
+fi
 
 file="/var/lib/samba/private/tls/cert.pem"
 printAndLogMessage "Save original file: " ${file}
 saveOriginal ${file}
 logFile ${file}
 
-openssl pkcs12 -in ${KEYSTORE_FILE} -out ${file} -nodes -nokeys
+openssl pkcs12 -in ${KEYSTORE_FILE} -out ${file} -nodes -nokeys -passin file:${PASSWORD_FILE}
 
 file="/var/lib/samba/private/tls/key.pem"
 printAndLogMessage "Save original file: " ${file}
 saveOriginal ${file}
 logFile ${file}
 
-openssl pkcs12 -in ${KEYSTORE_FILE} -out key.pem -nodes -nocerts
+openssl pkcs12 -in ${KEYSTORE_FILE} -out key.pem -nodes -nocerts -passin file:${PASSWORD_FILE}
 
 ## manipulated file /etc/samba/smb.conf
 file=/etc/samba/smb.conf
