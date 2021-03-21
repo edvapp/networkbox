@@ -31,18 +31,22 @@ then
 fi
 
 file="/var/lib/samba/private/tls/cert.pem"
-printAndLogMessage "Save original file: " ${file}
-saveOriginal ${file}
-logFile ${file}
-
+if [ -f "${file}" ];
+then
+        printAndLogMessage "Save original file: " ${file}
+        saveOriginal ${file}
+        logFile ${file}
+fi
 openssl pkcs12 -in ${KEYSTORE_FILE} -out ${file} -nodes -nokeys -passin file:${PASSWORD_FILE}
 
 file="/var/lib/samba/private/tls/key.pem"
-printAndLogMessage "Save original file: " ${file}
-saveOriginal ${file}
-logFile ${file}
-
-openssl pkcs12 -in ${KEYSTORE_FILE} -out key.pem -nodes -nocerts -passin file:${PASSWORD_FILE}
+if [ -f "${file}" ];
+then
+        printAndLogMessage "Save original file: " ${file}
+        saveOriginal ${file}
+        logFile ${file}
+fi
+openssl pkcs12 -in ${KEYSTORE_FILE} -out ${file} -nodes -nocerts -passin file:${PASSWORD_FILE}
 
 ## manipulated file /etc/samba/smb.conf
 file=/etc/samba/smb.conf
