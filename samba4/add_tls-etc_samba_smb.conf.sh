@@ -13,6 +13,31 @@ then
         exit
 fi
 
+## manipulated file /etc/samba/smb.conf
+file=/etc/samba/smb.conf
+if grep -q "tls enabled" ${file};
+then
+        printAndLogMessage "SSL/TLS already enabled, we do change /etc/samba/smb.conf!"
+else
+        printAndLogMessage "WRITE NEW ${file}"
+        printAndLogMessage "Manipulated file: " ${file}
+
+        printAndLogMessage  "STOP samba-ad-dc"
+        systemctl stop samba-ad-dc
+
+        printAndLogMessage "Save original file: " ${file}
+        saveOriginal ${file}
+        logFile ${file}
+
+        printAndLogMessage "Change file: " ${file}
+        sed -e '/idmap_ldb*/a  \ \ttls enabled = yes \n \ttls keyfile = tls/key.pem \n \ttls certfile = tls/cert.pem \n \ttls cafile  =' -i ${file}
+
+        logFile ${file}
+
+        printAndLogMessage  "START samba-ad-dc"
+        systemctl start samba-ad-dc
+fi
+
 ## extract certifikate from pkcs12 file, which has to be placed in 
 ## networkbox/samba4/tls
 
@@ -29,6 +54,9 @@ then
         printAndLogMessage "no pasword.txt file found, we exit!"
         exit
 fi
+
+printAndLogMessage  "STOP samba-ad-dc"
+systemctl stop samba-ad-dc
 
 file="/var/lib/samba/private/tls/cert.pem"
 if [ -f "${file}" ];
@@ -48,32 +76,10 @@ then
 fi
 openssl pkcs12 -in ${KEYSTORE_FILE} -out ${file} -nodes -nocerts -passin file:${PASSWORD_FILE}
 
-## manipulated file /etc/samba/smb.conf
-file=/etc/samba/smb.conf
-if grep -q "tls enabled" ${file};
-then
-        printAndLogMessage "SSL/TLS already enabled, we do nothing!"
-        exit
-fi
-
-printAndLogMessage "WRITE NEW ${file}"
-printAndLogMessage "Manipulated file: " ${file}
-
-printAndLogMessage  "STOP samba-ad-dc"
-systemctl stop samba-ad-dc
-
-printAndLogMessage "Save original file: " ${file}
-saveOriginal ${file}
-logFile ${file}
-
-printAndLogMessage "Change file: " ${file}
-
-sed -e '/idmap_ldb*/a  \ \ttls enabled = yes \n \ttls keyfile = tls/key.pem \n \ttls certfile = tls/cert.pem \n \ttls cafile  =' -i ${file}
-
-logFile ${file}
-
 printAndLogMessage  "START samba-ad-dc"
 systemctl start samba-ad-dc
+
+
 
 
 
