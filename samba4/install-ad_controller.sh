@@ -78,6 +78,9 @@ printAndLogMessage  "ADD CERTIFICATES TO DOMAIN CONTROLLER"
 printAndLogMessage  "copy simple netlogon.bat to /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts"
 cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
 
+## add TSN SYNC
+/bin/bash add_sync_to_tsn.sh
+
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"
 
 
