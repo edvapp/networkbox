@@ -33,10 +33,10 @@ OBJECT_SID=$(echo ${OBJECT_SID_LONG} | awk '{print $NF}')
 SDDL="(A;;${ACL_LIST};;;${OBJECT_SID})"
 printAndLogMessage "SDDL ${SDDL} added to object ${OU_TSN_SYNC_CONTAINER}"
 ## we need DN for ${OU_TSN_SYNC_CONTAINER} :-(
-samba-tool dsacl set --objectdn=${OU_TSN_SYNC_CONTAINER},${SAMBA4_ROOT_DN}" --sddl=${SDDL}
+samba-tool dsacl set --objectdn="${OU_TSN_SYNC_CONTAINER},${SAMBA4_ROOT_DN}" --sddl=${SDDL}
 
 printAndLogMessage "CREATE TSN-SYNC-USER ${TSN_SYNC_USER}"
-samba-tool user create ${TSN_SYNC_USER} --uid-number=${TSN_SYNC_USER_UID_NUMBER} --gid-number=${TSN_SYNC_USER_GID_NUMBER}
+samba-tool user create ${TSN_SYNC_USER} ${TSN_SYNC_USER_PASSWORD} --uid-number=${TSN_SYNC_USER_UID_NUMBER} --gid-number=${TSN_SYNC_USER_GID_NUMBER}
 
 printAndLogMessage "add ${TSN_SYNC_USER} to ${TSN_SYNC_GROUP}"
 samba-tool group addmembers ${TSN_SYNC_GROUP} ${TSN_SYNC_USER}
