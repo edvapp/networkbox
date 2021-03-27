@@ -30,7 +30,7 @@ OBJECT_SID_LONG=$(samba-tool group show ${TSN_SYNC_GROUP} --attributes=objectSid
 ## we extract SID, which is last word of the string
 OBJECT_SID=$(echo ${OBJECT_SID_LONG} | awk '{print $NF}')
 ## we build SDDL String
-SDDL="(A;;${ACL_LIST};;;${OBJECT_SID})"
+SDDL="(${ACCESS_FLAG};${INHERIT_FLAG};${ACL_LIST};;;${OBJECT_SID})"
 printAndLogMessage "SDDL ${SDDL} added to object ${OU_TSN_SYNC_CONTAINER}"
 ## we need DN for ${OU_TSN_SYNC_CONTAINER} :-(
 samba-tool dsacl set --objectdn="${OU_TSN_SYNC_CONTAINER},${SAMBA4_ROOT_DN}" --sddl=${SDDL}
