@@ -27,14 +27,15 @@ fi
 /bin/bash change-IP-etc_hosts.sh
 
 printAndLogMessage "INSTALL PACKAGES"
-printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli nfs-common autofs"
+printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9 bind9-dnsutils ldb-tools adcli nfs-common autofs"
 ## from samba - wiki: acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user
 ## acl, attr: exteded acls
+## bind9: dns - server
 ## bind9-dnsutils: dig, nslookup
 ## to have a look at the ldb-databases: ldb-tools
 ## to preset computer-accounts: adcli
 ## to act as an nfs-client: nfs-common autofs
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils ldb-tools adcli nfs-common autofs
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9 bind9-dnsutils ldb-tools adcli nfs-common autofs
 
 printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
 systemctl mask smbd nmbd winbind
@@ -49,7 +50,8 @@ mv /etc/krb5.conf /etc/krb5.conf.orig
 
 printAndLogMessage "PROVISION ACTIVE DIRECTORY SERVER"
 printAndLogMessage "samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}"
-samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}
+#samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}
+samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=BIND9_DLZ --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "INSTALL KERBEROS CONFIGURATION FROM SAMBA4"
 printAndLogMessage "cp /var/lib/samba/private/krb5.conf /etc"
@@ -65,6 +67,17 @@ cp /var/lib/samba/private/krb5.conf /etc
 ## SET FORWARDER IN /etc/samba/smb.conf 
 ## DNS lookup should work now again
 /bin/bash change-etc_samba_smb.conf.sh
+
+## CONFIGURE BIND9 DNS Server
+printAndLogMessage "CONFIGURE BIND9 DNS Server"
+printAndLogMessage "STOP bind9 - DNS server"
+systemctl stop bind9.service
+/bin/bash write-etc_bind_named.conf.options.sh
+
+/bin/bash change-etc_bind_named.conf.local.sh
+printAndLogMessage "STOP bind9 - DNS server"
+systemctl start bind9.service
+systemctl status bind9.service
 
 printAndLogMessage  "UMASK, START & ENABLE samba-ad-dc"
 systemctl unmask samba-ad-dc
