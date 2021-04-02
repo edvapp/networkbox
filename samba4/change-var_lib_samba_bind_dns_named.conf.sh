@@ -7,10 +7,10 @@
 . ../OPTIONS.conf
 
 
-printAndLogMessage "CONNECT samba4 to bind9" 
-printAndLogMessage "uncomment library ${DLZ_BIND9_LIBRARY} in /var/lib/samba/bind_dns_named.conf.sh" 
-## manipulated file /var/lib/samba/bind_dns_named.conf.sh
-file="/var/lib/samba/bind_dns_named.conf.sh"
+printAndLogMessage "CONNECT samba4 to bind9"
+printAndLogMessage "uncomment library ${DLZ_BIND9_LIBRARY} in /var/lib/samba/bind-dns/named.conf"
+## manipulated file /var/lib/samba/bind-dns/named.conf
+file="/var/lib/samba/bind-dns/named.conf"
 
 printAndLogMessage "Manipulated file: " $file
 printAndLogMessage "Save original file: " $file
@@ -22,3 +22,5 @@ printAndLogMessage "Change file: " $file
 sed -e "{
     /${DLZ_BIND9_LIBRARY}/ s/#//
 }" -i $file 
+
+logFile $file

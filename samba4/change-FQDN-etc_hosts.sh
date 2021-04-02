@@ -22,3 +22,4 @@ sed -e "{
     /$(hostname)/ s/$(hostname)/$(hostname).${SAMBA4_DNS_DOMAIN_NAME} $(hostname)/
 }" -i $file 
 
+logFile $file
