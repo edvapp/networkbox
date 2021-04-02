@@ -81,14 +81,18 @@ systemctl stop bind9.service
 ## database "dlopen /usr/lib/x86_64-linux-gnu/samba/bind9/dlz_bind9_12.so";
 /bin/bash change-var_lib_samba_bind_dns_named.conf.sh
 
-printAndLogMessage "STOP bind9 - DNS server"
+printAndLogMessage "START bind9 - DNS server"
 systemctl start bind9.service
 systemctl status bind9.service
 
-printAndLogMessage  "UMASK, START & ENABLE samba-ad-dc"
+printAndLogMessage "UMASK, START & ENABLE samba-ad-dc"
 systemctl unmask samba-ad-dc
 systemctl start samba-ad-dc
 systemctl enable samba-ad-dc
+
+## CREATE REVERSE LOOK UP in DNS
+printAndLogMessage "CREATE REVERSE LOOK UP in DNS"
+/bin/bash create-dns_reverse_zone.sh
 
 ## ADD CERTIFICATES TO DOMAIN CONTROLLER
 printAndLogMessage  "ADD CERTIFICATES TO DOMAIN CONTROLLER"
