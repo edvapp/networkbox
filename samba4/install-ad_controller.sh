@@ -72,9 +72,15 @@ cp /var/lib/samba/private/krb5.conf /etc
 printAndLogMessage "CONFIGURE BIND9 DNS Server"
 printAndLogMessage "STOP bind9 - DNS server"
 systemctl stop bind9.service
-/bin/bash write-etc_bind_named.conf.options.sh
 
+## write new named.conf.options file, with all parameters
+/bin/bash write-etc_bind_named.conf.options.sh
+## add include to /var/lib/samba/bind-dns/named.conf
 /bin/bash change-etc_bind_named.conf.local.sh
+## uncomment in /var/lib/samba/bind-dns/named.conf
+## database "dlopen /usr/lib/x86_64-linux-gnu/samba/bind9/dlz_bind9_12.so";
+/bin/bash change-var_lib_samba_bind_dns_named.conf.sh
+
 printAndLogMessage "STOP bind9 - DNS server"
 systemctl start bind9.service
 systemctl status bind9.service

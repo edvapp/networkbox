@@ -7,9 +7,10 @@
 . ../OPTIONS.conf
 
 
-printAndLogMessage "SET FQDN IN /etc/hosts" 
-## manipulated file /etc/hosts
-file="/etc/hosts"
+printAndLogMessage "CONNECT samba4 to bind9" 
+printAndLogMessage "uncomment library ${DLZ_BIND9_LIBRARY} in /var/lib/samba/bind_dns_named.conf.sh" 
+## manipulated file /var/lib/samba/bind_dns_named.conf.sh
+file="/var/lib/samba/bind_dns_named.conf.sh"
 
 printAndLogMessage "Manipulated file: " $file
 printAndLogMessage "Save original file: " $file
@@ -19,16 +20,5 @@ logFile $file
 printAndLogMessage "Change file: " $file
 # block host entrance, if one exists
 sed -e "{
-    /$(hostname)/ s/^/#/
+    /${DLZ_BIND9_LIBRARY}/ s/#//
 }" -i $file 
-
-# write host entrance with our LDAP suffixes
-echo "
-
-## added by networkbox
-${SAMBA4_STATIC_IP} $(hostname).${SAMBA4_DNS_DOMAIN_NAME} $(hostname)
-##
-" >> $file
-
-logFile $file
-

@@ -33,8 +33,10 @@ options {
       allow-transfer { none; };
 
       dnssec-validation no;
-      dnssec-enable no;
-      dnssec-lookaside no;
+      // not nesessary any more
+      // dnssec-enable no;
+      // not nesessary any more
+      // dnssec-lookaside no;
 
       // If you only use IPv4. 
       listen-on-v6 { none; };
