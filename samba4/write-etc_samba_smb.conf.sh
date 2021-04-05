@@ -43,7 +43,11 @@ echo "
    # idmap config for the ${SAMBA4_REALM_DOMAIN_NAME} domain
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : backend = ad
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : schema_mode = rfc2307
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 100000000-9999999999
+   # we have to avoid the internal used range: 3 000 0000 - 4 000 000 
+   # and start with    5 000 000
+   # and end with: 9 999 999 999
+   # https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member
+   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 5000000-9999999999
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_nss_info = yes
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_primary_group = yes
 
