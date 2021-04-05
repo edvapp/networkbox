@@ -14,5 +14,5 @@ printAndLogMessage "we create reverse zone ${REVERSE_NET}.in-addr.arpa"
 samba-tool dns zonecreate $(hostname) ${REVERSE_NET}.in-addr.arpa -UAdministrator --password=${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "we add $(hostname) to ${REVERSE_NET}.in-addr.arpa"
-samba-tool dns add $(hostname) ${REVERSE_NET}.in-addr.arpa ${REVERSE_IP} PTR $(hostname).brg.tsn -UAdministrator --password=${SAMBA4_ADMINISTRATOR_PASSWORD}
+samba-tool dns add $(hostname) ${REVERSE_NET}.in-addr.arpa ${REVERSE_IP} PTR $(hostname).${SAMBA4_DNS_DOMAIN_NAME} --username=Administrator --password=${SAMBA4_ADMINISTRATOR_PASSWORD}
 

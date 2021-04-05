@@ -35,7 +35,7 @@ samba-tool spn add nfs/${HOSTNAME^^} ${HOSTNAME}$ --username=${CREATOR} --passwo
 
 echo "add host ${HOSTNAME} to DNS reverse zone"
 REVERSE_IP=$(echo $IP | awk 'BEGIN { FS = "." } { print $4"."$3"."$2 }')
-samba-tool dns add ${AD_HOSTNAME} 10.in-addr.arpa ${REVERSE_IP} PTR ${HOSTNAME}.{DOMAIN_SUFFIX} --username=${CREATOR} --password=${PASSWORD}
+samba-tool dns add ${AD_HOSTNAME} 10.in-addr.arpa ${REVERSE_IP} PTR ${HOSTNAME}.${DOMAIN_SUFFIX} --username=${CREATOR} --password=${PASSWORD}
 
 echo "add uidNumber to machine account"
 ## we need 10 digits 
