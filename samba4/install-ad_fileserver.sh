@@ -37,7 +37,13 @@ printAndLogMessage "acl attr samba samba-dsdb-modules samba-vfs-modules winbind 
 ## to act as nfs-server: nfs-kernel-server
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind libpam-winbind adcli nfs-kernel-server
 
-##STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
+## STOP all services
+printAndLogMessage "systemctl stop smbd"
+systemctl stop smbd
+printAndLogMessage "systemctl stop nmbd"
+systemctl stop nmbd
+
+## STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh  
 
 ### WRITE NEW CLEAN KERBEROS CONFIGURATION FILES
@@ -49,9 +55,11 @@ apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind k
 ## CONNECT client via nsswitch.conf and winbind to domain ${SAMBA4_DOMAIN}
 /bin/bash change-etc_nsswitch.conf.sh
 
-## restart winbind
-printAndLogMessage "systemctl restart winbind"
-systemctl restart winbind
+## START all services
+printAndLogMessage "systemctl start smbd"
+systemctl start smbd
+printAndLogMessage "systemctl start nmbd"
+systemctl start nmbd
 
 ## enable automatic home-directory creation
 printAndLogMessage "enable automatic home-directory creation"

@@ -22,7 +22,7 @@ printAndLogMessage "Change file: " ${file}
 
 echo "
 [global]
-   workgroup = ${SAMBA4_DOMAIN}
+   workgroup = ${SAMBA4_DOMAIN^^}
    security = ADS
    realm = ${SAMBA4_REALM_DOMAIN_NAME}
 
@@ -46,6 +46,7 @@ echo "
    # we have to avoid the internal used range: 3 000 0000 - 4 000 000 
    # and start with    5 000 000
    # and end with: 9 999 999 999
+   # for uids created from IPs: 10.3.12.105 -> 1 003 012 105
    # https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 5000000-9999999999
    idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_nss_info = yes
