@@ -17,7 +17,7 @@ printAndLogMessage "CREATE TSN-SYNC-CONTAINER ${OU_TSN_SYNC_CONTAINER}"
 samba-tool ou create ${OU_TSN_SYNC_CONTAINER}
 
 printAndLogMessage "CREATE TSN-SYNC-GROUP ${TSN_SYNC_GROUP}"
-samba-tool group add ${TSN_SYNC_GROUP} --gid-number=${TSN_SYNC_GROUP_GID_NUMBER} --nis-domain=${SAMBA4_NIS_DOMAIN}
+samba-tool group add ${TSN_SYNC_GROUP}
 
 printAndLogMessage "move ${TSN_SYNC_GROUP} to ${OU_TSN_SYNC_CONTAINER}"
 samba-tool group move ${TSN_SYNC_GROUP} ${OU_TSN_SYNC_CONTAINER}
@@ -36,7 +36,7 @@ printAndLogMessage "SDDL ${SDDL} added to object ${OU_TSN_SYNC_CONTAINER}"
 samba-tool dsacl set --objectdn="${OU_TSN_SYNC_CONTAINER},${SAMBA4_ROOT_DN}" --sddl=${SDDL}
 
 printAndLogMessage "CREATE TSN-SYNC-USER ${TSN_SYNC_USER}"
-samba-tool user create ${TSN_SYNC_USER} ${TSN_SYNC_USER_PASSWORD} --uid-number=${TSN_SYNC_USER_UID_NUMBER} --gid-number=${TSN_SYNC_USER_GID_NUMBER}
+samba-tool user create ${TSN_SYNC_USER} ${TSN_SYNC_USER_PASSWORD}
 
 printAndLogMessage "add ${TSN_SYNC_USER} to ${TSN_SYNC_GROUP}"
 samba-tool group addmembers ${TSN_SYNC_GROUP} ${TSN_SYNC_USER}

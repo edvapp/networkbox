@@ -6,7 +6,7 @@
 # source configuration
 . ../../OPTIONS.conf
 
-## test Users:
+## test computer:
 COMPUTER_NAME=$1
 if [ "$COMPUTER_NAME" == "" ];
 then
