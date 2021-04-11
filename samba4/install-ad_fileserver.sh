@@ -42,6 +42,8 @@ printAndLogMessage "systemctl stop smbd"
 systemctl stop smbd
 printAndLogMessage "systemctl stop nmbd"
 systemctl stop nmbd
+printAndLogMessage "systemctl stop winbind"
+systemctl stop winbind
 
 ## STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh  
@@ -60,6 +62,8 @@ printAndLogMessage "systemctl start smbd"
 systemctl start smbd
 printAndLogMessage "systemctl start nmbd"
 systemctl start nmbd
+printAndLogMessage "systemctl start winbind"
+systemctl start winbind
 
 ## enable automatic home-directory creation
 printAndLogMessage "enable automatic home-directory creation"

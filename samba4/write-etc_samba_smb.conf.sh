@@ -22,7 +22,7 @@ printAndLogMessage "Change file: " ${file}
 
 echo "
 [global]
-   workgroup = ${SAMBA4_DOMAIN^^}
+   workgroup = ${SAMBA4_DOMAIN}
    security = ADS
    realm = ${SAMBA4_REALM_DOMAIN_NAME}
 
@@ -40,17 +40,17 @@ echo "
    idmap config * : range = 3000-7999
    
    # - You must set a DOMAIN backend configuration
-   # idmap config for the ${SAMBA4_REALM_DOMAIN_NAME} domain
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : backend = ad
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : schema_mode = rfc2307
+   # idmap config for the ${SAMBA4_DOMAIN} domain
+   idmap config ${SAMBA4_DOMAIN} : backend = ad
+   idmap config ${SAMBA4_DOMAIN} : schema_mode = rfc2307
    # we have to avoid the internal used range: 3 000 0000 - 4 000 000 
    # and start with    5 000 000
    # and end with: 9 999 999 999
    # for uids created from IPs: 10.3.12.105 -> 1 003 012 105
    # https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : range = 5000000-9999999999
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_nss_info = yes
-   idmap config ${SAMBA4_REALM_DOMAIN_NAME} : unix_primary_group = yes
+   idmap config ${SAMBA4_DOMAIN} : range = 5000000-9999999999
+   idmap config ${SAMBA4_DOMAIN} : unix_nss_info = yes
+   idmap config ${SAMBA4_DOMAIN} : unix_primary_group = yes
 
    # If you are creating a new smb.conf on an unjoined machine and add these lines, 
    # a keytab will be created during the join:

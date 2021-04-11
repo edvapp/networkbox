@@ -17,7 +17,7 @@ printAndLogMessage "CREATE TSN-SYNC-CONTAINER ${OU_TSN_SYNC_CONTAINER}"
 samba-tool ou create ${OU_TSN_SYNC_CONTAINER}
 
 printAndLogMessage "CREATE TSN-SYNC-GROUP ${TSN_SYNC_GROUP}"
-samba-tool group add ${TSN_SYNC_GROUP} --gid-number=${TSN_SYNC_GROUP_GID_NUMBER} --nis-domain=${SAMBA4_DOMAIN}
+samba-tool group add ${TSN_SYNC_GROUP} --gid-number=${TSN_SYNC_GROUP_GID_NUMBER} --nis-domain=${SAMBA4_NIS_DOMAIN}
 
 printAndLogMessage "move ${TSN_SYNC_GROUP} to ${OU_TSN_SYNC_CONTAINER}"
 samba-tool group move ${TSN_SYNC_GROUP} ${OU_TSN_SYNC_CONTAINER}
