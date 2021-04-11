@@ -1,45 +1,28 @@
 #!/bin/bash
 
-## get own domain (short version: brg.tsn -> BRG)
-OWN_DOMAIN=$(wbinfo --own-domain)
+USER_LIST=$(wbinfo -u)
 
-## directory to save unused homedirectories
-SAVED_OLD_HOMEDIRS="xxxOLD"
-
-## directory names for different groups
-## l -> Lehrer*innen
-## s -> Schüler*innen
-## v -> Verwaltung
-## we take, what is on this server
-USER_GROUPS=$(ls /home/users/701036)
-echo $USER_GROUPS
-
-for GROUP in ${USER_GROUPS};
+for USER in ${USER_LIST};
 do
-    ## set path to directory, where user-homedirectories live
-    HOME_DIR_PATH="/home/users/701036/${GROUP}"
-    echo "processing ${HOME_DIR_PATH}"
-
-    ## get actual user list from homediréctory names
-    LOCAL_USER_LIST=$(ls ${HOME_DIR_PATH})
-
-    for USER in ${LOCAL_USER_LIST};
-    do
-        ## we will not check $HOME_DIR_PATH/$SAVED_OLD_HOMEDIRS
-        if [ ! "${USER}" == "${SAVED_OLD_HOMEDIRS}" ]
+        ## get user info in format
+        ## DOMAIN\username:*:uidNUmber:gidNumber::homedirectory_path:/bin/bash
+        echo "processing ${USER}"
+        wbinfo --user-info ${USER}
+        if [ "$?" == "0" ];
         then
-                ## check if user with same name as ${USER} exists
-                wbinfo --user-info ${OWN_DOMAIN}\\${USER} 2> /dev/null
-                ## check if user was found
-                if [ ! "$?" == "0" ];
+                USER_HOME_DIR_PATH=$(wbinfo --user-info ${USER} | awk 'BEGIN {FS = ":" } { print $6 } ')
+                echo "checking ${USER_HOME_DIR_PATH} for ${USER}"
+                if [ ! -d ${USER_HOME_DIR_PATH} ];
                 then
-                        echo "user ${USER} not found in AD, homedirectory will be moved to directory ${SAVED_OLD_HOMEDIRS}"
-                        if [ ! -d ${HOME_DIR_PATH}/${SAVED_OLD_HOMEDIRS} ];
-                        then
-                                mkdir -p ${HOME_DIR_PATH}/${SAVED_OLD_HOMEDIRS}
-                        fi
-                        cp -r ${HOME_DIR_PATH}/${USER} ${HOME_DIR_PATH}/${SAVED_OLD_HOMEDIRS}/${USER}
+                        echo "creating homedir ${USER_HOME_DIR_PATH} for ${USER}"
+                        USER_UID_NUMBER=$(wbinfo --user-info ${USER} | awk 'BEGIN {FS = ":" } { print $3 } ')
+                        USER_GID_NUMBER=$(wbinfo --user-info ${USER} | awk 'BEGIN {FS = ":" } { print $4 } ')
+                        ## TODO:
+                        ## check if ${USER_UID_NUMBER} exists in unused homedirs and move to ${USER_HOME_DIR_PATH}
+                        mkdir -p ${USER_HOME_DIR_PATH}
+                        echo "setting owner to ${USER_UID_NUMBER}:${USER_GID_NUMBER}"
+                        chown ${USER_UID_NUMBER}:${USER_GID_NUMBER} ${USER_HOME_DIR_PATH}
                 fi
         fi
-    done
 done
+
