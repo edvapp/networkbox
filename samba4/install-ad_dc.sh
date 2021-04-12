@@ -64,8 +64,11 @@ cp /var/lib/samba/private/krb5.conf /etc
 ## because DNS lookup is brocken
 /bin/bash change_for_AD-etc_resolv.conf.sh
 
-## SET FORWARDER IN /etc/samba/smb.conf 
-## DNS lookup should work now again
+## SET FORWARDER IN /etc/samba/smb.conf
+## DNS lookup should work now again 
+## BUT:
+## dns forwarder = ddd.ddd.ddd.ddd 
+## at the moment not found in /etc/samba/smb.conf
 /bin/bash change-etc_samba_smb.conf.sh
 
 ## CONFIGURE BIND9 DNS Server
@@ -98,8 +101,13 @@ printAndLogMessage "CREATE REVERSE LOOK UP in DNS"
 printAndLogMessage  "ADD CERTIFICATES TO DOMAIN CONTROLLER"
 /bin/bash add_tls-etc_samba_smb.conf.sh
 
+## SIMPLE NETLOGON.BAT TO /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
 printAndLogMessage  "copy simple netlogon.bat to /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts"
 cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
+
+## UPGRADE NORMAL WINDOWS GROUPS TO UNIX GROUPS
+printAndLogMessage  "upgrade normal windows-groups to unix-groups"
+/bin/bash upgrade-normal-windows-groups.sh
 
 ## add TSN SYNC
 /bin/bash add_sync_to_tsn.sh
