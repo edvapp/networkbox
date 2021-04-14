@@ -39,8 +39,17 @@ samba-tool dns add ${AD_HOSTNAME} 10.in-addr.arpa ${REVERSE_IP} PTR ${HOSTNAME}.
 
 echo "add uidNumber to machine account"
 ## we need 10 digits 
-## we repace the first IP tripplet with 1
-## 10.3.45.231 -> 1 003 045 231 -> 1003045231
+## we repace the first IP tripplet with 2
+## and check the second to stay beyond 147 because 2^31-1 = 2 147 483 647 :-(
+## 10.3.45.231 -> 2 003 045 231 -> 1003045231
+
+CHECK=$(echo $IP | awk 'BEGIN { FS = "." } { print $2 }')
+if (( $CHECK > 147 ));
+then
+        echo "IP can maximal be 10.147.ddd.ddd, for Info please read OPTIONS.conf"
+        exit
+fi
+
 UID_NUMBER=$(echo $IP | awk 'BEGIN { FS = "." } { printf "1%.3d%.3d%.3d", $2, $3, $4 }')
 echo "
 dn: CN=${HOSTNAME},${COMPUTEROU}
