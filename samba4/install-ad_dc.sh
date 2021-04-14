@@ -107,9 +107,13 @@ cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
 
 ## UPGRADE NORMAL WINDOWS GROUPS TO UNIX GROUPS
 printAndLogMessage  "upgrade normal windows-groups to unix-groups"
-/bin/bash upgrade-normal-windows-groups.sh
+/bin/bash upgrade-normal_windowsgroups_to_unixgroups.sh
 
-## add TSN SYNC
+## ADD COMPUTER DOMAIN MANAGEMENT
+printAndLogMessage  "add computer "
+/bin/bash add_domain_computer_management.sh
+
+## ADD TSN SYNC
 /bin/bash add_sync_to_tsn.sh
 
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"
