@@ -25,6 +25,13 @@ IP=$3
 CREATOR=$4
 PASSWORD=$5
 
+CHECK=$(echo $IP | awk 'BEGIN { FS = "." } { print $2 }')
+if (( $CHECK > 147 ));
+then
+        echo "IP can maximal be 10.147.ddd.ddd, for Info please read OPTIONS.conf"
+        exit
+fi
+
 echo "create host ${HOSTNAME} with IP: ${IP} in ${COMPUTEROU}"
 samba-tool computer create ${HOSTNAME} --computerou=${COMPUTEROU} --description=${HOSTNAME} --ip-address=${IP} --username=${CREATOR} --password=${PASSWORD}
 
@@ -42,13 +49,6 @@ echo "add uidNumber to machine account"
 ## we repace the first IP tripplet with 2
 ## and check the second to stay beyond 147 because 2^31-1 = 2 147 483 647 :-(
 ## 10.3.45.231 -> 2 003 045 231 -> 1003045231
-
-CHECK=$(echo $IP | awk 'BEGIN { FS = "." } { print $2 }')
-if (( $CHECK > 147 ));
-then
-        echo "IP can maximal be 10.147.ddd.ddd, for Info please read OPTIONS.conf"
-        exit
-fi
 
 UID_NUMBER=$(echo $IP | awk 'BEGIN { FS = "." } { printf "1%.3d%.3d%.3d", $2, $3, $4 }')
 echo "
