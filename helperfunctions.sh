@@ -55,6 +55,34 @@ function getCIDRsubnetmask()
 	fi
 }
 
+function createSambaOUpath()
+{
+        if [ "$1" == "" ];
+        then
+                echo "no OU set! Nothing to do! Exit!"
+                exit
+        fi
+        ## set seperator to ','
+        IFS=','
+        ## get OU as array
+        INPUT_OU_ARRAY=($1)
+        unset IFS
+        ## array.length
+        INPUT_OU_ARRAY_LENGTH=${#INPUT_OU_ARRAY[@]}
+        echo "processing ${INPUT_OU_ARRAY_LENGTH} OUs"
+        for ((start_of_OUs = INPUT_OU_ARRAY_LENGTH - 1; start_of_OUs >=0; start_of_OUs--));
+        do
+                OU_TO_CREATE=""
+                for ((ou = $INPUT_OU_ARRAY_LENGTH - 1; ou >= $start_of_OUs; ou--));
+                do
+                        OU_TO_CREATE="${INPUT_OU_ARRAY[ou]},${OU_TO_CREATE}"
+                done
+                ## :: -1 we remove the last , 
+                echo "creating ${OU_TO_CREATE::-1}"
+                samba-tool ou create ${OU_TO_CREATE::-1}
+        done
+}
+
 LOGFILE="../protokoll.log"
 
 function printAndLogStartMessage()

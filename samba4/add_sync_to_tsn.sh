@@ -14,7 +14,7 @@ then
 fi
 
 printAndLogMessage "CREATE TSN-SYNC-CONTAINER ${OU_TSN_SYNC_CONTAINER}"
-samba-tool ou create ${OU_TSN_SYNC_CONTAINER}
+createSambaOUpath ${OU_TSN_SYNC_CONTAINER}
 
 printAndLogMessage "CREATE TSN-SYNC-GROUP ${TSN_SYNC_GROUP}"
 samba-tool group add ${TSN_SYNC_GROUP}
