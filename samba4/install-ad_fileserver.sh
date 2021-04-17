@@ -76,13 +76,15 @@ printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 # server will also be added to DNS, if it does not exist. error message if allready in DNS
 net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
-printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}/users/"
-mkdir -p ${SAMBA4_HOMES_BASE_DIR}/users/
+printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}"
+mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/l
+mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/s
+mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/v
 
-printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}/users/"
-chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}/users/
+printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}"
+chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}
 
-printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}/users/"
+printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}"
 chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}/users/
 
 printAndLogMessage "add share /home/xchange/"
@@ -95,14 +97,19 @@ printAndLogMessage "add nfs-shares"
 /bin/bash install-nfs_server.sh
 cd ../samba4
 
-mkdir -p $NFS_EXPORT_DIR/users
+printAndLogMessage "create export directories in ${NFS_EXPORT_DIR}"
+mkdir -p -v ${NFS_EXPORT_DIR}/l
+mkdir -p -v ${NFS_EXPORT_DIR}/s
+mkdir -p -v ${NFS_EXPORT_DIR}/v
 
-mount --bind ${SAMBA4_HOMES_BASE_DIR}/users/ $NFS_EXPORT_DIR/users
+mount --bind ${SAMBA4_HOMES_BASE_DIR}/l/ $NFS_EXPORT_DIR/l
+mount --bind ${SAMBA4_HOMES_BASE_DIR}/s/ $NFS_EXPORT_DIR/s
+mount --bind ${SAMBA4_HOMES_BASE_DIR}/v/ $NFS_EXPORT_DIR/v
 
-printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/users/ TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/users"
+printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/l s v TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/l s v"
 /bin/bash change-etc_fstab.sh
 
-printAndLogMessage "ADD $NFS_EXPORT_DIR/users TO /etc/exports"
+printAndLogMessage "ADD $NFS_EXPORT_DIR/l s v TO /etc/exports"
 /bin/bash change-etc_exports.sh
 #### ADD NFS - Server END ####
 

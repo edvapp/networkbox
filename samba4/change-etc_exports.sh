@@ -20,7 +20,11 @@ getCIDRsubnetmask $NETMASK
 
 echo "
 
-$NFS_EXPORT_DIR/users	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
+$NFS_EXPORT_DIR/l	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
+
+$NFS_EXPORT_DIR/s	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
+
+$NFS_EXPORT_DIR/v	$NETWORK/$CIDR_SUBNETMASK(rw,nohide,insecure,no_subtree_check,async)
 
 " >> $file
 

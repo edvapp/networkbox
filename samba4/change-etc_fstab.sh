@@ -17,7 +17,11 @@ logFile $file
 printAndLogMessage "Write to file: " $file
 echo "
 #
-${SAMBA4_HOMES_BASE_DIR}/users/   $NFS_EXPORT_DIR/users   none    bind  0  0
+${SAMBA4_HOMES_BASE_DIR}/l   $NFS_EXPORT_DIR/l   none    bind  0  0
+#
+${SAMBA4_HOMES_BASE_DIR}/s   $NFS_EXPORT_DIR/s   none    bind  0  0
+#
+${SAMBA4_HOMES_BASE_DIR}/v   $NFS_EXPORT_DIR/v   none    bind  0  0
 #
 " >> $file
 
