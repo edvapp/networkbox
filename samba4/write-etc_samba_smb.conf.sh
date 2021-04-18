@@ -45,10 +45,10 @@ echo "
    idmap config ${SAMBA4_DOMAIN} : schema_mode = rfc2307
    # we have to avoid the internal used range: 3 000 0000 - 4 000 000 
    # and start with    5 000 000
-   # and end with: 9 999 999 999
-   # for uids created from IPs: 10.3.12.105 -> 1 003 012 105
+   # and end with: 2 147 483 647 = 2^31 - 1
+   # for uids created from IPs: 10.3.12.105 -> 2 003 012 105 have to stay beyond 10.147. !
    # https://wiki.samba.org/index.php/Setting_up_Samba_as_a_Domain_Member
-   idmap config ${SAMBA4_DOMAIN} : range = 5000000-9999999999
+   idmap config ${SAMBA4_DOMAIN} : range = 5000000-2147483647
    idmap config ${SAMBA4_DOMAIN} : unix_nss_info = yes
    idmap config ${SAMBA4_DOMAIN} : unix_primary_group = yes
 
@@ -65,7 +65,7 @@ echo "
    
 [users]
     # .../users IS a standard for MS Windows 
-    path = ${SAMBA4_HOMES_BASE_DIR}/users/
+    path = ${SAMBA4_HOMES_BASE_DIR}/
     read only = no
     force create mode = 0600
     force directory mode = 0700

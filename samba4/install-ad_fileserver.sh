@@ -34,8 +34,7 @@ printAndLogMessage "acl attr samba samba-dsdb-modules samba-vfs-modules winbind 
 ## to get Domain Users/Groups onto Fileserver to set Directory/File Permissions: libnss-winbind
 ## to enable local logins for Domain Users: libpam-winbind
 ## to preset computer-accounts: adcli
-## to act as nfs-server: nfs-kernel-server
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind libpam-winbind adcli nfs-kernel-server
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind libpam-winbind adcli 
 
 ## STOP all services
 printAndLogMessage "systemctl stop smbd"
@@ -77,15 +76,15 @@ printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}"
-mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/l
-mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/s
-mkdir -p -v ${SAMBA4_HOMES_BASE_DIR}/v
+mkdir -p -v ${SAMBA4_NFS_TEACHERS_HOMEDIR}
+mkdir -p -v ${SAMBA4_NFS_PUPILS_HOMEDIR}
+mkdir -p -v ${SAMBA4_NFS_STAFF_HOMEDIR}
 
-printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}"
-chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}
+#printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}"
+#chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}
 
 printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}"
-chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}/users/
+chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}
 
 printAndLogMessage "add share /home/xchange/"
 /bin/bash add_share_xchange-etc_samba_smb.conf.sh
@@ -93,20 +92,19 @@ printAndLogMessage "add share /home/xchange/"
 
 #### ADD NFS - Server START ####
 cd ../nfs-server
-printAndLogMessage "add nfs-shares"
 /bin/bash install-nfs_server.sh
 cd ../samba4
 
 printAndLogMessage "create export directories in ${NFS_EXPORT_DIR}"
-mkdir -p -v ${NFS_EXPORT_DIR}/l
-mkdir -p -v ${NFS_EXPORT_DIR}/s
-mkdir -p -v ${NFS_EXPORT_DIR}/v
+mkdir -p -v ${NFS_EXPORT_TEACHERS_HOMEDIR}
+mkdir -p -v ${NFS_EXPORT_PUPILS_HOMEDIR}
+mkdir -p -v ${NFS_EXPORT_STAFF_HOMEDIR}
 
-mount --bind ${SAMBA4_HOMES_BASE_DIR}/l/ $NFS_EXPORT_DIR/l
-mount --bind ${SAMBA4_HOMES_BASE_DIR}/s/ $NFS_EXPORT_DIR/s
-mount --bind ${SAMBA4_HOMES_BASE_DIR}/v/ $NFS_EXPORT_DIR/v
+mount --bind ${SAMBA4_NFS_TEACHERS_HOMEDIR}/ ${NFS_EXPORT_TEACHERS_HOMEDIR}
+mount --bind ${SAMBA4_NFS_PUPILS_HOMEDIR}/ ${NFS_EXPORT_PUPILS_HOMEDIR}
+mount --bind ${SAMBA4_NFS_STAFF_HOMEDIR}/ ${NFS_EXPORT_STAFF_HOMEDIR}
 
-printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/l s v TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/l s v"
+printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/${SCHOOL_ID_NUMBER}/l s v TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/${SCHOOL_ID_NUMBER}/l s v"
 /bin/bash change-etc_fstab.sh
 
 printAndLogMessage "ADD $NFS_EXPORT_DIR/l s v TO /etc/exports"
