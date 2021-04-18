@@ -22,6 +22,8 @@ do
                         mkdir -p ${USER_HOME_DIR_PATH}
                         echo "setting owner to ${USER_UID_NUMBER}:${USER_GID_NUMBER}"
                         chown ${USER_UID_NUMBER}:${USER_GID_NUMBER} ${USER_HOME_DIR_PATH}
+                        echo "setting permission to 700 for ${USER_UID_NUMBER}:${USER_GID_NUMBER}"
+                        chmod 700 ${USER_HOME_DIR_PATH}
                 fi
         fi
 done

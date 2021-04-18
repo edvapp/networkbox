@@ -32,7 +32,7 @@ mkdir -p $NFS_EXPORT_DIR
 printAndLogMessage "Write to /etc/exports"
 /bin/bash change-etc_exports.sh
 
-if [ $RELEASE = Raspbian ];
+if [ "$RELEASE" = "Raspbian" ];
 then
 	printAndLogMessage "Enable idmap-daemon on Raspbian"
 	/bin/bash change-etc_default_nfs-common.sh
