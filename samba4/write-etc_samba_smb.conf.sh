@@ -26,6 +26,12 @@ echo "
    security = ADS
    realm = ${SAMBA4_REALM_DOMAIN_NAME}
 
+   # we MUST set winbind use default domain = yes 
+   # to drop ${SAMBA4_DOMAIN} before username listed
+   # by winbindd to keep idmapd working for NFS4 & krb5
+   # ${SAMBA4_DOMAIN}\username instead username will break 
+   # name -> uid -> name for idmapd
+   winbind use default domain = yes
    winbind refresh tickets = Yes
    vfs objects = acl_xattr
    map acl inherit = Yes
@@ -69,6 +75,8 @@ echo "
     read only = no
     force create mode = 0600
     force directory mode = 0700
+    # we have to put the primary group of all users
+    force group = tsnusr-tsnuserbmhssnr701036
 
 " > ${file}
 
