@@ -8,7 +8,7 @@
 
 ## we get reverse network-IP in: REVERSE_NET Example: 10 for 10.0.0.0/255.0.0.0
 ## and own reverse IP in:        REVERSE_IP Example: 19.0.0.10 for 10.0.0.19 
-getReverseNETAndIP ${STATIC_IP} ${NETMASK}
+getReverseNETAndIP ${SAMBA4_STATIC_IP} ${NETMASK}
 
 printAndLogMessage "we create reverse zone ${REVERSE_NET}.in-addr.arpa"
 samba-tool dns zonecreate $(hostname) ${REVERSE_NET}.in-addr.arpa -UAdministrator --password=${SAMBA4_ADMINISTRATOR_PASSWORD}

@@ -41,7 +41,7 @@ options {
       // If you only use IPv4. 
       listen-on-v6 { none; };
       // listen on these ipnumbers. 
-      listen-on port 53 { ${STATIC_IP}; 127.0.0.1; ::1; };
+      listen-on port 53 { ${SAMBA4_STATIC_IP}; 127.0.0.1; ::1; };
 
       // Added Per Debian buster Bind9. 
       // Due to : resolver: info: resolver priming query complete messages in the logs. 
