@@ -8,11 +8,11 @@
 
 
 file=/etc/nsswitch.conf
-printAndLogMessage "Manipulated file: " $file
-logFile $file
-saveFile $file
+printAndLogMessage "Manipulated file: " ${file}
+logFile ${file}
+saveFile ${file}
 
-printAndLogMessage "Change file: " $file
+printAndLogMessage "Change file: " ${file}
 # Set Right Parameters in /etc/nsswitch.conf
 # passwd:         files systemd winbind
 # group:          files systemd winbind
@@ -25,6 +25,6 @@ sed -e "{
 	/^passwd:/ s/$/ winbind/
 }" -e "{
 	/^group:/ s/$/ winbind/
-}" -i $file
+}" -i ${file}
 
-logFile $file
+logFile ${file}

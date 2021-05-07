@@ -8,13 +8,13 @@
 
 # manipulated file
 file=/etc/bind/named.conf.options
-printAndLogMessage "Manipulated file: " $file
+printAndLogMessage "Manipulated file: " ${file}
 
-printAndLogMessage "Save original file: " $file
-saveOriginal $file
-logFile $file
+printAndLogMessage "Save original file: " ${file}
+saveOriginal ${file}
+logFile ${file}
 
-printAndLogMessage "Write to file: " $file
+printAndLogMessage "Write to file: " ${file}
 
 ## we get CIDR subnetmask in variable ${CIDR_SUBNETMASK}
 getCIDRsubnetmask $NETMASK
@@ -66,7 +66,7 @@ options {
       tkey-gssapi-keytab \"/var/lib/samba/bind-dns/dns.keytab\";
 
   };
-" > $file
+" > ${file}
 
-logFile $file
+logFile ${file}
 

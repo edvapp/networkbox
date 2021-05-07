@@ -56,13 +56,14 @@ systemctl stop winbind
 ## CONNECT client via nsswitch.conf and winbind to domain ${SAMBA4_DOMAIN}
 /bin/bash change-etc_nsswitch.conf.sh
 
-## START all services
+## START smbd winbind services
 printAndLogMessage "systemctl start smbd"
 systemctl start smbd
-printAndLogMessage "systemctl start nmbd"
-systemctl start nmbd
 printAndLogMessage "systemctl start winbind"
 systemctl start winbind
+## DISABLE nmbd
+printAndLogMessage "systemctl disable nmbd"
+systemctl disable nmbd
 
 ## enable automatic home-directory creation
 printAndLogMessage "enable automatic home-directory creation"
@@ -73,42 +74,38 @@ printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 # looks like adcli works only with sssd without problems :-( ??
 # so we use net ads on servers
 # server will also be added to DNS, if it does not exist. error message if allready in DNS
+# but due to UNIX attributes all AD - clients should be added with special script an AD - server anyway
 net ads join -U Administrator@${SAMBA4_DNS_DOMAIN_NAME}%${SAMBA4_ADMINISTRATOR_PASSWORD}
 
 printAndLogMessage "create directory for users ${SAMBA4_HOMES_BASE_DIR}"
-mkdir -p -v ${SAMBA4_NFS_TEACHERS_HOMEDIR}
-mkdir -p -v ${SAMBA4_NFS_PUPILS_HOMEDIR}
-mkdir -p -v ${SAMBA4_NFS_STAFF_HOMEDIR}
+for CONTAINER in ${OU_TSN_SYNC_CONTAINER_LIST};
+do
+        # we drop OU= from container: OU=701036 -> 701036
+        SCHOOL_IDENTIFIER=${CONTAINER#OU=}
+        for GROUP_IDENTIFIER in l s v t;
+        do
+                mkdir -v -p ${SAMBA4_HOMES_BASE_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER}
+        done
+done
+
 
 #printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}"
 #chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}
 
-printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}"
-chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}
+#printAndLogMessage "change mode for directory ${SAMBA4_HOMES_BASE_DIR}"
+#chmod -v 2775 ${SAMBA4_HOMES_BASE_DIR}
 
 printAndLogMessage "add share /home/xchange/"
 /bin/bash add_share_xchange-etc_samba_smb.conf.sh
 
 
 #### ADD NFS - Server START ####
-cd ../nfs-server
-/bin/bash install-nfs_server.sh
-cd ../samba4
 
-printAndLogMessage "create export directories in ${NFS_EXPORT_DIR}"
-mkdir -p -v ${NFS_EXPORT_TEACHERS_HOMEDIR}
-mkdir -p -v ${NFS_EXPORT_PUPILS_HOMEDIR}
-mkdir -p -v ${NFS_EXPORT_STAFF_HOMEDIR}
+if [ "${SAMBA4_NFS_EXPORT_DIR}" != "" ];
+then
+        /bin/bash install-nfs_server.sh
+fi
 
-mount --bind ${SAMBA4_NFS_TEACHERS_HOMEDIR}/ ${NFS_EXPORT_TEACHERS_HOMEDIR}
-mount --bind ${SAMBA4_NFS_PUPILS_HOMEDIR}/ ${NFS_EXPORT_PUPILS_HOMEDIR}
-mount --bind ${SAMBA4_NFS_STAFF_HOMEDIR}/ ${NFS_EXPORT_STAFF_HOMEDIR}
-
-printAndLogMessage "MOUNT ${SAMBA4_HOMES_BASE_DIR}/${SCHOOL_ID_NUMBER}/l s v TO EXPORTS DIRECTORY $NFS_EXPORT_DIR/${SCHOOL_ID_NUMBER}/l s v"
-/bin/bash change-etc_fstab.sh
-
-printAndLogMessage "ADD $NFS_EXPORT_DIR/l s v TO /etc/exports"
-/bin/bash change-etc_exports.sh
 #### ADD NFS - Server END ####
 
 

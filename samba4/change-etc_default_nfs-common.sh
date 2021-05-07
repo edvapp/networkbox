@@ -7,18 +7,20 @@
 . ../OPTIONS.conf
 
 # manipulated file
-file=/etc/bind/named.conf.local
+file="/etc/default/nfs-common"
 printAndLogMessage "Manipulated file: " ${file}
 
 printAndLogMessage "Save original file: " ${file}
-saveOriginal ${file}
-logFile ${file}
+saveOriginal $file
+logFile $file
 
 printAndLogMessage "Write to file: " ${file}
 
-echo "
-include \"/var/lib/samba/bind-dns/named.conf\";
-" > ${file}
+sed -e "{
+	/NEED_IDMAPD=$/ s/NEED_IDMAPD=/NEED_IDMAPD=\"yes\"/
+}" -i $file
+
 
 logFile ${file}
+
 

@@ -7,18 +7,19 @@
 . ../OPTIONS.conf
 
 # manipulated file
-file=/etc/bind/named.conf.local
+file="/etc/default/nfs-kernel-server"
 printAndLogMessage "Manipulated file: " ${file}
 
 printAndLogMessage "Save original file: " ${file}
-saveOriginal ${file}
-logFile ${file}
+saveOriginal $file
+logFile $file
 
 printAndLogMessage "Write to file: " ${file}
 
-echo "
-include \"/var/lib/samba/bind-dns/named.conf\";
-" > ${file}
+sed -e "{
+	/NEED_SVCGSSD=$/ s/NEED_SVCGSSD=/NEED_SVCGSSD=\"yes\"/
+}" -i $file
 
 logFile ${file}
+
 

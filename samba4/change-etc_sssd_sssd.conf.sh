@@ -32,7 +32,7 @@ logFile ${file}
 ## set to True and they will get domain comprehensive UIDs and GIDs
 
 
-printAndLogMessage "Change file: " $file
+printAndLogMessage "Change file: " ${file}
 sed -e "{
 	/use_fully_qualified_names/ s/True/False/
 }" -e "{
@@ -41,9 +41,9 @@ sed -e "{
 	/cache_credentials/ s/cache_credentials/#cache_credentials/
 }" -e "{
 	/ldap_id_mapping/ s/True/${HAS_LDAP_ID_MAPPING}/
-}" -i $file
+}" -i ${file}
 
-logFile $file
+logFile ${file}
 
 printAndLogMessage "restart sssd daemon"
 systemctl restart sssd

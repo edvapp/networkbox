@@ -11,15 +11,15 @@ printAndLogMessage "SET FQDN IN /etc/hosts"
 ## manipulated file /etc/hosts
 file="/etc/hosts"
 
-printAndLogMessage "Manipulated file: " $file
-printAndLogMessage "Save original file: " $file
-saveOriginal $file
-logFile $file
+printAndLogMessage "Manipulated file: " ${file}
+printAndLogMessage "Save original file: " ${file}
+saveOriginal ${file}
+logFile ${file}
 
-printAndLogMessage "Change file: " $file
+printAndLogMessage "Change file: " ${file}
 # block host entrance, if one exists
 sed -e "{
     /$(hostname)/ s/$(hostname)/$(hostname).${SAMBA4_DNS_DOMAIN_NAME} $(hostname)/
-}" -i $file 
+}" -i ${file} 
 
-logFile $file
+logFile ${file}
