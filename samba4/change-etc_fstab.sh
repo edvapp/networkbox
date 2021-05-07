@@ -21,7 +21,7 @@ do
         echo "# adding exports for ${CONTAINER}" >> ${file}
         # we drop OU= from container: OU=701036 -> 701036
         SCHOOL_IDENTIFIER=${CONTAINER#OU=}
-        for GROUP_IDENTIFIER in l s v t;
+        for GROUP_IDENTIFIER in ${GROUP_IDENTIFIER_LIST};
         do
                 echo "#"
                 echo "${SAMBA4_HOMES_BASE_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER} \

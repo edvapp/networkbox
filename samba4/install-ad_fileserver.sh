@@ -37,12 +37,12 @@ printAndLogMessage "acl attr samba samba-dsdb-modules samba-vfs-modules winbind 
 apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9-dnsutils libnss-winbind libpam-winbind adcli 
 
 ## STOP all services
-printAndLogMessage "systemctl stop smbd"
-systemctl stop smbd
 printAndLogMessage "systemctl stop nmbd"
 systemctl stop nmbd
 printAndLogMessage "systemctl stop winbind"
 systemctl stop winbind
+printAndLogMessage "systemctl stop smbd"
+systemctl stop smbd
 
 ## STOP AND DISABLE systemd-resolved & SET AD DOMAIN CONTROLLER IP AS NAMESERVER IN NEW $file"
 /bin/bash change-etc_resolv.conf.sh  
@@ -82,12 +82,11 @@ for CONTAINER in ${OU_TSN_SYNC_CONTAINER_LIST};
 do
         # we drop OU= from container: OU=701036 -> 701036
         SCHOOL_IDENTIFIER=${CONTAINER#OU=}
-        for GROUP_IDENTIFIER in l s v t;
+        for GROUP_IDENTIFIER in ${GROUP_IDENTIFIER_LIST};
         do
                 mkdir -v -p ${SAMBA4_HOMES_BASE_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER}
         done
 done
-
 
 #printAndLogMessage "change group to Domain Users for ${SAMBA4_HOMES_BASE_DIR}"
 #chgrp -v "${SAMBA4_DOMAIN}\Domain Admins" ${SAMBA4_HOMES_BASE_DIR}
@@ -98,7 +97,6 @@ done
 printAndLogMessage "add share /home/xchange/"
 /bin/bash add_share_xchange-etc_samba_smb.conf.sh
 
-
 #### ADD NFS - Server START ####
 
 if [ "${SAMBA4_NFS_EXPORT_DIR}" != "" ];
@@ -107,7 +105,6 @@ then
 fi
 
 #### ADD NFS - Server END ####
-
 
 printAndLogEndMessage "FINISH:  INSTALLATION OF SAMBA4 FILE - SERVER"
 

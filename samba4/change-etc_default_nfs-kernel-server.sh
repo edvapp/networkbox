@@ -16,9 +16,10 @@ logFile $file
 
 printAndLogMessage "Write to file: " ${file}
 
-sed -e "{
-	/NEED_SVCGSSD=$/ s/NEED_SVCGSSD=/NEED_SVCGSSD=\"yes\"/
-}" -i $file
+# single quotes because double qutes inside !
+sed -e '{
+	/NEED_SVCGSSD=""/ s/NEED_SVCGSSD=""/NEED_SVCGSSD="yes"/
+}' -i $file
 
 logFile ${file}
 

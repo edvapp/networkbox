@@ -25,7 +25,7 @@ for CONTAINER in ${OU_TSN_SYNC_CONTAINER_LIST};
 do
         # we drop OU= from container: OU=701036 -> 701036
         SCHOOL_IDENTIFIER=${CONTAINER#OU=}        
-        for GROUP_IDENTIFIER in l s v t;
+        for GROUP_IDENTIFIER in ${GROUP_IDENTIFIER_LIST};
         do
                 mkdir -v -p ${SAMBA4_NFS_EXPORT_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER} 
         done
