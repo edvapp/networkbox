@@ -17,7 +17,7 @@ saveOriginal $file
 logFile $file
 
 printAndLogMessage "Change file: " $file
-# set 172.01.1 to STATIC IP
+# set 127.0.1.1 to STATIC IP
 sed -e "{
     /$(hostname)/ s/127.0.1.1/${SAMBA4_STATIC_IP}/
 }" -i $file 

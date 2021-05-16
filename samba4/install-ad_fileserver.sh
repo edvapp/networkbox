@@ -6,10 +6,10 @@
 # source configuration
 . ../OPTIONS.conf
 
-# install samba4 ad controller
+# install samba4 ad file server
 if [ ! "$FULLINSTALL" = "true" ];
 then
-	echo "FULLINSTALL=false"
+	printAndLogStartMessage "FULLINSTALL=false"
 	apt-get -y update
 fi
 
@@ -68,6 +68,10 @@ systemctl disable nmbd
 ## enable automatic home-directory creation
 printAndLogMessage "enable automatic home-directory creation"
 pam-auth-update --enable mkhomedir
+
+## SET TIMEZONE to ${SAMBA4_TIMEZONE}
+printAndLogMessage "SET TIMEZONE TO ${SAMBA4_TIMEZONE}"
+timedatectl set-timezone ${SAMBA4_TIMEZONE}
 
 printAndLogMessage "join domain ${SAMBA4_REALM_DOMAIN_NAME}"
 # adcli join -v --one-time-password=secret1234 ${SAMBA4_REALM_DOMAIN_NAME}

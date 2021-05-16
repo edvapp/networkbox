@@ -48,6 +48,10 @@ printAndLogMessage "mv /etc/krb5.conf /etc/krb5.conf.orig"
 mv /etc/samba/smb.conf /etc/samba/smb.conf.orig
 mv /etc/krb5.conf /etc/krb5.conf.orig
 
+## SET TIMEZONE to ${SAMBA4_TIMEZONE}
+printAndLogMessage "SET TIMEZONE TO ${SAMBA4_TIMEZONE}"
+timedatectl set-timezone ${SAMBA4_TIMEZONE}
+
 printAndLogMessage "PROVISION ACTIVE DIRECTORY SERVER"
 printAndLogMessage "samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}"
 #samba-tool domain provision --server-role=dc --use-rfc2307 --dns-backend=SAMBA_INTERNAL --realm=${SAMBA4_REALM_DOMAIN_NAME} --domain=${SAMBA4_DOMAIN} --adminpass=${SAMBA4_ADMINISTRATOR_PASSWORD}
@@ -115,6 +119,7 @@ printAndLogMessage  "add computer "
 
 ## ADD TSN SYNC
 /bin/bash add_sync_to_tsn.sh
+
 
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"
 
