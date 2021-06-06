@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 # install samba4 ad controller
 if [ ! "$FULLINSTALL" = "true" ];
@@ -66,14 +66,15 @@ cp /var/lib/samba/private/krb5.conf /etc
 ## * apt-get install
 ## * samba-tool domain provision
 ## because DNS lookup is brocken
-/bin/bash change_for_AD-etc_resolv.conf.sh
+/bin/bash change-etc_resolv.conf.sh
 
 ## SET FORWARDER IN /etc/samba/smb.conf
 ## DNS lookup should work now again 
 ## BUT:
 ## dns forwarder = ddd.ddd.ddd.ddd 
 ## at the moment not found in /etc/samba/smb.conf
-/bin/bash change-etc_samba_smb.conf.sh
+## because only needed with "internal" dns-server
+## /bin/bash change-etc_samba_smb.conf.sh
 
 ## CONFIGURE BIND9 DNS Server
 printAndLogMessage "CONFIGURE BIND9 DNS Server"
@@ -114,11 +115,17 @@ printAndLogMessage  "upgrade normal windows-groups to unix-groups"
 /bin/bash upgrade-normal_windowsgroups_to_unixgroups.sh
 
 ## ADD COMPUTER DOMAIN MANAGEMENT
-printAndLogMessage  "add computer "
+printAndLogMessage  "add computer domain management"
 /bin/bash add_domain_computer_management.sh
 
 ## ADD TSN SYNC
+printAndLogMessage  "add TSN sync"
 /bin/bash add_sync_to_tsn.sh
+
+## COPY HELPER SCRIPT
+printAndLogMessage "copy helperscript add_host.sh to /usr/local/sbin"
+cp -v helper_scripts/add_host.sh /usr/local/sbin
+
 
 
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"

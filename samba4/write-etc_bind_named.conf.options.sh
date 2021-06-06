@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 # manipulated file
 file=/etc/bind/named.conf.options
@@ -29,7 +29,7 @@ options {
       notify no;
       empty-zones-enable no;
       auth-nxdomain yes;
-      forwarders { 8.8.8.8; 8.8.4.4; };
+      forwarders { ${LOCAL_DNS_IP}; 8.8.8.8; 8.8.4.4; };
       allow-transfer { none; };
 
       dnssec-validation no;
@@ -41,7 +41,7 @@ options {
       // If you only use IPv4. 
       listen-on-v6 { none; };
       // listen on these ipnumbers. 
-      listen-on port 53 { ${SAMBA4_STATIC_IP}; 127.0.0.1; ::1; };
+      listen-on port 53 { ${SAMBA4_AD_DNS_STATIC_IP}; 127.0.0.1; ::1; };
 
       // Added Per Debian buster Bind9. 
       // Due to : resolver: info: resolver priming query complete messages in the logs. 

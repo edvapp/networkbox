@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 # install samba4 ad file server
 if [ ! "$FULLINSTALL" = "true" ];
@@ -109,6 +109,12 @@ then
 fi
 
 #### ADD NFS - Server END ####
+
+#### COPY HELPER SCRIPTS
+printAndLogMessage "copy helperscripts to /usr/local/sbin"
+cp -v helper_scripts/check-for_missing_homedirs.sh /usr/local/sbin
+cp -v helper_scripts/check-for_unused_homedirs.sh /usr/local/sbin
+cp -v helper_scripts/sync_homedirs_for_ad_users.sh /usr/local/sbin
 
 printAndLogEndMessage "FINISH:  INSTALLATION OF SAMBA4 FILE - SERVER"
 

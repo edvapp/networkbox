@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 
 printAndLogMessage "SET STATIC IP IN /etc/hosts" 

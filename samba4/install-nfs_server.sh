@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 printAndLogStartMessage "START: INSTALLATION OF NFS - SERVER"
 

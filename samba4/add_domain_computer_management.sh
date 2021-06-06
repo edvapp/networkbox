@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 
 printAndLogMessage "CREATE CONTAINER FOR MANAGER GROUPS/USERS ${OU_MANAGER_CONTAINER}"

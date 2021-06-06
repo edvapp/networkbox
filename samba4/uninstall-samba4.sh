@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 # install samba4 ad controller
 if [ ! "$FULLINSTALL" = "true" ];

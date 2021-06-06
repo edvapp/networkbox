@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 
 printAndLogMessage "STOP AND DISABLE systemd-resolved"
@@ -19,7 +19,7 @@ systemctl stop systemd-resolved
 systemctl disable systemd-resolved
 rm ${file}
 
-printAndLogMessage "SET AD - Controller IP AS NAMESERVER IN NEW ${file}"
+printAndLogMessage "SET AD - DC IP AS NAMESERVER IN NEW ${file}"
 echo "nameserver ${SAMBA4_AD_DNS_STATIC_IP}
 search ${SAMBA4_DNS_DOMAIN_NAME}
 "> ${file}

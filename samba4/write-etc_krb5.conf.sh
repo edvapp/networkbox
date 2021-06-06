@@ -4,7 +4,7 @@
 . ../helperfunctions.sh
 
 # source configuration
-. ../OPTIONS.conf
+. ../SAMBA4.conf
 
 ## manipulated file /etc/krb5.conf 
 file=/etc/krb5.conf 

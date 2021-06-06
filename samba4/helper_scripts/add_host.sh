@@ -1,21 +1,28 @@
 #!/bin/bash
 
+if [ "$1" == "" ];
+then
+echo " 
 ## USAGE:
 ## add_host.sh HOSTNAME COMPUTEROU IP CREATOR PASSWORD
 ##
 ## Example:
 ## add_host.sh HOSTNAME COMPUTEROU                       IP         CREATOR       PASSWORD
-## add_host.sh r213pc50 OU=hosts,OU=701036,DC=BRG,DC=TSN 10.2.13.50 Administrator Passw0rd
+## add_host.sh r213pc50 OU=hosts,OU=701036,DC=APP,DC=TSN 10.2.13.50 Administrator Passw0rd
 ##
 ## ATTENTION:
 ## 1. has to run on the activ directory domain controller, because we use ldbmodify to modify directory
 ##
 ## 2. CREATOR has to have rights on the DNS - Server
-##    Machines can be joined by an user, which has rights on COMPUTEROU Container
+##    Machines can be joined LATER by an user, which has ONLY rights on COMPUTEROU Container
 ##
 ## 3. COMPUTEROU must already exist
 ##
 ## 4. REVERSE_IP calculation is just done for network 10.0.0.0/8
+"
+exit
+fi
+
 
 AD_HOSTNAME=$(hostname)
 
