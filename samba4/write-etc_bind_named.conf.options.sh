@@ -17,11 +17,11 @@ logFile ${file}
 printAndLogMessage "Write to file: " ${file}
 
 ## we get CIDR subnetmask in variable ${CIDR_SUBNETMASK}
-getCIDRsubnetmask $NETMASK
+getCIDRsubnetmask ${DNS_NETMASK}
 
 echo "
 // Managing acls
-acl internals { 127.0.0.0/8; ${NETWORK}/${CIDR_SUBNETMASK}; };
+acl internals { 127.0.0.0/8; ${DNS_NETWORK}/${CIDR_SUBNETMASK}; };
 
 options {
       directory \"/var/cache/bind\";
