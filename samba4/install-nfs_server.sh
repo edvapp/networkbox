@@ -9,7 +9,7 @@
 printAndLogStartMessage "START: INSTALLATION OF NFS - SERVER"
 
 printAndLogMessage "check in /etc/exports, if filesystem is already exported"
-if [ -f /etc/exports -a "$(grep -e ${SAMBA4_NFS_EXPORT_DIR} /etc/exports)"=="${SAMBA4_NFS_EXPORT_DIR}" ];
+if [ -f /etc/exports -a "$(grep -e ${NFS_EXPORT_DIR} /etc/exports)"=="${NFS_EXPORT_DIR}" ];
 then
 	printAndLogMessage "filesystem already exported"
 	exit
@@ -20,14 +20,14 @@ printAndLogMessage "Install NFS - Server"
 printAndLogMessage "apt-get -y install nfs-kernel-server"
 apt-get -y install nfs-kernel-server
 
-printAndLogMessage "Create export directory with subdirectories" ${SAMBA4_NFS_EXPORT_DIR}
+printAndLogMessage "Create export directory with subdirectories" ${NFS_EXPORT_DIR}
 for CONTAINER in ${OU_TSN_SYNC_CONTAINER_LIST};
 do
         # we drop OU= from container: OU=701036 -> 701036
         SCHOOL_IDENTIFIER=${CONTAINER#OU=}        
         for GROUP_IDENTIFIER in ${GROUP_IDENTIFIER_LIST};
         do
-                mkdir -v -p ${SAMBA4_NFS_EXPORT_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER} 
+                mkdir -v -p ${NFS_EXPORT_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER} 
         done
 done
 

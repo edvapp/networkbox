@@ -103,7 +103,7 @@ printAndLogMessage "add share /home/xchange/"
 
 #### ADD NFS - Server START ####
 
-if [ "${SAMBA4_NFS_EXPORT_DIR}" != "" ];
+if [ "${NFS_EXPORT_DIR}" != "" ];
 then
         /bin/bash install-nfs_server.sh
 fi
