@@ -16,7 +16,6 @@ logFile $file
 
 printAndLogMessage "Write to file: " ${file}
 
-getCIDRsubnetmask $NETMASK
 
 if [ "${KERBEROS_SECURITY}" != "" ];
 then
@@ -26,7 +25,8 @@ fi
 
 
 echo "
-${NFS_EXPORT_DIR} ${NETWORK}/${CIDR_SUBNETMASK}(${KRB5}fsid=0,rw,insecure,no_subtree_check,async)
+# export ${NFS_EXPORT_DIR}
+${NFS_EXPORT_DIR} ${NFS_ALLOWED_IP_RANGE}(${KRB5}fsid=0,rw,insecure,no_subtree_check,async)
 #
 #" >> ${file}
 
@@ -39,7 +39,7 @@ do
         do
                 echo "#"
                 echo "${NFS_EXPORT_DIR}/${SCHOOL_IDENTIFIER}/${GROUP_IDENTIFIER} \
-                      ${NETWORK}/${CIDR_SUBNETMASK}(${KRB5}rw,nohide,insecure,no_subtree_check,async)" >> ${file}
+                      ${NFS_ALLOWED_IP_RANGE}(${KRB5}rw,nohide,insecure,no_subtree_check,async)" >> ${file}
         done
 done
 
