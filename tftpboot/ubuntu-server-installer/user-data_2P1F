@@ -30,9 +30,8 @@ autoinstall:
     - id: disk0
       type: disk
       ptable: gpt
-      grub_device: true
-      preserve: false
-      wipe: superblock
+      grub_device: false
+      preserve: true
     ### partitions ###
     ### efi ###
     - id: efi_partition
@@ -41,13 +40,14 @@ autoinstall:
       device: disk0
       flag: boot
       grub_device: true
-      preserve: false
+      preserve: true
     ### root ###
     - id: root_partition
       type: partition
       size: 40GB
       device: disk0
       preserve: false
+      wipe: superblock
     ### opt ###
     - id: opt_partition
       type: partition

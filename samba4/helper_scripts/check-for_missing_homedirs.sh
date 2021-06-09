@@ -8,6 +8,8 @@ do
         ## DOMAIN\username:*:uidNUmber:gidNumber::homedirectory_path:/bin/bash
         echo "processing ${USER}"
         wbinfo --user-info ${USER}
+        ## check if $? <=> exit-status of wbinfo --user-info is 0 <=> success
+        ## because wbinfo --user-info does not work for build in users like administrator 
         if [ "$?" == "0" ];
         then
                 USER_HOME_DIR_PATH=$(wbinfo --user-info ${USER} | awk 'BEGIN {FS = ":" } { print $6 } ')
