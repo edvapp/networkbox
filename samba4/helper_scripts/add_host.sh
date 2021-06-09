@@ -6,9 +6,14 @@ echo "
 ## USAGE:
 ## add_host.sh HOSTNAME COMPUTEROU IP CREATOR PASSWORD
 ##
-## Example:
-## add_host.sh HOSTNAME COMPUTEROU                       IP         CREATOR       PASSWORD
-## add_host.sh r213pc50 OU=hosts,OU=701036,DC=APP,DC=TSN 10.2.13.50 Administrator Passw0rd
+## Examples:
+## add server:
+## add_host.sh  HOSTNAME  COMPUTEROU                                      IP          CREATOR        PASSWORD
+## add_host.sh  fs02      OU=Servers,OU=MANGED_CONTAINER,DC=APP,DC=TSN    10.0.0.17   Administrator  Passw0rd
+##
+## add normal host:
+## add_host.sh  HOSTNAME  COMPUTEROU                                      IP          CREATOR        PASSWORD
+## add_host.sh  r213pc50  OU=Computers,OU=MANGED_CONTAINER,DC=APP,DC=TSN  10.2.13.50  Administrator  Passw0rd
 ##
 ## ATTENTION:
 ## 1. has to run on the activ directory domain controller, because we use ldbmodify to modify directory
@@ -31,6 +36,11 @@ COMPUTEROU=$2
 IP=$3
 CREATOR=$4
 PASSWORD=$5
+if [ "${PASSWORD}" == "" ];
+then
+	echo "Please enter password for user ${CREATOR}"
+	read PASSWORD
+fi
 
 CHECK=$(echo $IP | awk 'BEGIN { FS = "." } { print $2 }')
 if (( $CHECK > 147 ));
