@@ -35,7 +35,7 @@ printAndLogMessage "apt-get install -y acl attr samba samba-dsdb-modules samba-v
 ## to have a look at the ldb-databases: ldb-tools
 ## to preset computer-accounts: adcli
 ## to act as an nfs-client: nfs-common autofs
-apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9 bind9-dnsutils ldb-tools adcli nfs-common autofs
+apt-get install -y acl attr samba samba-dsdb-modules samba-vfs-modules winbind krb5-config krb5-user bind9 bind9-dnsutils ldb-tools adcli
 
 printAndLogMessage  "MASK, DISABLE & STOP smbd nmbd winbind"
 systemctl mask smbd nmbd winbind
@@ -98,34 +98,33 @@ systemctl unmask samba-ad-dc
 systemctl start samba-ad-dc
 systemctl enable samba-ad-dc
 
-## CREATE REVERSE LOOK UP in DNS
-printAndLogMessage "CREATE REVERSE LOOK UP in DNS"
-/bin/bash create-dns_reverse_zone.sh
-
 ## ADD CERTIFICATES TO DOMAIN CONTROLLER
 printAndLogMessage  "ADD CERTIFICATES TO DOMAIN CONTROLLER"
 /bin/bash add_tls-etc_samba_smb.conf.sh
-
-## SIMPLE NETLOGON.BAT TO /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
-printAndLogMessage  "copy simple netlogon.bat to /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts"
-cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
-
-## UPGRADE NORMAL WINDOWS GROUPS TO UNIX GROUPS
-printAndLogMessage  "upgrade normal windows-groups to unix-groups"
-/bin/bash upgrade-normal_windowsgroups_to_unixgroups.sh
-
-## ADD COMPUTER DOMAIN MANAGEMENT
-printAndLogMessage  "add computer domain management"
-/bin/bash add_domain_computer_management.sh
 
 ## ADD TSN SYNC
 printAndLogMessage  "add TSN sync"
 /bin/bash add_sync_to_tsn.sh
 
+## ADD COMPUTER DOMAIN MANAGEMENT
+printAndLogMessage  "add computer domain management"
+/bin/bash add_domain_computer_management.sh
+
+## CREATE REVERSE LOOK UP in DNS needed for Linux clients
+printAndLogMessage "CREATE REVERSE LOOK UP in DNS"
+/bin/bash create-dns_reverse_zone.sh
+
+## UPGRADE NORMAL WINDOWS GROUPS TO UNIX GROUPS needed for Linux clients
+printAndLogMessage  "upgrade normal windows-groups to unix-groups"
+/bin/bash upgrade-normal_windowsgroups_to_unixgroups.sh
+
 ## COPY HELPER SCRIPT
 printAndLogMessage "copy helperscript add_host.sh to /usr/local/sbin"
 cp -v helper_scripts/add_host.sh /usr/local/sbin
 
+## SIMPLE NETLOGON.BAT TO /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
+printAndLogMessage  "copy simple netlogon.bat to /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts"
+cp files/netlogon.bat /var/lib/samba/sysvol/${SAMBA4_DNS_DOMAIN_NAME}/scripts
 
 
 printAndLogEndMessage "FINISH: INSTALLATION OF SAMBA4 AD - CONTROLLER"

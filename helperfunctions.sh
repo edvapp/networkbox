@@ -77,7 +77,7 @@ function createSambaOUpath()
                 do
                         OU_TO_CREATE="${INPUT_OU_ARRAY[ou]},${OU_TO_CREATE}"
                 done
-                ## :: -1 we remove the last , 
+                ## :: -1 we remove the last "," at the end of the string 
                 echo "creating ${OU_TO_CREATE::-1}"
                 samba-tool ou create ${OU_TO_CREATE::-1}
         done
