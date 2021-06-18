@@ -65,9 +65,9 @@ echo "add uidNumber to machine account"
 ## we need 10 digits 
 ## we repace the first IP tripplet with 2
 ## and check the second to stay beyond 147 because 2^31-1 = 2 147 483 647 :-(
-## 10.3.45.231 -> 2 003 045 231 -> 1003045231
+## 10.3.45.231 -> 2 003 045 231 -> 2003045231
 
-UID_NUMBER=$(echo $IP | awk 'BEGIN { FS = "." } { printf "1%.3d%.3d%.3d", $2, $3, $4 }')
+UID_NUMBER=$(echo $IP | awk 'BEGIN { FS = "." } { printf "2%.3d%.3d%.3d", $2, $3, $4 }')
 echo "
 dn: CN=${HOSTNAME},${COMPUTEROU}
 changetype: modify
